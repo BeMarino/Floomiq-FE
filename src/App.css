@@ -17,117 +17,220 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
   gap: 32px;
   align-self: stretch;
+  width: 100%;
   border-bottom: solid chartreuse;
-  
+
 }
 
 .App-footer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 80px;
   border-top: solid chartreuse;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer-container {
   display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: flex-start;
-gap: 80px;
-align-self: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  align-self: stretch;
 }
 
-.footer-row{
+.footer-row {
   display: flex;
-  padding: 12px;
   flex-direction: row;
-justify-content: space-between;
-align-self: stretch;
-flex: 1 1;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-wrap: wrap;
 }
 
-.footer-column{
+.footer-row-email {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.footer-row-policy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+  padding-left: 12px;
+  flex: 1 1;
+  font-style: normal;
+  font-weight: 100;
+  font-size: smaller;
+}
+
+.footer-column {
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
   align-items: flex-start;
-  padding-left: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-column-updates {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 
-.footer-newsletter{
+.footer-newsletter {
   align-self: stretch;
   color: var(--Black, #000);
 
-/* Text/Medium/Semi Bold */
-font-style: normal;
-font-weight: 600;
-font-size: medium;
-line-height: 150%; /* 27px */
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-weight: 600;
+  font-size: medium;
+  line-height: 150%;
+  /* 27px */
 }
 
-.footer-newsletter-2{
+.footer-newsletter-2 {
   align-self: flex-start;
   color: var(--Black, #000);
-
-/* Text/Medium/Semi Bold */
-font-style: normal;
-font-size: small;
-line-height: 50%; /* 27px */
+  line-height: 9px;
+  height: 15px;
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-size: small;
+  /* 27px */
 }
 
-.Header-column{
+
+.footer-column-links {
+  align-self: flex-start;
+  color: var(--Black, #000);
+  align-items: flex-start;
   display: flex;
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-size: small;
   flex-direction: row;
-  align-items: center;
-  flex: 1 0 0;
+  width: 70%;
+  flex-wrap: wrap;
 }
 
-.button-sign-up{
+.footer-column-link {
+  align-self: flex-start;
+  color: var(--Black, #000);
+  align-items: flex-start;
+  display: flex;
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-size: medium;
+  font-weight: 600;
+  flex-direction: column;
+  width: 20%;
+}
+
+.footer-spacer {
+  width: 90%;
+  padding-bottom: 5px;
+  margin-left: 5%;
+  border-top: 2px solid #494646;
+}
+
+.footer-column-link-2 {
+  align-self: flex-start;
+  color: var(--Black, #000);
+  align-items: flex-start;
+  display: flex;
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-size: medium;
+  flex-direction: column;
+  font-weight: 100;
+}
+
+.Header-column {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.button-sign-up {
   background-color: #000;
-  border: 1px solid #000; /* Add a border to make the button visible */
-  color: #fff; /* Text color */
-  padding: 10px 15px; /* Adjust padding as needed */
-  text-decoration: none; /* Remove underline for anchor elements */
-  display: inline-block; /* Ensure the button behaves as a block element */
-  cursor: pointer; /* Add cursor pointer for interaction */
+  border: 1px solid #000;
+  /* Add a border to make the button visible */
+  color: #fff;
+  /* Text color */
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  display: inline-block;
+  /* Ensure the button behaves as a block element */
+  cursor: pointer;
+  /* Add cursor pointer for interaction */
   border-radius: 0;
 }
 
 .nav-button {
   background-color: transparent;
-  border: 1px solid transparent; /* Add a border to make the button visible */
-  color: #000; /* Text color */
-  padding: 10px 15px; /* Adjust padding as needed */
-  text-decoration: none; /* Remove underline for anchor elements */
-  display: inline-block; /* Ensure the button behaves as a block element */
-  cursor: pointer; /* Add cursor pointer for interaction */
+  border: 1px solid transparent;
+  /* Add a border to make the button visible */
+  color: #000;
+  /* Text color */
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  display: inline-block;
+  /* Ensure the button behaves as a block element */
+  cursor: pointer;
+  /* Add cursor pointer for interaction */
 }
 
 .button-newsletter {
   background-color: transparent;
-  border: px solid #000; /* Add a border to make the button visible */
-  color: #000; /* Text color */
-  padding: 10px 15px; /* Adjust padding as needed */
-  text-decoration: none; /* Remove underline for anchor elements */
-  cursor: pointer; /* Add cursor pointer for interaction */
+  border: px solid #000;
+  /* Add a border to make the button visible */
+  color: #000;
+  /* Text color */
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  cursor: pointer;
+  /* Add cursor pointer for interaction */
   margin-left: 5px;
 }
 
 .email-newsletter {
   background-color: transparent;
-  border: 1px solid #000; /* Add a border to make the button visible */
-  color: #000; /* Text color */
-  padding: 10px 15px; /* Adjust padding as needed */
-  text-decoration: none; /* Remove underline for anchor elements */
-  cursor: text; /* Add cursor pointer for interaction */
+  border: 1px solid #000;
+  /* Add a border to make the button visible */
+  color: #000;
+  /* Text color */
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  cursor: text;
+  /* Add cursor pointer for interaction */
 }
 
-.nav-select{
+.nav-select {
   border-color: transparent;
   color: var(--Black, #000);
   padding: 10px 15px;
@@ -139,13 +242,78 @@ line-height: 50%; /* 27px */
   color: #61dafb;
 }
 
+@media (max-width: 747px) {
+  .header-nav {
+    display: none
+  }
+}
+.navigation-outer{
+  display:none;
+}
+
+@media  (max-width: 767px){
+  .navigation-outer {
+      display:inline;
+  }
+}
+
+.navigation{
+  display:none;
+}
+
+@media screen and (max-width: 747px){
+  .navigation {
+      display:inline;
+      z-index: 6;
+  }
+  .navigation ul{
+    display:flex;
+    z-index: 6;
+  }
+}
+
+.hamburger{
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  z-index: 10;
+}
+
+.hamburger{
+  display: none;
+  z-index: 6;
+} 
+
+
+@media (max-width: 767px){
+  .hamburger{
+      display:flex;
+      padding-top: 10px;
+      margin-left: 10px;
+      z-index: 6;
+  }
+}
+
+.burger{
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  background-color: black;
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+}
+
 input:focus::placeholder {
   color: transparent;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

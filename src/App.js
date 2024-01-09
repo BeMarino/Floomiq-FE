@@ -4,10 +4,11 @@ import Header from './pageComponents/header';
 import Footer from './pageComponents/footer';
 function App() {
   return (
+
     <div className="App">
-      
-      <Header/>
-      <Footer/>
+
+      <Header />
+      <Footer />
     </div>
   );
 }
