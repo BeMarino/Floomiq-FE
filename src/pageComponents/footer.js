@@ -1,4 +1,6 @@
 import React from 'react';
+import Links from './Links';
+
 
 function Footer() {
   return (
@@ -11,7 +13,7 @@ function Footer() {
           </div>
           <div className='footer-column'>
             <div className='footer-row-email' >
-              <input className='email-newsletter' type="email" id="email" name="email" placeholder="Enter your email" class="email-input"></input>
+              <input className='email-newsletter' type="email" id="email" name="email" placeholder="Enter your email" ></input>
               <button className='button-newsletter'>
                 Stay Tuned
               </button>
@@ -22,49 +24,21 @@ function Footer() {
           </div>
         </div>
         <div className='footer-row'>
-          <div className='footer-column'>
+          <div className='footer-logo'>
             logo
           </div>
-          <div className='footer-column-links'>
-            <div className='footer-column-link'>Col1
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-            </div>
-            <div className='footer-column-link'>Col2
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-            </div>
-            <div className='footer-column-link'>Col3
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-            </div>
-            <div className='footer-column-link'>Col4
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-            </div>
-            <div className='footer-column-link'>Col5
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-              <div className='footer-column-link-2'>Link1</div>
-            </div>
+          <Links />
+        </div>
+
+        <div className='footer-spacer'></div>
+        <div className='footer-row'>
+          <div >
+            <i mdi-copyright="true"></i>
           </div>
         </div>
-        <div className='footer-spacer'></div>
+
       </div>
+
     </div>)
 }
 

@@ -1,14 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './pageComponents/header';
-import Footer from './pageComponents/footer';
+import ExplorePlants from './pages/ExplorePlants';
+import { Routes, Route } from 'react-router';
+import Home from './pages/Home';
+
 function App() {
   return (
 
     <div className="App">
 
-      <Header />
-      <Footer />
+      <Routes>
+        <Route path="/explore-plants" element={ <ExplorePlants />} />
+        <Route path="/gardening-tips" element={ <ExplorePlants/>} />
+        <Route path="/" element={ <Home/>} />
+      </Routes>
+     
     </div>
   );
 }

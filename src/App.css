@@ -22,7 +22,11 @@
   align-self: stretch;
   width: 100%;
   border-bottom: solid chartreuse;
+  position: fixed;
+}
 
+.option{
+  cursor: pointer;
 }
 
 .App-footer {
@@ -46,6 +50,13 @@
   align-self: stretch;
 }
 
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
 .footer-row {
   display: flex;
   flex-direction: row;
@@ -115,10 +126,45 @@
   font-size: small;
   /* 27px */
 }
-
+@media screen and(max-width< 747px) {
+  .footer-column-links{
+    flex-direction: column;
+  }
+}
 
 .footer-column-links {
+  align-self: flex-end;
+  color: var(--Black, #000);
+  align-items: flex-start;
+  display: flex;
+  /* Text/Medium/Semi Bold */
+  justify-content: space-evenly;
+  font-style: normal;
+  font-size: small;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.footer-logo{
+  align-self: center;
+  width: 20%;
+}
+
+.footer-column-links-mobile {
   align-self: flex-start;
+  color: var(--Black, #000);
+  align-items: flex-start;
+  display: flex;
+  /* Text/Medium/Semi Bold */
+  font-style: normal;
+  font-size: small;
+  flex-direction: column;
+  width: 70%;
+  flex-wrap: wrap;
+}
+
+.footer-column-links {
+  align-self: flex-end;
   color: var(--Black, #000);
   align-items: flex-start;
   display: flex;
@@ -140,7 +186,6 @@
   font-size: medium;
   font-weight: 600;
   flex-direction: column;
-  width: 20%;
 }
 
 .footer-spacer {
@@ -169,12 +214,12 @@
 }
 
 .button-sign-up {
-  background-color: #000;
+  background-color: #89ba33c7;
   border: 1px solid #000;
   /* Add a border to make the button visible */
   color: #fff;
   /* Text color */
-  padding: 10px 15px;
+  padding: 11px 15px;
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */
@@ -182,7 +227,7 @@
   /* Ensure the button behaves as a block element */
   cursor: pointer;
   /* Add cursor pointer for interaction */
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .nav-button {
@@ -214,6 +259,8 @@
   cursor: pointer;
   /* Add cursor pointer for interaction */
   margin-left: 5px;
+  margin: 10px;
+
 }
 
 .email-newsletter {
@@ -228,13 +275,16 @@
   /* Remove underline for anchor elements */
   cursor: text;
   /* Add cursor pointer for interaction */
+  margin: 10px;
 }
 
 .nav-select {
   border-color: transparent;
-  color: var(--Black, #000);
-  padding: 10px 15px;
+  color: var(--White, #000);
+  padding: 10px ;
   cursor: pointer;
+  align-self: flex-start;
+  
   /* Text/Regular/Normal */
 }
 

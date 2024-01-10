@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 import Hamburger from './Hamburger';
+import Link from 'react-router-dom';
+import DropDownRouter from './DropDownRouter';
 
 function Header() {
 
@@ -8,6 +10,7 @@ function Header() {
   const toggleHamburger = () => {
     setOpenHamburger(!openHamburger)
   }
+
 
   return (
     <div className='App-header'>
@@ -19,11 +22,8 @@ function Header() {
           <button className='nav-button'>
             Garderning Tips
           </button>
-          <select className='nav-select' name='Plant Care'>
-            <option value="Plant Care" disabled selected hidden>Plant Care</option>
-            <option value="vegetable">Vegetable</option>
-            <option value="meat">Meat</option>
-          </select>
+          <DropDownRouter/>
+          
         </div>
         <div className='navigation-outer' style={{ "display": openHamburger ? "inline" : "none" }} >
         <Nav />
