@@ -29,12 +29,50 @@
 
 .discover {
   position: relative;
+  display: flex;
   z-index: 2;
   background-image: url("\\resources\\images\\discover.jpg");
-  background-size: 100% 100%;
-  flex-wrap: wrap;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 1000px;
+  height: 500px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.discover-row {
+  display: flex;
+  position: relative;
+  margin: 10%;
+  z-index: 2;
+  width: 80%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 2px solid #504c4c;
+  position: absolute;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  width: 35%;
+  margin-left: 10%;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.inner-discover{
+  position: absolute;
+  z-index: 2;
+
+}
+
+.discover span{
+  filter: blur(0px);
 }
 
 

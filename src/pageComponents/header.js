@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 import Hamburger from './Hamburger';
-import Link from 'react-router-dom';
 import DropDownRouter from './DropDownRouter';
 
 function Header() {
