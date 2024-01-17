@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Nav from './Nav';
 import Hamburger from './Hamburger';
 import DropDownRouter from './DropDownRouter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function Header() {
 
@@ -35,7 +37,7 @@ function Header() {
       <nav className='Header-column'></nav>
       <nav className='Header-column'>
         <button className='button-sign-up'>
-          Sign Up
+          Sign Up <FontAwesomeIcon icon={icon({name:'user-plus'})}/>
         </button>
       </nav>
     </div>)

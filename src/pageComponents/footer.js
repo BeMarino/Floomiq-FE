@@ -1,6 +1,7 @@
 import React from 'react';
 import Links from './Links';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function Footer() {
   return (
@@ -15,7 +16,7 @@ function Footer() {
             <div className='footer-row-email' >
               <input className='email-newsletter' type="email" id="email" name="email" placeholder="Enter your email" ></input>
               <button className='button-newsletter'>
-                Stay Tuned
+                Stay Tuned <FontAwesomeIcon icon={icon({name:'newspaper', style:'regular'})}/>
               </button>
             </div>
             <div className='footer-row-policy' >
@@ -25,7 +26,7 @@ function Footer() {
         </div>
         <div className='footer-row'>
           <div className='footer-logo'>
-            logo
+            
           </div>
           <Links />
         </div>
