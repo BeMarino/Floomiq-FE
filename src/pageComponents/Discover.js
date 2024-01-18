@@ -14,10 +14,10 @@ export default function Discover() {
       </div>
     </div>
     <div className="discover-row">
-      <div style={{ textAlign: "left" }}>
+      <div className="discover-column">
         <h1>Discover the plants for  <br />
           your garden with our advanced <br />search filters.</h1>
-        <h5 style={{ fontWeight: "lighter" }}>Easily find plants based on their characteristics, such as sun exposure,
+        <h5 style={{ fontWeight: "normal" }}>Easily find plants based on their characteristics, such as sun exposure,
           <br />water requirements, and more. Start exploring now!
         </h5>
       </div>
