@@ -2,6 +2,8 @@ import React from 'react';
 import Links from './Links';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FaFacebook, FaInstagram , FaTwitter, FaLinkedin, FaYoutube  } from "react-icons/fa";
+
 
 function Footer() {
   return (
@@ -16,7 +18,7 @@ function Footer() {
             <div className='footer-row-email' >
               <input className='email-newsletter' type="email" id="email" name="email" placeholder="Enter your email" ></input>
               <button className='button-newsletter'>
-                Stay Tuned <FontAwesomeIcon icon={icon({name:'newspaper', style:'regular'})}/>
+                Stay Tuned <FontAwesomeIcon icon={icon({ name: 'newspaper', style: 'regular' })} />
               </button>
             </div>
             <div className='footer-row-policy' >
@@ -26,18 +28,45 @@ function Footer() {
         </div>
         <div className='footer-row'>
           <div className='footer-logo'>
-            
+
           </div>
           <Links />
         </div>
 
         <div className='footer-spacer'></div>
         <div className='footer-row'>
-          <div >
-            <i mdi-copyright="true"></i>
+          <div className='footer-credit'>
+            <div >
+              © 2023 Floomiq. All rights reserved
+            </div>
+            <div >
+              Privacy Policy
+            </div>
+            <div >
+              Terms of Service
+            </div>
+            <div >
+              Cookies Settings
+            </div>
+          </div>
+          <div className='footer-credit-2'>
+            <div >
+              <FaYoutube/>
+            </div>
+            <div >
+              <FaLinkedin/>
+            </div>
+            <div >
+              <FaTwitter/>
+            </div>
+            <div >
+              <FaInstagram />
+            </div>
+            <div >
+              <FaFacebook/>
+            </div>
           </div>
         </div>
-
       </div>
 
     </div>)
