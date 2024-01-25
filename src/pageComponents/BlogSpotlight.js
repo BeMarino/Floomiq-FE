@@ -5,7 +5,7 @@ export default function Blog() {
         <>
             <div className="subHeading">Discover</div>
             <div className="heading">Unlock Plant Knowledge</div>
-            <h5 style={{"font-weight": "normal"}}>Get expert insights, care tips
+            <h5 style={{fontWeight: "normal"}}>Get expert insights, care tips
             <br></br> and connect with a plant-loving community.</h5>
 
             <div className="blog">

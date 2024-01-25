@@ -11,7 +11,6 @@ function Header() {
   const toggleHamburger = () => {
     setOpenHamburger(!openHamburger)
   }
-  console.log(openHamburger)
   return (
     <div className='App-header'>
       <nav className='Header-column'>

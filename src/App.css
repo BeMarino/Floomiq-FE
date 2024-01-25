@@ -58,7 +58,7 @@
 @media (max-width: 840px) {
   .discover-column {
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
     padding: 0px;
     margin-bottom: 20px;
   }
@@ -78,7 +78,7 @@
 @media (max-width: 840px) {
   .discover-row {
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
     gap: 0px;
     margin: auto;
   }
@@ -104,7 +104,7 @@
 
 @media (max-width: 840px) {
   .bg-text {
-    margin-right:10% ;
+    margin-right: 10%;
   }
 }
 
@@ -286,7 +286,8 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 21px */
+  line-height: 150%;
+  /* 21px */
   width: 45%;
 }
 
@@ -309,7 +310,8 @@
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 21px */
+  line-height: 150%;
+  /* 21px */
   width: 45%;
 }
 
@@ -462,7 +464,7 @@
 
 .sidebar {
   position: fixed;
-  top:0;
+  top: 0;
   height: 100vh;
   width: 80%;
   z-index: 3;
@@ -482,6 +484,7 @@
     opacity: 0.3;
     border-radius: 0 0% 0% 0;
   }
+
   to {
     transform: scaleX(1.0);
     opacity: 1.0;
@@ -489,7 +492,7 @@
   }
 }
 
-.sidebar-logo{
+.sidebar-logo {
   height: 70px;
   width: 90%;
   background-color: rgb(205, 255, 124);
@@ -499,7 +502,7 @@
   background-position: center;
 }
 
-.sidebar li{
+.sidebar li {
   margin-top: 30px;
   padding-top: 5%;
   width: 80%;
@@ -610,7 +613,7 @@ input:focus::placeholder {
   /* 57.6px */
 }
 
-.column-heading h5{
+.column-heading h5 {
   font-size: 18px;
   font-weight: 300;
   text-align: left;
@@ -714,9 +717,9 @@ input:focus::placeholder {
 
 .blog-rectangle-image {
   background-image: url("\\resources\\images\\community-gardens.jpg");
-  background-size:     cover;   
-  background-repeat:   no-repeat;
-  background-position: center center;  
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   width: 50%;
 }
 
@@ -746,7 +749,7 @@ input:focus::placeholder {
   padding: 112px 110px;
   align-items: center;
   gap: 40px;
-  grid-template-columns:  repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
 
 }
@@ -754,7 +757,7 @@ input:focus::placeholder {
 @media (max-width: 840px) {
   .blog {
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
     width: 90%;
     padding: 5%;
   }
@@ -808,4 +811,115 @@ input:focus::placeholder {
   margin-bottom: 10px;
   grid-column: span 2;
   grid-row: span 1;
+}
+
+.faq-container {
+  display: flex;
+  width: 90%;
+  margin-left: 5%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -80px;
+  justify-content: space-between;
+  
+}
+
+@media (max-width: 840px) {
+  .faq-container {
+    margin-top: 5%;
+  }
+}
+
+.faq-container h3 {
+  color: var(--Black, #000);
+
+  /* Heading/H2 */
+  font-size: 48px;
+  font-style: normal;
+  margin: 0;
+  align-self: flex-start;
+  
+  text-align: left;
+}
+
+
+.faq-container h5 {
+  color: var(--Black, #000);
+
+  /* Text/Medium/Normal */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+  margin-block-end: 1.67em;
+}
+
+.faq-box {
+  display: flex;
+  padding: 20px 24px;
+  justify-content: left;
+  align-items: center;
+  align-self: stretch;
+  border: 2px solid #000;
+  margin-bottom:20px;
+  flex-direction: row;
+}
+
+.faq-box a {
+  color: var(--Black, #000);
+display: flex;
+  /* Text/Medium/Bold */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  align-items: flex-start;
+  width: 90%;
+  /* 27px */
+}
+
+.faq-box div{
+  align-items: flex-end;
+  align-self: flex-end;
+}
+
+
+.faq-container h3 {
+  color: var(--Black, #000);
+
+  /* Heading/H2 */
+  font-size: 48px;
+  font-style: normal;
+  margin: 0;
+  align-self: flex-start;
+  
+  text-align: left;
+}
+
+
+.faq-container h5 {
+  color: var(--Black, #000);
+
+  /* Text/Medium/Normal */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+  margin-block-end: 1.67em;
+}
+
+.still-question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.still-question button{
+  margin: 0;
+  margin-bottom: 1.67em;
+}
+
+.still-question h3{
+  font-size: 36px;
 }
