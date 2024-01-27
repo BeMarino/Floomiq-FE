@@ -28,13 +28,22 @@
 
 }
 
+.header-logo {
+  height: 60px;
+  width: 100%;
+  background-image: url('..\\resources\\images\\logo.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 
 .discover {
   position: relative;
   display: flex;
   z-index: 2;
-  background-image: url("\\resources\\images\\discover.jpg");
+  background-image: url("..\\resources\\images\\discover.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -154,7 +163,7 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 800px) {
   .footer-row {
     display: block;
   }
@@ -168,6 +177,24 @@
   align-self: stretch;
   flex-wrap: wrap;
   padding: 10px;
+  font-size: large;
+}
+
+@media (max-width : 420px){
+  .footer-row-email{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width : 560px) and (max-width:800px){
+  .footer-row-email{
+    display: flex;
+    flex-direction: column;
+    margin-left:3%;
+    width: 97%;
+  }
 }
 
 .footer-row-policy {
@@ -180,6 +207,22 @@
   font-style: normal;
   font-weight: 100;
   font-size: smaller;
+}
+
+@media (max-width : 420px){
+  .footer-row-policy{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (min-width : 560px){
+  .footer-row-policy{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .footer-column {
@@ -240,19 +283,26 @@
   /* Text/Medium/Semi Bold */
   justify-content: space-evenly;
   font-style: normal;
-  font-size: small;
+  font-size: larger;
   flex-direction: row;
-  width: 70%;
+  width: 100%;
   flex-wrap: wrap;
 }
 
-@media (max-width: 840px) {
+@media ( max-width: 768px) {
   .footer-column-links {
-    display: block;
-    flex-direction: column;
-    width: 100%;
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
     font-size: larger;
+  }
+}
+
+@media (max-width : 420px) {
+  .footer-column-links {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 10px;
+    display: grid;
   }
 }
 
@@ -261,15 +311,26 @@
   width: 25%;
   height: 70px;
   margin-left: 50px;
-  background-image: url('\\resources\\images\\logo.jpg');
+  background-image: url('..\\resources\\images\\logo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 420px) {
   .footer-logo {
-    margin-left: 0px;
+    width: 70%;
+    margin-bottom: 20px;
+    padding:10px;
+  }
+}
+@media (min-width: 421px) {
+  .footer-logo {
+    margin-left: 5%;
+    width: 80%;
+    padding:30px;
+    margin-top:30px;
+    margin-bottom:50px;
   }
 }
 
@@ -291,32 +352,40 @@
   width: 45%;
 }
 
-@media (max-width: 840px) {
+
+@media (max-width: 768px) {
   .footer-credit {
-    flex-direction: column;
-    width: 80%;
+    flex-direction: row;
+    width: 100%;
   }
 }
 
-.footer-credit-2 {
+@media (max-width: 420px) {
+  .footer-credit {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.socials-links {
   display: flex;
   flex-direction: row-reverse;
   gap: 32px;
   align-self: stretch;
   color: var(--Black, #000);
   padding-block: 20px;
-  margin-right: 5%;
+  margin-right: 8%;
   /* Text/Small/Normal */
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   /* 21px */
-  width: 45%;
+  width: 40%;
 }
 
 @media (max-width: 840px) {
-  .footer-credit-2 {
+  .socials-links {
     width: 80%;
     align-self: center;
     align-items: center;
@@ -478,6 +547,32 @@
   transform-origin: top left;
 }
 
+.sidebar button {
+  border: 1px solid #000;
+  /* Add a border to make the button visible */
+  /* Text color */
+  
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  display: flex;
+  padding :10px;
+  flex-direction: row;
+  /* Ensure the button behaves as a block element */
+  cursor: pointer;
+  align-self: center;
+  border-radius: 1em;
+  width: fit-content;
+  gap :15px
+}
+
+
+@media (width> 767px) {
+  .sidebar {
+    display: none
+  }
+}
+
 @keyframes sider {
   from {
     transform: scaleX(0.0);
@@ -496,7 +591,7 @@
   height: 70px;
   width: 90%;
   background-color: rgb(205, 255, 124);
-  background-image: url('\\resources\\images\\logo.jpg');
+  background-image: url('..\\resources\\images\\logo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -509,13 +604,33 @@
   list-style-type: none
 }
 
-
-
-.navigation-outer {
-  display: none;
+.sidebar ul {
+  align-self: center;
+  list-style-type: none;
+  padding: 0;
 }
 
-@media (max-width: 767px) {
+.sidebar__listItem {
+  margin: 10px 10px;
+  display: inline-flex;
+  height: 20px;
+  justify-content: space-between;
+  border-bottom: #000;
+  border-width: 1px;
+  border: #000;
+
+}
+
+.sidebar__listItem span {
+  white-space: nowrap;
+}
+
+.sidebar__icon {
+  margin: 0px 15px 10px 0px;
+  font-size: 24px;
+}
+
+@media (width< 767px) {
   .navigation-outer {
     display: inline;
   }
@@ -651,7 +766,7 @@ input:focus::placeholder {
 
 .blog-column-image {
   padding-inline-start: 0px;
-  background-image: url("\\resources\\images\\community-gardens.jpg");
+  background-image: url("..\\resources\\images\\community-gardens.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -661,7 +776,7 @@ input:focus::placeholder {
 
 .discover-row-image {
   padding-inline-start: 0px;
-  background-image: url("\\resources\\images\\community-gardens.jpg");
+  background-image: url("..\\resources\\images\\community-gardens.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -716,7 +831,7 @@ input:focus::placeholder {
 }
 
 .blog-rectangle-image {
-  background-image: url("\\resources\\images\\community-gardens.jpg");
+  background-image: url("..\\resources\\images\\community-gardens.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -821,7 +936,7 @@ input:focus::placeholder {
   align-items: flex-start;
   margin-top: -80px;
   justify-content: space-between;
-  
+
 }
 
 @media (max-width: 840px) {
@@ -838,7 +953,7 @@ input:focus::placeholder {
   font-style: normal;
   margin: 0;
   align-self: flex-start;
-  
+
   text-align: left;
 }
 
@@ -858,17 +973,17 @@ input:focus::placeholder {
 .faq-box {
   display: flex;
   padding: 20px 24px;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   align-self: stretch;
   border: 2px solid #000;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   flex-direction: row;
 }
 
 .faq-box a {
   color: var(--Black, #000);
-display: flex;
+  display: flex;
   /* Text/Medium/Bold */
   font-size: 18px;
   font-style: normal;
@@ -878,7 +993,7 @@ display: flex;
   /* 27px */
 }
 
-.faq-box div{
+.faq-box div {
   align-items: flex-end;
   align-self: flex-end;
 }
@@ -892,7 +1007,7 @@ display: flex;
   font-style: normal;
   margin: 0;
   align-self: flex-start;
-  
+
   text-align: left;
 }
 
@@ -913,13 +1028,29 @@ display: flex;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+}
+.still-question button {
+  background-color: transparent;
+  border: px solid #000;
+  /* Add a border to make the button visible */
+  color: #000;
+  /* Text color */
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  text-decoration: none;
+  /* Remove underline for anchor elements */
+  cursor: pointer;
+  /* Add cursor pointer for interaction */
+  margin-block: 10px;
+}
+@media (max-width: 800px) {
+  .still-question button {
+    width: 100%;
+    left: 0;
+  }
 }
 
-.still-question button{
-  margin: 0;
-  margin-bottom: 1.67em;
-}
-
-.still-question h3{
-  font-size: 36px;
+.still-question div {
+  font-size: 18px;
 }

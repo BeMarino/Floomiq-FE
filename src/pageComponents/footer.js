@@ -2,7 +2,7 @@ import React from 'react';
 import Links from './Links';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { FaFacebook, FaInstagram , FaTwitter, FaLinkedin, FaYoutube  } from "react-icons/fa";
+import SocialLinks from './SocialsLinks';
 
 
 function Footer() {
@@ -49,23 +49,7 @@ function Footer() {
               Cookies Settings
             </div>
           </div>
-          <div className='footer-credit-2'>
-            <div >
-              <FaYoutube/>
-            </div>
-            <div >
-              <FaLinkedin/>
-            </div>
-            <div >
-              <FaTwitter/>
-            </div>
-            <div >
-              <FaInstagram />
-            </div>
-            <div >
-              <FaFacebook/>
-            </div>
-          </div>
+          <SocialLinks/>
         </div>
       </div>
 

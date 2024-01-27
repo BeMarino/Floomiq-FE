@@ -12,9 +12,9 @@ export default function Faq() {
                 <div className="faq-box"><a>How can I contact support?</a><div><FaPlus /></div></div>
                 <div className="faq-box"><a>How do I create an account?</a><div><FaPlus /></div></div>
                 <div className="still-question">
-                <h3>Still have questions?</h3>
-                <h5>Contact us for further assistance.</h5>
-                <button className="button-newsletter">Cotact us</button>
+                    <h3>Still have questions?</h3>
+                    <div>Contact us for further assistance.</div>
+                    <button >Cotact us</button>
                 </div>
             </div>
         </>
