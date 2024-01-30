@@ -4,7 +4,6 @@
     flex-direction: column;
     width: 90%;
     margin-left: 5%;
-    margin-bottom: 30px;
     align-self: flex-start;
     align-items: flex-start;
     justify-content: flex-start;
@@ -38,7 +37,7 @@
     align-items: center;
     align-content: center;
     justify-content: space-between;
-    width: 30%;
+    width: 20%;
 }
 
 .tags-sort {
@@ -54,6 +53,13 @@
     width: 60%;
 }
 
+.view-all{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 60%;
+    align-items: flex-end;
+    right: 0px;
+}
 
 .column-h3 {
     color: var(--Black, #000);
@@ -70,6 +76,7 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
+    text-align: left;
     /* 33.6px */
 }
 
@@ -80,17 +87,28 @@
 }
 
 .results {
-    direction: row;
-    width: 60%;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
     height: 1000px;
     border: dashed;
-    border-color: rgb(164, 163, 163);
+    border-color: rgb(163, 164, 163);
+}
+
+.no-results-found{
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+    height: 80px;
+    border: solid;
+    padding:2px;
+    width: 100%;
 }
 
 .filters-column {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 20%;
     height: 1000px;
     align-items: flex-start;
     gap: 20px;
@@ -100,4 +118,175 @@
     display: block;
     border-bottom: 1px solid #000000;
     width: 100%;
+    padding-bottom: 20px;
+}
+
+.collapsable-filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.filter-type{
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    align-items: flex-start;
+    justify-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.filter-type div{
+    display: flex;
+    align-items: flex-start;
+    right: 0px;
+}
+
+.filters{
+    width:100%;
+}
+
+.option{
+    display: flex;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex-direction: row;
+    padding-top: 15px;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: flex-start;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+  padding:5px;
+}
+
+.button-view-all {
+    background-color: transparent;
+    border: px solid #000;
+    /* Add a border to make the button visible */
+    color: #000;
+    /* Text color */
+    padding: 10px 15px;
+    /* Adjust padding as needed */
+    text-decoration: none;
+    /* Remove underline for anchor elements */
+    cursor: pointer;
+    /* Add cursor pointer for interaction */
+    align-self: flex-end;
+  
+  }
+
+  .plant-card{
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(217, 245, 158);
+  }
+
+  .plant-card-image{
+    width: 225px;
+    height: 225px;
+    background-image: url('..\\resources\\images\\plant-card.jpg');
+  }
+
+.plant-name{
+    text-align: left;
+    font-size: larger;
+    font-weight: 600;
+    color: #000;
+    padding: 2px;
+}
+.plant-description{
+    text-align: left;
+    font-size: medium;
+    color: #535151;
+    padding: 2px;
+}
+.plant-price{
+    text-align: left;
+    font-size: medium;
+    font-weight: 600;
+    color: #000;
+    padding: 2px;
+}
+
+.column-curiosity {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 5%;
+    margin-top: 50px;
+}
+
+.column-curiosity-inner {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.curiosity-image{
+    background-image: url('..\\resources\\images\\curiosity-image.jpg');
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: 10px;
+}
+
+.curiosity-active{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100px;
+    width: 100%;
+    border-left: solid 2px;
+    margin-bottom: 30px;
+    padding: 10px;
+    opacity: 1;
+    scale: 1;
+}
+
+.curiosity{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 10px;
+    opacity: 0.4;
+    scale: 0.6;
+}
+
+.curiosity-title{
+    text-align: left;
+    font-size: 30px;
+
 }
