@@ -1,13 +1,15 @@
-import DatabaseExplorer from "../pageComponents/DatabaseExplorer";
-import MonthFavorite from "../pageComponents/MonthFavorite";
-import Curiosities from "../pageComponents/curiosities";
+import DatabaseExplorer from "../pageComponents/explorePlantsComponent/DatabaseExplorer";
+import MonthFavorite from "../pageComponents/explorePlantsComponent/MonthFavorite";
+import ReactDOM from 'react-dom/client';
+import Curiosities from "../pageComponents/explorePlantsComponent/curiosities";
 
 const ExplorePlants = () => {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
   return (<>
       <DatabaseExplorer/>
       <MonthFavorite/>
-      <Curiosities/>
-  </>);
+      <Curiosities />
+  </>)
 };
 
 export default ExplorePlants;

@@ -202,7 +202,6 @@ input[type=checkbox]
   }
 
   .plant-card-image{
-    width: 225px;
     height: 225px;
     background-image: url('..\\resources\\images\\plant-card.jpg');
   }
@@ -251,7 +250,6 @@ input[type=checkbox]
 }
 
 .curiosity-image{
-    background-image: url('..\\resources\\images\\curiosity-image.jpg');
     height: 400px;
     width: 100%;
     background-repeat: no-repeat;
@@ -270,7 +268,8 @@ input[type=checkbox]
     margin-bottom: 30px;
     padding: 10px;
     opacity: 1;
-    scale: 1;
+    transform: scale(1);
+    transition: transform 0.5s;
 }
 
 .curiosity{
@@ -282,7 +281,8 @@ input[type=checkbox]
     margin-bottom: 30px;
     padding: 10px;
     opacity: 0.4;
-    scale: 0.6;
+    transform: scale(0.6);
+    transition: transform 0.5s;
 }
 
 .curiosity-title{

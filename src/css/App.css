@@ -31,7 +31,7 @@
 
 .visible {
   /* display: flex; */
-  
+
   transition: top 0.4s ease-out;
 }
 
@@ -77,6 +77,26 @@
   font-size: larger;
 }
 
+.discover-column h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.discover-column h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
 @media (max-width: 840px) {
   .discover-column {
     display: flex;
@@ -89,12 +109,15 @@
 .discover-row {
   display: flex;
   position: relative;
-  margin: 5%;
-  z-index: 2;
-  width: 90%;
   flex-direction: row;
+  align-self: center;
+  align-items: center;
   justify-content: space-between;
-  gap: 100px
+  padding: 20px;
+  gap: 20px;
+  width: 90%;
+  margin-left: 5%;
+  margin-block: 20px;
 }
 
 @media (max-width: 840px) {
@@ -115,14 +138,36 @@
   font-weight: bold;
   border: 2px solid #504c4c;
   position: absolute;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
   z-index: 2;
   width: fit-content;
   margin-left: 10%;
   padding-left: 20px;
   padding-right: 20px;
   text-align: left;
+  scale: 1.2;
 }
+
+.bg-text h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.bg-text h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
 
 @media (max-width: 840px) {
   .bg-text {
@@ -193,19 +238,19 @@
   font-size: large;
 }
 
-@media (max-width : 420px){
-  .footer-row-email{
+@media (max-width : 420px) {
+  .footer-row-email {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 }
 
-@media only screen and (min-width : 560px) and (max-width:800px){
-  .footer-row-email{
+@media only screen and (min-width : 560px) and (max-width:800px) {
+  .footer-row-email {
     display: flex;
     flex-direction: column;
-    margin-left:3%;
+    margin-left: 3%;
     width: 97%;
   }
 }
@@ -222,16 +267,16 @@
   font-size: smaller;
 }
 
-@media (max-width : 420px){
-  .footer-row-policy{
+@media (max-width : 420px) {
+  .footer-row-policy {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 }
 
-@media (min-width : 560px){
-  .footer-row-policy{
+@media (min-width : 560px) {
+  .footer-row-policy {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -298,15 +343,17 @@
   font-style: normal;
   font-size: larger;
   flex-direction: row;
-  width: 100%;
+  width: 85%;
+  margin-top: 30px;
   flex-wrap: wrap;
 }
 
-@media ( max-width: 768px) {
+@media (max-width: 800px) {
   .footer-column-links {
     display: flex;
     flex-direction: row;
     font-size: larger;
+    width: 100%;
   }
 }
 
@@ -321,29 +368,31 @@
 
 .footer-logo {
   align-self: center;
-  width: 25%;
+  margin-left: 5%;
+  width: 10%;
   height: 70px;
-  margin-left: 50px;
   background-image: url('..\\resources\\images\\logo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-top: 30px;
 }
 
 @media (max-width: 420px) {
   .footer-logo {
     width: 70%;
     margin-bottom: 20px;
-    padding:10px;
+    padding: 10px;
   }
 }
-@media (min-width: 421px) {
+
+@media only screen and (min-width : 420px) and (max-width:800px) {
   .footer-logo {
-    margin-left: 5%;
-    width: 80%;
-    padding:30px;
-    margin-top:30px;
-    margin-bottom:50px;
+    width: 90%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    align-self: center;
   }
 }
 
@@ -366,7 +415,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .footer-credit {
     flex-direction: row;
     width: 100%;
@@ -482,7 +531,7 @@
   /* Add a border to make the button visible */
   color: #000;
   /* Text color */
-  padding: 15px 15px;
+  padding: 21px;
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */
@@ -494,7 +543,7 @@
 
 .button-newsletter {
   background-color: transparent;
-  border: px solid #000;
+  border: 1px solid #000;
   /* Add a border to make the button visible */
   color: #000;
   /* Text color */
@@ -528,7 +577,7 @@
   border-color: transparent;
   color: var(--White, #000);
   padding: 15px 15px;
-    cursor: pointer;
+  cursor: pointer;
   align-self: flex-start;
 
   /* Text/Regular/Normal */
@@ -571,19 +620,19 @@
   border: 1px solid #000;
   /* Add a border to make the button visible */
   /* Text color */
-  
+
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */
   display: flex;
-  padding :10px;
+  padding: 10px;
   flex-direction: row;
   /* Ensure the button behaves as a block element */
   cursor: pointer;
   align-self: center;
   border-radius: 1em;
   width: fit-content;
-  gap :15px
+  gap: 15px
 }
 
 
@@ -733,7 +782,8 @@ input:focus::placeholder {
   font-style: normal;
   font-weight: 700;
   line-height: 120%;
-  /* 57.6px */
+  padding: 10px
+    /* 57.6px */
 }
 
 .column-heading {
@@ -881,7 +931,7 @@ input:focus::placeholder {
 
 .blog {
   display: inline-grid;
-  padding: 112px 110px;
+  padding: 40px 110px;
   align-items: center;
   gap: 40px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -954,10 +1004,13 @@ input:focus::placeholder {
   margin-left: 5%;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: -80px;
+  align-self: center;
   justify-content: space-between;
-
+  padding: 20px;
+  gap: 20px;
+  margin-block: 20px;
 }
+
 
 @media (max-width: 840px) {
   .faq-container {
@@ -992,13 +1045,14 @@ input:focus::placeholder {
 
 .faq-box {
   display: flex;
-  padding: 20px 24px;
+  padding-bottom: 20px;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-  border: 2px solid #000;
+  border-bottom: 1px solid #d6d5d5;
   margin-bottom: 20px;
   flex-direction: row;
+  text-align: left;
 }
 
 .faq-box a {
@@ -1007,7 +1061,7 @@ input:focus::placeholder {
   /* Text/Medium/Bold */
   font-size: 18px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   align-items: flex-start;
   width: 90%;
   /* 27px */
@@ -1050,6 +1104,7 @@ input:focus::placeholder {
   align-items: flex-start;
   width: 100%;
 }
+
 .still-question button {
   background-color: transparent;
   border: px solid #000;
@@ -1064,6 +1119,7 @@ input:focus::placeholder {
   /* Add cursor pointer for interaction */
   margin-block: 10px;
 }
+
 @media (max-width: 800px) {
   .still-question button {
     width: 100%;
