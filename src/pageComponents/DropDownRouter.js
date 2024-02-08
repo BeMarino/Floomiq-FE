@@ -1,20 +1,30 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function DropDownRouter() {
     const navigate = useNavigate();
-  
-    function handleClick(event) {
-        
-      navigate(document.getElementById("dropDownRouter").value);
-    }
-  
+    
     return (
-        <select className='nav-select' id="dropDownRouter" name='Plant Care' defaultValue={"Plant Care"} onChange={handleClick}>
-            <option value="Plant Care" disabled defaultValue={"Plant Care"} hidden >Plant Care</option>
-            <option className='option' value="/explore-plants" href='.'> Explore Plants
-              </option>
-            <option className='option' value="/gardening-tips" href='.'>Garderning Tips
-              </option>
-          </select>
+      <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" color='#a0df3b'>
+                Plant Care
+              </a>
+
+              <div id="dropDown" class="navbar-dropdown">
+                <a class="navbar-item" value ="/explore-plants" >
+                 <Link to={"/explore-plants"}> Explore Plants</Link>
+                </a>
+                <a class="navbar-item" value ="#" >
+                  Jobs
+                </a>
+                <a class="navbar-item"  value ="#" >
+                <Link to={"#"}>Contact</Link>
+                </a>
+                <hr class="navbar-divider"/>
+                  <a class="navbar-item">
+                  <Link to={"#"}>Report an issue</Link>
+                  </a>
+              </div>
+            </div>
+        
     )
   }

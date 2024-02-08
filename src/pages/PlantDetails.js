@@ -5,10 +5,12 @@ import PlantProperties from "../pageComponents/plantDetails/plantProperties";
 import PlantCare from "../pageComponents/plantDetails/plantCare";
 
 class PlantDetails extends Component {
+    
     constructor(props) {
         super(props);
     }
     render() {
+        
         return (
         <div className={styles.column}>
             <PlantDescription />

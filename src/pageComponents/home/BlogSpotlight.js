@@ -3,8 +3,8 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 export default function Blog() {
     return (
         <>
-            <div className="subHeading">Discover</div>
-            <div id="heading">Unlock Plant Knowledge</div>
+            <div className="subHeading"><span>Discover</span></div>
+            <div id="heading"><span>Unlock Plant Knowledge</span></div>
             <h5 style={{fontWeight: "normal"}}>Get expert insights, care tips
             <br></br> and connect with a plant-loving community.</h5>
 

@@ -11,7 +11,7 @@ export default function DbDiscover() {
                         </h5>
                     </div>
 
-                    <div className="discover-row">
+                    <div className="discover-stats">
                         <div className="column-heading">50%
                             <h5>Find the perfect plant for your garden</h5>
                         </div>

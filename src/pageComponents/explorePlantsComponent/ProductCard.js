@@ -24,7 +24,7 @@ class ProductCard extends React.Component {
             <>
                 <div className="product-card">
                     <div className="main">
-                        <img src="Abelia Edward Goucher.jpeg" alt="Abelia Edward Goucher" id="main-image1" />
+                        <img src="Abelia_Edward_Goucher.jpeg" alt="Abelia Edward Goucher" id="main-image1" />
                         <div className="main-description">
                             <div><a id="main-h3">Caprifoliaceae </a></div>
                             <div><a id="main-h2">Edward Goucher pink abelia</a></div>

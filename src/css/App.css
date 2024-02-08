@@ -8,13 +8,25 @@
   pointer-events: none;
 }
 
+.navbar-link {
+  color: #a0df3b
+}
+
+span {
+  color: #323232 !important;
+}
+
+a {
+  color: #323232 !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.navbar {
+.App-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,7 +40,7 @@
   top: 0;
 }
 
-.button.is-primary{
+.button.is-primary {
   background-color: #a0df3b;
 }
 
@@ -46,7 +58,6 @@
 
 .header-logo {
   height: 60px;
-  width: 100%;
   background-image: url('..\\resources\\images\\logo.jpg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -227,6 +238,7 @@
 @media (max-width: 800px) {
   .footer-row {
     display: block;
+    margin-left: 5%;
   }
 }
 
@@ -300,15 +312,28 @@
   flex-direction: column;
   justify-items: flex-start;
   align-items: flex-start;
+  text-align: center;
   flex-wrap: wrap;
   padding: 10px;
   margin-left: 5%;
 }
 
+@media (max-width: 840px){
+  .footer-column-updates {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-left: 0%;
+  }
+}
+
 
 .footer-newsletter {
   align-self: stretch;
-  color: var(--Black, #000);
+
 
   /* Text/Medium/Semi Bold */
   font-style: normal;
@@ -320,7 +345,7 @@
 
 .footer-newsletter-2 {
   align-self: flex-start;
-  color: var(--Black, #000);
+
   line-height: 9px;
   height: 15px;
   /* Text/Medium/Semi Bold */
@@ -335,10 +360,25 @@
   }
 }
 
+.discover-stats {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  gap: 50px;
+}
+
+@media (max-width: 840px) {
+  .discover-stats {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 30px;
+  }
+}
 
 .footer-column-links {
   align-self: flex-start;
-  color: var(--Black, #000);
+
   align-items: flex-start;
   display: flex;
   /* Text/Medium/Semi Bold */
@@ -389,6 +429,12 @@
   }
 }
 
+@media (max-width: 420px) {
+  #navbar-sign-up {
+    display: none;
+  }
+}
+
 @media only screen and (min-width : 420px) and (max-width:800px) {
   .footer-logo {
     width: 90%;
@@ -405,7 +451,7 @@
   align-items: flex-start;
   gap: 32px;
   align-self: stretch;
-  color: var(--Black, #000);
+
   padding-block: 20px;
   margin-left: 5%;
   /* Text/Small/Normal */
@@ -437,7 +483,7 @@
   flex-direction: row-reverse;
   gap: 32px;
   align-self: stretch;
-  color: var(--Black, #000);
+
   padding-block: 20px;
   margin-right: 8%;
   /* Text/Small/Normal */
@@ -461,7 +507,7 @@
 
 .footer-column-link {
   left: 10px;
-  color: var(--Black, #000);
+
   align-items: flex-start;
   display: flex;
   /* Text/Medium/Semi Bold */
@@ -488,7 +534,7 @@
 
 .footer-column-link-2 {
   align-self: flex-start;
-  color: var(--Black, #000);
+
   align-items: flex-start;
   display: flex;
   /* Text/Medium/Semi Bold */
@@ -759,7 +805,7 @@ input:focus::placeholder {
 }
 
 .subHeading {
-  color: var(--Black, #000);
+
   text-align: center;
 
   /* Text/Regular/Semi Bold */
@@ -777,7 +823,7 @@ input:focus::placeholder {
 }
 
 #heading {
-  color: var(--Black, #000);
+
   text-align: center;
   align-self: stretch;
   /* Heading/H2 */
@@ -785,12 +831,12 @@ input:focus::placeholder {
   font-style: normal;
   font-weight: 700;
   line-height: 120%;
-  padding: 10px
+  padding: 26px
     /* 57.6px */
 }
 
 .column-heading {
-  color: var(--Black, #000);
+
   text-align: left;
   align-self: stretch;
   /* Heading/H2 */
@@ -864,7 +910,7 @@ input:focus::placeholder {
 }
 
 .blog-square-heading {
-  color: var(--Black, #000);
+
 
   /* Heading/H5 */
   font-size: 20px;
@@ -875,7 +921,7 @@ input:focus::placeholder {
 }
 
 .blog-square-text {
-  color: var(--Black, #000);
+
 
   /* Text/Regular/Normal */
   font-size: 14px;
@@ -886,7 +932,7 @@ input:focus::placeholder {
 }
 
 .blog-square-learn-more {
-  color: var(--Black, #000);
+
 
   /* Text/Regular/Normal */
   font-size: 14px;
@@ -912,7 +958,7 @@ input:focus::placeholder {
 }
 
 .blog-rectangle-heading {
-  color: var(--Black, #000);
+
   /* Heading/H5 */
   font-size: 24px;
   font-style: normal;
@@ -922,7 +968,7 @@ input:focus::placeholder {
 }
 
 .blog-rectangle-subheading {
-  color: var(--Black, #000);
+
 
   /* Text/Regular/Semi Bold */
   font-size: 16px;
@@ -946,8 +992,9 @@ input:focus::placeholder {
   .blog {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     padding: 5%;
+    margin-left: 2.5%;
   }
 }
 
@@ -1003,8 +1050,8 @@ input:focus::placeholder {
 
 .faq-container {
   display: flex;
-  width: 90%;
-  margin-left: 5%;
+  width: 88%;
+  margin-left: 6%;
   flex-direction: column;
   align-items: flex-start;
   align-self: center;
@@ -1022,7 +1069,7 @@ input:focus::placeholder {
 }
 
 .faq-container h3 {
-  color: var(--Black, #000);
+
 
   /* Heading/H2 */
   font-size: 48px;
@@ -1035,7 +1082,7 @@ input:focus::placeholder {
 
 
 .faq-container h5 {
-  color: var(--Black, #000);
+
 
   /* Text/Medium/Normal */
   font-size: 18px;
@@ -1059,7 +1106,7 @@ input:focus::placeholder {
 }
 
 .faq-box a {
-  color: var(--Black, #000);
+
   display: flex;
   /* Text/Medium/Bold */
   font-size: 18px;
@@ -1077,7 +1124,7 @@ input:focus::placeholder {
 
 
 .faq-container h3 {
-  color: var(--Black, #000);
+
 
   /* Heading/H2 */
   font-size: 48px;
@@ -1090,7 +1137,7 @@ input:focus::placeholder {
 
 
 .faq-container h5 {
-  color: var(--Black, #000);
+
 
   /* Text/Medium/Normal */
   font-size: 18px;

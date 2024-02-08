@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import Curiosities from "../pageComponents/explorePlantsComponent/curiosities";
 
 const ExplorePlants = () => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
   return (<>
       <DatabaseExplorer/>
       <MonthFavorite/>
