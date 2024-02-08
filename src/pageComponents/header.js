@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Hamburger from './Hamburger';
 import DropDownRouter from './DropDownRouter';
@@ -13,18 +13,18 @@ function Header() {
     setOpenHamburger(!openHamburger)
   }
   const [position, setPosition] = useState(window.scrollY)
-  const [visible, setVisible] = useState(true) 
-  useEffect(()=> {
-      const handleScroll = () => {
-         let moving = window.scrollY;
-         
-         setVisible(position > moving);
-         setPosition(moving)
-      };
-      window.addEventListener("scroll", handleScroll);
-      return(() => {
-         window.removeEventListener("scroll", handleScroll);
-      })
+  const [visible, setVisible] = useState(true)
+  useEffect(() => {
+    const handleScroll = () => {
+      let moving = window.scrollY;
+
+      setVisible(position > moving);
+      setPosition(moving)
+    };
+    window.addEventListener("scroll", handleScroll);
+    return (() => {
+      window.removeEventListener("scroll", handleScroll);
+    })
   })
   let navigate = useNavigate();
   const cls = visible ? "visible" : "hidden";
@@ -33,36 +33,70 @@ function Header() {
   const path = location.pathname;
 
   return (
-    <div className='App-header' style={{top: visible? "0px" : "-160px"}}>
-      <nav className='Header-column'>
-        <div className='header-nav'>
-          <button className='nav-button' style={{"background-color" :path==="/"? "#cdff7c":"transparent" }} onClick={()=>{navigate('/')}}>
-            Home
-          </button>
-          <button className='nav-button' style={{"background-color" :path==="/explore-plants"? "#cdff7c":"transparent" }} onClick={()=>{navigate('/explore-plants')}}>
-            Explore Plants
-          </button>
-          <button className='nav-button' style={{"background-color" :path==="/gardening-tips"? "#cdff7c":"transparent" }}>
-            Garderning Tips
-          </button>
-          <DropDownRouter />
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="logo.jpg" width="112" height="56"/>
+          </a>
 
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-        <div className='navigation-outer' style={{ "display": openHamburger ? "inline" : "none" }}>
 
-          <Sidebar />
-        </div>
-        <div className="hamburger" onClick={toggleHamburger} >
-          {openHamburger ? <FontAwesomeIcon icon={icon({ name: 'xmark' })} /> : <FontAwesomeIcon icon={icon({ name: 'bars' })} />}
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              Home
+            </a>
+
+            <a class="navbar-item" href="/explore-plants">
+              Explore Plants
+            </a>
+            <a class="navbar-item" href="#">
+              Gardening Tips
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Plant Care
+              </a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <hr class="navbar-divider"/>
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
-      <div className="header-logo"></div>
-      <nav className='Header-column'>
-        <button className='button-sign-up'>
-          Sign Up <FontAwesomeIcon icon={icon({ name: 'user-plus' })} />
-        </button>
-      </nav>
-    </div>)
+    )
 }
 
 export default Header;

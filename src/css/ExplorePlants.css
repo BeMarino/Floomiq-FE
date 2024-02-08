@@ -53,7 +53,7 @@
     width: 60%;
 }
 
-.view-all{
+.view-all {
     display: flex;
     flex-direction: row-reverse;
     width: 60%;
@@ -88,20 +88,21 @@
 
 .results {
     display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 1000px;
+    flex-direction: column;
     border: dashed;
     border-color: rgb(163, 164, 163);
+    height: fit-content;
+    width: fit-content;
+    padding-right: 40px;
 }
 
-.no-results-found{
-    display: flex ;
+.no-results-found {
+    display: flex;
     flex-direction: column;
     align-items: center;
     height: 80px;
     border: solid;
-    padding:2px;
+    padding: 2px;
     width: 100%;
 }
 
@@ -121,7 +122,7 @@
     padding-bottom: 20px;
 }
 
-.collapsable-filters{
+.collapsable-filters {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,7 +130,7 @@
     align-items: flex-start;
 }
 
-.filter-type{
+.filter-type {
     display: flex;
     flex-direction: row;
     font-weight: 700;
@@ -137,20 +138,20 @@
     justify-items: flex-start;
     justify-content: space-between;
     width: 100%;
-    
+
 }
 
-.filter-type div{
+.filter-type div {
     display: flex;
     align-items: flex-start;
     right: 0px;
 }
 
-.filters{
-    width:100%;
+.filters {
+    width: 100%;
 }
 
-.option{
+.option {
     display: flex;
     align-items: flex-start;
     align-self: flex-start;
@@ -158,22 +159,25 @@
     padding-top: 15px;
 }
 
-.options{
+.options {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-self: flex-start;
 }
 
-input[type=checkbox]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
-  transform: scale(1.5);
-  padding:5px;
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.5);
+    /* IE */
+    -moz-transform: scale(1.5);
+    /* FF */
+    -webkit-transform: scale(1.5);
+    /* Safari and Chrome */
+    -o-transform: scale(1.5);
+    /* Opera */
+    transform: scale(1.5);
+    padding: 5px;
 }
 
 .button-view-all {
@@ -189,37 +193,39 @@ input[type=checkbox]
     cursor: pointer;
     /* Add cursor pointer for interaction */
     align-self: flex-end;
-  
-  }
 
-  .plant-card{
+}
+
+.plant-card {
     display: flex;
     flex-direction: column;
     width: 225px;
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(217, 245, 158);
-  }
+}
 
-  .plant-card-image{
+.plant-card-image {
     height: 225px;
     background-image: url('..\\resources\\images\\plant-card.jpg');
-  }
+}
 
-.plant-name{
+.plant-name {
     text-align: left;
     font-size: larger;
     font-weight: 600;
     color: #000;
     padding: 2px;
 }
-.plant-description{
+
+.plant-description {
     text-align: left;
     font-size: medium;
     color: #535151;
     padding: 2px;
 }
-.plant-price{
+
+.plant-price {
     text-align: left;
     font-size: medium;
     font-weight: 600;
@@ -249,7 +255,7 @@ input[type=checkbox]
     margin-bottom: 20px;
 }
 
-.curiosity-image{
+.curiosity-image {
     height: 400px;
     width: 100%;
     background-repeat: no-repeat;
@@ -258,7 +264,7 @@ input[type=checkbox]
     margin-left: 10px;
 }
 
-.curiosity-active{
+.curiosity-active {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -272,7 +278,7 @@ input[type=checkbox]
     transition: transform 0.5s;
 }
 
-.curiosity{
+.curiosity {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -285,8 +291,124 @@ input[type=checkbox]
     transition: transform 0.5s;
 }
 
-.curiosity-title{
+.curiosity-title {
     text-align: left;
     font-size: 30px;
 
+}
+
+.product-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 350px;
+    border-radius: 5px;
+    background-color: white;
+    margin-block: 10px;
+    margin-left: 20px;
+    padding: 25px 20px;
+    padding-top: 0px;
+    position: relative;
+    -webkit-box-shadow: 0px -13px 20px -13px rgba(200, 195, 195, 1),
+        3px 0px 18px 5px rgba(200, 195, 195, 1),
+        0px 25px 20px -25px rgba(200, 195, 195, 1),
+        -25px 0px 13px -20px rgba(200, 195, 195, 1);
+    box-shadow: 0px -13px 20px -13px rgba(200, 195, 195, 1),
+        3px 0px 18px 5px rgba(200, 195, 195, 1),
+        0px 25px 20px -25px rgba(200, 195, 195, 1),
+        -25px 0px 13px -20px rgba(200, 195, 195, 1);
+    height: fit-content;
+}
+
+.main {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.main img {
+    margin-top: 10px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: cover;
+    /*   float: left; */
+}
+
+.main .price {
+    width: 70px;
+    height: 70px;
+    background-color: var(--green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: -40px;
+    margin-left: -10px;
+    margin-bottom: 20px;
+    z-index: 100;
+    position: relative;
+}
+
+#main-h2 {
+    margin-left: 10px;
+    color: var(--dark-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#main-h3 {
+    margin-left: 10px;
+    font-size: 1.3rem;
+    padding: 5px 0px;
+    font-weight: 500;
+    color: green !important;
+    color: var(--green);
+    text-align: left;
+}
+
+.main-characteristics {
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+.main-characteristic {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-characteristic a {
+    margin-left: 10px;
+    margin-top: 16px;
+    font-weight: 600;
+}
+
+.main-characteristics img {
+    height: 26px;
+    background-size: contain;
+}
+
+.main-description {
+    width: 30%;
+}
+
+.main-collpsable {
+    width: 80%;
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 40px;
+    text-align: left;
+}
+
+.seeMoreBtn{
+    margin-top: 30px;
 }

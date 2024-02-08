@@ -4,7 +4,7 @@ export default function Blog() {
     return (
         <>
             <div className="subHeading">Discover</div>
-            <div className="heading">Unlock Plant Knowledge</div>
+            <div id="heading">Unlock Plant Knowledge</div>
             <h5 style={{fontWeight: "normal"}}>Get expert insights, care tips
             <br></br> and connect with a plant-loving community.</h5>
 
@@ -12,7 +12,7 @@ export default function Blog() {
                 <div className="blog-column-border">
                     <div className="blog-column-border-inner">
                         <a className="subheading">Connect</a>
-                        <a className="heading" style={{ textAlign: "left" }}>Join a Thriving Plant Community</a>
+                        <a id="heading" style={{ textAlign: "left" }}>Join a Thriving Plant Community</a>
                         <a>Share your plant journey, ask questions, and get inspired by fellow plant enthusiasts.</a>
                         <div>
                             <button className="button-newsletter">Learn more <FontAwesomeIcon icon={icon({ name: 'leanpub', style: 'brands' })} /></button>
@@ -34,7 +34,7 @@ export default function Blog() {
                     <div className="blog-column-border-inner">
 
                         <a className="subheading">Connect</a>
-                        <a className="heading" style={{ textAlign: "left" }}>Join a Thriving Plant Community</a>
+                        <a id="heading" style={{ textAlign: "left" }}>Join a Thriving Plant Community</a>
                         <a>Share your plant journey, ask questions, and get inspired by fellow plant enthusiasts.</a>
                         <div>
                             <button className="button-newsletter">Learn more <FontAwesomeIcon icon={icon({ name: 'leanpub', style: 'brands' })} /></button>

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import ProductCard from "./ProductCard";
 
 
-export default function DatabaseExplorer(){
+export default function DatabaseExplorer() {
   const [open, setOpen] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
@@ -18,9 +19,9 @@ export default function DatabaseExplorer(){
   };
 
 
-    return (<>
+  return (<>
     <div className="column">
-        <div className="column-h3">Plant database</div>
+      <div className="column-h3">Plant database</div>
       <div className="column-h5">Explore our vast plant section</div>
       <div className="row">
         <div className="filter-clear">
@@ -46,102 +47,102 @@ export default function DatabaseExplorer(){
             <div className="filter-type">
               Filter one
               <div>{open ? <IoIosArrowUp onClick={toggle} /> : <IoIosArrowDown onClick={toggle} />}</div>
-              
+
             </div>
             {open && (
-                <div className="options">
-                  <div className="filters">
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option one
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option two
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option three
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option four
-                    </div>
+              <div className="options">
+                <div className="filters">
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option one
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option two
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option three
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option four
                   </div>
                 </div>
-              )}
-              <div className="column-filter-spacer"></div>
+              </div>
+            )}
+            <div className="column-filter-spacer"></div>
 
           </div>
           <div className="collapsable-filters">
             <div className="filter-type">
               Filter Two
               <div>{openTwo ? <IoIosArrowUp onClick={toggleOpenTwo} /> : <IoIosArrowDown onClick={toggleOpenTwo} />}</div>
-              
+
             </div>
             {openTwo && (
-                <div className="options">
-                  <div className="filters">
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option one
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option two
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option three
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option four
-                    </div>
+              <div className="options">
+                <div className="filters">
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option one
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option two
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option three
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option four
                   </div>
                 </div>
-              )}
-              <div className="column-filter-spacer"></div>
+              </div>
+            )}
+            <div className="column-filter-spacer"></div>
 
           </div>
           <div className="collapsable-filters">
             <div className="filter-type">
               Filter one
               <div>{openThree ? <IoIosArrowUp onClick={toggleOpenThree} /> : <IoIosArrowDown onClick={toggleOpenThree} />}</div>
-              
+
             </div>
             {openThree && (
-                <div className="options">
-                  <div className="filters">
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option one
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option two
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option three
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
-                      Option four
-                    </div>
+              <div className="options">
+                <div className="filters">
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option one
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option two
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option three
+                  </div>
+                  <div className="option">
+                    <input type="checkbox" id="option-one" name="option-one" value="option-one"></input>
+                    Option four
                   </div>
                 </div>
-              )}
-              <div className="column-filter-spacer"></div>
+              </div>
+            )}
+            <div className="column-filter-spacer"></div>
 
           </div>
         </div>
         <div className="results">
-          <div className="no-results-found">
-            <h4>No results found</h4>
-          </div>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </div>
-      </div>
-      </>)
+    </div>
+  </>)
 };

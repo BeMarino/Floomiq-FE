@@ -6,7 +6,7 @@ class Curiosities extends React.Component{
   
         const images = [
           "https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/cat-adult-landing-hero.ashx",
-          "https://www.petfinder.com/wp-content/uploads/2013/09/cat-black-superstitious-fcs-cat-myths-162286659.jpg",
+          "https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
           "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_March_2010-1.jpg"
         ];
   
