@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.e2753ffc.css",
-    "main.js": "/static/js/main.332b312b.js",
-    "static/js/787.a6dba674.chunk.js": "/static/js/787.a6dba674.chunk.js",
-    "static/media/discover.jpg": "/static/media/discover.9f945b2900efbfbf7ddc.jpg",
-    "static/media/community-gardens.jpg": "/static/media/community-gardens.1f6fe78c906da477d815.jpg",
-    "static/media/indoor_outdoor.png": "/static/media/indoor_outdoor.049df1ce73082a6f7817.png",
-    "static/media/logo.jpg": "/static/media/logo.83d412194de8c882fb7f.jpg",
-    "index.html": "/index.html",
-    "main.e2753ffc.css.map": "/static/css/main.e2753ffc.css.map",
-    "main.332b312b.js.map": "/static/js/main.332b312b.js.map",
-    "787.a6dba674.chunk.js.map": "/static/js/787.a6dba674.chunk.js.map"
+    "main.css": "/floomiq-pages/static/css/main.d27c2cbe.css",
+    "main.js": "/floomiq-pages/static/js/main.0a5eccea.js",
+    "static/js/787.a6dba674.chunk.js": "/floomiq-pages/static/js/787.a6dba674.chunk.js",
+    "static/media/discover.jpg": "/floomiq-pages/static/media/discover.9f945b2900efbfbf7ddc.jpg",
+    "static/media/community-gardens.jpg": "/floomiq-pages/static/media/community-gardens.1f6fe78c906da477d815.jpg",
+    "static/media/indoor_outdoor.png": "/floomiq-pages/static/media/indoor_outdoor.049df1ce73082a6f7817.png",
+    "static/media/logo.jpg": "/floomiq-pages/static/media/logo.83d412194de8c882fb7f.jpg",
+    "index.html": "/floomiq-pages/index.html",
+    "main.d27c2cbe.css.map": "/floomiq-pages/static/css/main.d27c2cbe.css.map",
+    "main.0a5eccea.js.map": "/floomiq-pages/static/js/main.0a5eccea.js.map",
+    "787.a6dba674.chunk.js.map": "/floomiq-pages/static/js/787.a6dba674.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2753ffc.css",
-    "static/js/main.332b312b.js"
+    "static/css/main.d27c2cbe.css",
+    "static/js/main.0a5eccea.js"
   ]
 }
