@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import ProductCard from "./ProductCard";
+import SideCart from "./sideCart";
+import { IoMdArrowDropleft } from "react-icons/io";
 
 
 export default function DatabaseExplorer() {
   const [open, setOpen] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
-  const [openThree, setOpenThree] = useState(false);
+  const [openThree, setOpenThree] = useState(false);  
+  const [openSideCart, setOpenSideCart] = useState(false);
   const toggle = () => {
     setOpen(!open);
   };
@@ -17,9 +20,12 @@ export default function DatabaseExplorer() {
   const toggleOpenThree = () => {
     setOpenThree(!openThree);
   };
+  
+  const toggleCart = () => {
+    setOpenSideCart(!openSideCart);
+  }
 
-
-  return (<>
+  return (<div className="exploreContainer">
     <div className="column">
       <div className="column-h3">Plant database</div>
       <div className="column-h5">Explore our vast plant section</div>
@@ -141,8 +147,14 @@ export default function DatabaseExplorer() {
           <ProductCard />
           <ProductCard />
           <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </div>
     </div>
-  </>)
+    <SideCart toggleCart={toggleCart} openSideCart={openSideCart}/>
+  </div>)
 };
