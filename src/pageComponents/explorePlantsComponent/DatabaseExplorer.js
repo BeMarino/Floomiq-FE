@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import ProductCard from "./ProductCard";
 import SideCart from "./sideCart";
 import { IoMdArrowDropleft } from "react-icons/io";
 
-
 export default function DatabaseExplorer() {
   const [open, setOpen] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
-  const [openThree, setOpenThree] = useState(false);  
+  const [openThree, setOpenThree] = useState(false);
   const [openSideCart, setOpenSideCart] = useState(false);
   const toggle = () => {
     setOpen(!open);
@@ -20,9 +19,54 @@ export default function DatabaseExplorer() {
   const toggleOpenThree = () => {
     setOpenThree(!openThree);
   };
-  
+
   const toggleCart = () => {
     setOpenSideCart(!openSideCart);
+  }
+
+
+  const productList = [{
+    name: 'Abelia Edward Goucher',
+    image: 'Abelia_Edward_Goucher.jpeg',
+    height: "2m",
+    durability: "Eternal"
+  },
+  {
+    name: 'Abelia Edward Goucher',
+    image: 'Abelia_Edward_Goucher.jpeg',
+    height: "2m",
+    durability: "Eternal"
+  },
+  {
+    name: 'Abelia Edward Goucher',
+    image: 'Abelia_Edward_Goucher.jpeg',
+    height: "2m",
+    durability: "Eternal"
+  },
+  {
+    name: 'Abelia Edward Goucher',
+    image: 'Abelia_Edward_Goucher.jpeg',
+    height: "2m",
+    durability: "Eternal"
+  },
+  {
+    name: 'Abelia Edward Goucher',
+    image: 'Abelia_Edward_Goucher.jpeg',
+    height: "2m",
+    durability: "Eternal"
+  }]
+
+
+
+  const [sideCartProductList, setSideCartProductList] = useState([]);
+
+  function addItemToCart(product) {
+    setSideCartProductList([...sideCartProductList, product]);
+  }
+
+  function removeFromList(product) {
+    sideCartProductList.splice(sideCartProductList.indexOf(product),1);
+    setSideCartProductList([...sideCartProductList]);
   }
 
   return (<div className="exploreContainer">
@@ -144,17 +188,12 @@ export default function DatabaseExplorer() {
           </div>
         </div>
         <div className="results">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {productList.map((_, index) => (
+            <ProductCard key={index} toggleCart={toggleCart} openSideCart={openSideCart} product={productList[index]} addItemToCart={addItemToCart} />
+          ))}
         </div>
       </div>
     </div>
-    <SideCart toggleCart={toggleCart} openSideCart={openSideCart}/>
+    <SideCart toggleCart={toggleCart} openSideCart={openSideCart} sideCartProductList={sideCartProductList} removeFromList={removeFromList}/>
   </div>)
 };

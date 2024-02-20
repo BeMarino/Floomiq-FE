@@ -94,6 +94,7 @@
     justify-content: space-between;
     border-color: rgb(163, 164, 163);
     width: 80%;
+    overflow-y: scroll;
 }
 
 .no-results-found {
@@ -326,7 +327,7 @@ input[type=checkbox] {
     /*   float: left; */
 }
 
-.main .price {
+.main .addToCart {
     width: 40px;
     height: 40px;
     border-radius: 50px;
@@ -336,6 +337,21 @@ input[type=checkbox] {
     align-items: center;
     color: white;
     margin-top: -20px;
+    margin-left: 80%;
+    font-size: larger;
+    position: relative;
+}
+
+.sidecart-product-card .removeFromCart {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgb(174, 10, 10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: -18px;
     margin-left: 80%;
     position: relative;
 }
@@ -423,17 +439,18 @@ input[type=checkbox] {
 }
 
 .sideCart {
-    height: 100vh;
+    height: 200vh;
     width: 15%;
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     background-color: #fbfcfa;
-    border-left: solid 2px #cbf69f;
+    border-left: solid 2px #58802f;
     animation-name: sider;
     animation-duration: 500ms;
     margin-top: 5%;
+    margin-top: 80px;
     transform-origin: top right;
 }
 
@@ -448,9 +465,10 @@ input[type=checkbox] {
   }
 
   .controlSideCart{
-    background-color: #87e224;
+    background-color: #3c5b25;
     height: 40px;
     border-bottom: solid 1px #e0e2e0;
+    color: #f9f9f9;
     font-size: 36px;
   }
 
@@ -459,8 +477,8 @@ input[type=checkbox] {
     margin-top: 80px;
     font-size: 36px;
     color: #f9f9f9;
-    background-color: #87e224;
-    border-color: #87e224;
+    background-color: #3c5b25;
+    border-color: #98bd7c;
     justify-items: center;
     text-align: center;
     justify-content: center;
@@ -469,3 +487,28 @@ input[type=checkbox] {
     display: flex;
     flex-direction: row;
   }
+
+.sidecart-product-card{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #e6eae3;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sideCart.product-card img{
+    height: 20vh;
+}
+
+.sidecart-product-card .plant-name{
+    width: 100%;
+    text-align: center;
+    font-size: small;
+}
+
+.scrollable-y{
+    overflow-y: scroll;
+}
