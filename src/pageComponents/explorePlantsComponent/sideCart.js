@@ -1,5 +1,4 @@
 import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { GiHighGrass } from "react-icons/gi";
 import { render } from '@testing-library/react';

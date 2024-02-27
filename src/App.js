@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Footer from "./pageComponents/footer";
 import Header from "./pageComponents/header";
 import PlantDetails from './pages/PlantDetails';
+import CreatePdf from './utils/pdf';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/explore-plants" element={<ExplorePlants />} />
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />
+        <Route path="/pdf" element={<CreatePdf />} />
       </Routes>
       <Footer />
     </div>
