@@ -31,6 +31,7 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
                         <button className="addToFav" onClick={addProduct}><CiHeart /></button>
                     </div>
                     <button className="addToCart" onClick={addProduct}><GoPlus /></button>
+                    <div className="plantName">{product.name}</div>
                     <div className="details" id="details1">
                         {/* <div className="detail"><p className="type"><img src={indoor_outdoor} title="Environment" /></p>
                                 <p className="description" >Outdoor</p>

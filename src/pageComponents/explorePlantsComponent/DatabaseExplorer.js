@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import React, { useState, useRef } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import ProductCard from "./ProductCard";
@@ -40,6 +39,15 @@ export default function DatabaseExplorer() {
     setFilters(Array.from(filtersSet));
   };
 
+  function removeFilter(filter){
+    let filtersSet = new Set([...filters])
+    filtersSet.delete(filter);
+    setFilters(Array.from(filtersSet));
+  }
+
+  function clearFilter(){
+    setFilters([]);
+  }
 
   const productList = [{
     name: 'Abelia Edward Goucher',
@@ -104,13 +112,13 @@ export default function DatabaseExplorer() {
       <div className="row">
         <div className="filter-clear">
 
-          <button>Clear all</button>
+          <button onClick={((e) =>clearFilter())}>Clear all</button>
         </div>
         <div className="tags-sort">
           {filters.map((_, index) => (
             <span id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
             {filters[index]}
-            <button type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+            <button onClick={((e) =>removeFilter(filters[index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
               <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
               </svg>
