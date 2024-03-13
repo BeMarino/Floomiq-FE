@@ -34,27 +34,17 @@ const products = [
 
 
 export default function SideCart({ toggleCart, openSideCart, sideCartProductList, removeFromList }) {
-  if (openSideCart) {
+  
     return (
       <div className='sideCart'>
-        <button className='is-primary controlSideCart' onClick={toggleCart}>
-          <IoMdArrowDropright></IoMdArrowDropright>
-        </button>
-        <div className='scrollable-y'>
+        
           {sideCartProductList.map((product) => (
 
             <SideCartProductCard product={product} sideCartProductList={sideCartProductList} removeFromList={removeFromList} />
           ))}
-        </div>
+        
       </div>)
-  } else {
-    return (
-      <div className='openSideCart'>
-        <button className='price' onClick={toggleCart}><IoMdArrowDropleft /></button>
-        <GiHighGrass />
-
-      </div>)
-  }
+  
 
 
 

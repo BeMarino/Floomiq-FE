@@ -7,6 +7,8 @@ import Footer from "./pageComponents/footer";
 import Header from "./pageComponents/header";
 import PlantDetails from './pages/PlantDetails';
 import CreatePdf from './utils/pdf';
+// Supports weights 100-900
+import '@fontsource-variable/inter';
 
 function App() {
   return (

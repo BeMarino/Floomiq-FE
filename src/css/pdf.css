@@ -1,8 +1,7 @@
 .pdf-column{
     display: flex;
+    visibility: 'hidden';
     flex-direction: column;
-    width: 90%;
-    margin-left: 5%;
 }
 
 .pdf-header{

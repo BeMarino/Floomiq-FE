@@ -1,6 +1,18 @@
 .App {
   text-align: center;
   overflow-x: hidden;
+
+  font-family: 'Inter Variable';
+  font-size: 16px;
+
+}
+
+.home-image{
+  display: flex;
+  align-self: center;
+  width: 100%;
+  justify-content: center;
+  padding-block: 15%;
 }
 
 .App-logo {
@@ -30,13 +42,15 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 32px;
+  align-items: center;
   width: 100%;
   position: fixed;
   z-index: 3;
-  background-color: #fff;
+  background-color: #110f0f;
+  height: fit-content;
   box-shadow: 0.3em 0.3em 1em rgba(94, 83, 83, 0.6);
   transition: top 1s ease-out;
+  color: #fff;
   top: 0;
 }
 
@@ -57,11 +71,10 @@ a {
 }
 
 .header-logo {
-  height: 60px;
-  background-image: url('..\\resources\\images\\logo.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding-left: 3%;
 }
 
 
@@ -318,7 +331,7 @@ a {
   margin-left: 5%;
 }
 
-@media (max-width: 840px){
+@media (max-width: 840px) {
   .footer-column-updates {
     display: flex;
     flex-direction: column;
@@ -558,29 +571,17 @@ a {
 }
 
 .button-sign-up {
-  background-color: #191a18c7;
-  border: 1px solid #000;
-  /* Add a border to make the button visible */
-  color: #d0d4cd;
-  /* Text color */
-  padding: 8px 10px;
-  /* Adjust padding as needed */
-  text-decoration: none;
-  /* Remove underline for anchor elements */
-  display: inline-block;
-  /* Ensure the button behaves as a block element */
-  cursor: pointer;
-  position: absolute;
-  right: 20px;
+  height: 5vh;
+  border-radius: 5em / 5em;
 }
 
 .nav-button {
   background-color: transparent;
   border: 1px solid transparent;
   /* Add a border to make the button visible */
-  color: #000;
+  color: #c6c4c4;
   /* Text color */
-  padding: 21px;
+  padding-inline: 2em;
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */

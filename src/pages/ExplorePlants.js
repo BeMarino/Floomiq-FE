@@ -7,8 +7,8 @@ const ExplorePlants = () => {
   
   return (<>
       <DatabaseExplorer/>
-      <MonthFavorite/>
-      <Curiosities />
+      {/* <MonthFavorite/>
+      <Curiosities /> */}
   </>)
 };
 
