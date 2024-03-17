@@ -6,7 +6,11 @@
   font-size: 16px;
 
 }
-
+@media (max-width: 640px) {
+  .home-image{
+    margin-top: 10dvh;
+  }
+}
 .home-image{
   display: flex;
   align-self: center;
@@ -37,7 +41,11 @@ a {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+@media (max-width: 400px) {
+  .App-header{
+    padding-block: 2%;
+  }
+}
 .App-header {
   display: flex;
   flex-direction: row;

@@ -42,7 +42,7 @@ function Header() {
 
 
       </Link>
-      <div class="navbar-end">
+      <div className="navbar-end">
         <div className='header-nav'>
           <button className='nav-button' style={{ "color": path === "/explore-plants" ? "#cdff7c" : "#c6c4c4" }} onClick={() => { navigate('/explore-plants') }}>
             Elenco Piante
@@ -53,12 +53,12 @@ function Header() {
           <button className='nav-button' style={{ "color": path === "/gardening-tips" ? "#cdff7c" : "#c6c4c4" }}>
             Contatti
           </button>
-          <div class="navbar-item">
-            <div class="buttons">
-              <button class="button is-primary button-sign-up" id="navbar-sign-up">
+          <div className="navbar-item">
+            <div className="buttons">
+              <button className="button is-primary button-sign-up" id="navbar-sign-up">
                 <strong>Sign up</strong>
               </button>
-              <Link to="/login" class="button is-light button-sign-up">
+              <Link to="/login" className="button is-light button-sign-up">
                 Log in
               </Link>
             </div>

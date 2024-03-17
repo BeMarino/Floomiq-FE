@@ -88,7 +88,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="justify-center  flex h-auto w-full py-16">
-                <div className="flex flex-col gap-y-3 border-solid w-1/3 justify-center items-center py-8 mx-auto my-6 border-2 border-slate-300 rounded-[32px]">
+                <div className="flex flex-col gap-y-3 border-solid w-11/12 lg:w-1/3 justify-center items-center py-8 mx-auto my-6 border-2 border-slate-300 rounded-[32px]">
                     <Link to="/">
                         <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="26" cy="26" r="26" fill="#C8F44D" />
