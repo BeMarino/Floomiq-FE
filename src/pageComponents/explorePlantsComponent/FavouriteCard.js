@@ -9,7 +9,7 @@ import { LiaThermometerHalfSolid } from "react-icons/lia";
 import { CiHeart } from "react-icons/ci";
 
 
-export default function ProductCard({ product, addItemToCart, toggleCart, openSideCart }) {
+export default function FavouriteCard({ product, addItemToCart, toggleCart, openSideCart }) {
 
     const [accordionOpen, setVisible] = useState(false);
 
@@ -28,12 +28,10 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
     let imageUrl = "url(" + product.image + ")";
     return (
         <>
-            <div className="product-card">
+            <div className="fav-card">
                 <div className="main">
                     <div style={{ "background-image": imageUrl }} className="image" >
-                        <button className="addToFav" onClick={addProduct}><CiHeart /></button>
                     </div>
-                    <button className="addToCart" onClick={addProduct}><GoPlus /></button>
                     <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id={"accordion-flush-heading"}>
                             <button onClick={toggleAccordion} type="button" className="plantName flex items-center justify-between  w-11/12 rtl:text-right text-gray-500 dark:text-gray-400" aria-expanded="true" >

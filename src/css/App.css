@@ -28,13 +28,6 @@
   color: #a0df3b
 }
 
-span {
-  color: #323232 !important;
-}
-
-a {
-  color: #323232 !important;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

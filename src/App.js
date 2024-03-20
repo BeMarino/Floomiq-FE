@@ -11,6 +11,8 @@ import CreatePdf from './utils/pdf';
 import '@fontsource-variable/inter';
 import Login from './pages/login';
 import UserProjects from './pages/UserProjects';
+import PageNotFound from './pages/404';
+import UserFavourites from './pages/UserFavourites';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/plant-details" element={<PlantDetails />} />
         <Route path="/pdf" element={<CreatePdf />} />
         <Route path="/my-projects" element={<UserProjects/>} />
+        <Route path="/my-favourites" element={<UserFavourites/>} />
+        <Route path="/*" element={<PageNotFound/>} />
       </Routes>
       <Footer />
     </div>

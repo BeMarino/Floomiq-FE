@@ -5,13 +5,14 @@ import { BsBagHeart } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
 import { PiIdentificationCard } from "react-icons/pi";
 import { GrArticle } from "react-icons/gr";
-import ProjectCard from '../pageComponents/explorePlantsComponent/projectCard';
 import { Link, useLocation } from 'react-router-dom';
+import ProductCard from '../pageComponents/explorePlantsComponent/ProductCard';
+import FavouriteCard from '../pageComponents/explorePlantsComponent/FavouriteCard';
 
 
 
 let pdfRef = null;
-export default function UserProjects() {
+export default function UserFavourites() {
     pdfRef = useRef();
 
     const productList = [{
@@ -124,7 +125,7 @@ export default function UserProjects() {
     }
 
     return (<div className="exploreContainer w-11/12">
-        <div className="column gap-5 mt-6">
+        <div className="column mt-6 gap-5">
             <div className='row'>
                 <div className='w-full flex flex-row justify-between px-8'>
                     <div className='flex flex-row w-[28%] justify-between ml-[2%]'>
@@ -135,21 +136,16 @@ export default function UserProjects() {
                             <div className='py-2 font-normal place-self-center	text-base'>User name</div>
                         </div>
                         <div className='flex flex-col  self-end'>
-                            <div className='py-2 font-normal place-self-center	text-2xl font-light	'>I miei progetti</div>
+                            <div className='py-2 font-normal place-self-center	text-2xl font-light	'>I miei preferiti</div>
                         </div>
                     </div>
-                    <button type="button" class="px-2.5 py-2.5 gap-2 text-normal self-end font-medium text-grey-700 flex flex-row items-center bg-grey-700 border-slate-500 border-2 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center">
-                        <AiOutlinePlus />
-                        Nuovo progetto
-                        <RiBook3Fill />
-                    </button>
                 </div>
             </div>
             <div className='row'>
                 <div className='p-4 flex flex-col w-[18%] rounded-lg bg-[#F3F3F3] h-[73vh] gap-8'>
                     <div className='flex flex-col gap-2'>
                         <div className='text-left text-stone-400 text-sm'>Dashboard</div>
-                        <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path==="/my-favourites" ?{"background-color":  "#DEFE9A"}:{"background-color":  ""}}>
+                        <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400'   style={path==="/my-favourites" ?{"background-color":  "#DEFE9A"}:{"background-color":  ""}}>
                             <BsBagHeart />
                             <div className='text-left text-sm 0'>
                                 Preferiti
@@ -176,7 +172,7 @@ export default function UserProjects() {
                 </div>
                 <div className='resultsProject gap-4'>
                     {productList.map((_, index) => (
-                        <ProjectCard key={index} project={productList[index]}/>
+                        <FavouriteCard  key={index} product={productList[index]}/>
                     ))}
                 </div>
             </div>

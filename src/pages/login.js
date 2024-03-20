@@ -101,7 +101,7 @@ export default class Login extends React.Component {
                             <span className="font-medium text-3xl text-wrap">Accedi al tuo account</span>
                             <span className="font-light text-l text-balance">Utilizza le credenziali inserite in fase di registrazione per accedere al tuo account</span>
                         </div>
-                        <form className="space-y-8 flex flex-col" type='submit' onSubmit={e => e.preventDefault()}>
+                        <form className="space-y-4 flex flex-col" type='submit' onSubmit={e => e.preventDefault()}>
                             <div className="max-w-md flex flex-col justify-items-start">
                                 <div className="mb-2 block self-start">
                                     <Label htmlFor="email4" value="Email" />
@@ -110,7 +110,7 @@ export default class Login extends React.Component {
                                     id="email4"
                                     type="email"
                                     icon={HiMail}
-                                    placeholder="name@flowbite.com"
+                                    placeholder="name@example.com"
                                     required
                                     value={this.state.email} onChange={this.handleEmailChange}
 
@@ -201,6 +201,11 @@ export default class Login extends React.Component {
                                 <div className='spinner'> {this.isLoading && <Spinner color="info" aria-label="Info spinner example" size="xl" />}</div>
                             </div>
                         </form>
+                        <div className="font-light text-l text-balance">
+                            Non hai ancora un account? 
+                            <br></br>
+                            <Link to="/register" className="font-medium underline text-green-700">Registati adesso</Link>
+                        </div>
                     </div>
                 </div>
             </div>
