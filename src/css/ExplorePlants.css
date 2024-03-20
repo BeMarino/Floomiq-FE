@@ -102,6 +102,25 @@
     /* Firefox */
 }
 
+
+.resultsProject::-webkit-scrollbar {
+    display: none;
+}
+
+.resultsProject {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll hidden;
+    overflow-x: hidden;
+    width: 100%;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    
+    /* Firefox */
+}
+
 .no-results-found {
     display: flex;
     flex-direction: column;
@@ -326,6 +345,15 @@ input[type=checkbox] {
     background-color: white;
     -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: fit-content;
+}
+
+.project-card {
+    width: 23.2%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: white;
     height: fit-content;
 }
 

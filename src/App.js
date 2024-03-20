@@ -10,6 +10,7 @@ import CreatePdf from './utils/pdf';
 // Supports weights 100-900
 import '@fontsource-variable/inter';
 import Login from './pages/login';
+import UserProjects from './pages/UserProjects';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />
         <Route path="/pdf" element={<CreatePdf />} />
+        <Route path="/my-projects" element={<UserProjects/>} />
       </Routes>
       <Footer />
     </div>
