@@ -118,53 +118,17 @@ export default class Login extends React.Component {
                             </div>
                             <div className="max-w-md flex flex-col justify-items-start">
                                 <div className="mb-2 block self-start">
-                                    <Label htmlFor="password1" value="Password" />
+                                    <Label htmlFor="password" value="Password" />
                                 </div>
-                                <Popover
-                                    trigger="hover"
-                                    content={
-                                        <div className="space-y-2 p-3">
-                                            <h3 className="font-semibold text-gray-900 dark:text-white">Sicurezza password</h3>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {/* <div className="h-1 bg-orange-300 dark:bg-orange-400"></div>
-                <div className="h-1 bg-orange-300 dark:bg-orange-400"></div> */}
-                                                <div className="h-1 bg-gray-200 dark:bg-gray-600"></div>
-                                                <div className="h-1 bg-gray-200 dark:bg-gray-600"></div>
-                                                <div className="h-1 bg-[#C8F44D] dark:bg-gray-600"></div>
-                                            </div>
-                                            <ul>
-                                                <li className="mb-1 flex items-center">
-                                                    {this.requirementKo}
-                                                    Almeno 8 caratteri
-                                                </li>
-                                                <li className="mb-1 flex items-center">
-                                                    {this.requirementKo}
-                                                    Lettere minuscole e maiuscole
-                                                </li>
-                                                <li className="mb-1 flex items-center">
-                                                    <svg
-                                                        className="me-2.5 h-3 w-3 text-gray-300 dark:text-gray-400"
-                                                        aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 14 14"
-                                                    >
-                                                        <path
-                                                            stroke="currentColor"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                                        />
-                                                    </svg>
-                                                    Un carattere speciale
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    }
-                                >
-                                    <TextInput id="password1" type="password" required />
-                                </Popover>
+                                <TextInput
+                                    id="password"
+                                    type="password"
+                                    
+                                    
+                                    required
+                                    value={this.state.password} onChange={this.handlePasswordChange}
+
+                                />
                             </div>
 
                             {/* <div>

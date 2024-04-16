@@ -16,7 +16,7 @@ function Footer() {
           </div>
           <div className='footer-column'>
             <div className='footer-row-email' >
-              <input className='email-newsletter' type="email" id="email" name="email" placeholder="Enter your email" ></input>
+              <input className='email-newsletter' type="email" id="emailNews" name="email" placeholder="Enter your email" ></input>
               <button className='button-newsletter'>
                 Stay Tuned <FontAwesomeIcon icon={icon({ name: 'newspaper', style: 'regular' })} />
               </button>

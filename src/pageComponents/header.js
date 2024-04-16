@@ -31,7 +31,7 @@ function Header() {
   const location = useLocation();
   const path = location.pathname;
 
-  if(path !== "/login")
+  //if(path !== "/login" && path !== "/register")
   return (
     <div className='App-header' style={{ top: visible ? "0px" : "-160px" }}>
       <Link to="/" className="header-logo">
@@ -55,9 +55,9 @@ function Header() {
           </button>
           <div className="navbar-item">
             <div className="buttons">
-              <button className="button is-primary button-sign-up" id="navbar-sign-up">
+              <Link to="/register" className="button is-primary button-sign-up" id="navbar-sign-up">
                 <strong>Sign up</strong>
-              </button>
+              </Link>
               <Link to="/login" className="button is-light button-sign-up">
                 Log in
               </Link>

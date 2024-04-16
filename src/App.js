@@ -13,6 +13,7 @@ import Login from './pages/login';
 import UserProjects from './pages/UserProjects';
 import PageNotFound from './pages/404';
 import UserFavourites from './pages/UserFavourites';
+import Registration from './pages/Registration';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/pdf" element={<CreatePdf />} />
         <Route path="/my-projects" element={<UserProjects/>} />
         <Route path="/my-favourites" element={<UserFavourites/>} />
+        <Route path="/register" element={<Registration/>} />
         <Route path="/*" element={<PageNotFound/>} />
       </Routes>
       <Footer />
