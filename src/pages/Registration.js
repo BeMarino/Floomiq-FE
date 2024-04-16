@@ -1,6 +1,6 @@
 import { Label, Popover, Spinner, TextInput } from "flowbite-react";
 import { Component } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { HiMail } from 'react-icons/hi';
 import sha256 from 'js-sha256';
 import Constant from "../utils/constant";
@@ -155,9 +155,10 @@ export default class Registration extends Component {
 
             // Make the request
             try {
-                const response = await fetch(Constant.apiEndpoint + "register", {
+                const response = await fetch(Constant.apiEndpoint + "user/register", {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data),
@@ -165,8 +166,7 @@ export default class Registration extends Component {
 
                 if (response.ok) {
                     const responseData = await response.json();
-                    console.log('Response:', responseData);
-                    this.props.history.push('/');
+                    this.redirect = true;
                 } else {
                     console.error('Failed to submit credentials:', response.statusText);
                 }
@@ -257,7 +257,7 @@ export default class Registration extends Component {
                                                     <div className={this.req1 ? "h-1 bg-green-400" : "h-1 bg-gray-200 "}></div>
                                                     <div className={this.req2 ? "h-1 bg-green-400" : "h-1 bg-gray-200 "}></div>
                                                     <div className={this.req3 ? "h-1 bg-green-400" : "h-1 bg-gray-200 "}></div>
-                                                    <div className={this.req3 ? "h-1 bg-green-400" : "h-1 bg-gray-200 "}></div>
+                                                    <div className={this.req4 ? "h-1 bg-green-400" : "h-1 bg-gray-200 "}></div>
                                                 </div>
                                                 <ul>
                                                     <li className="mb-1 flex items-center">
@@ -321,6 +321,7 @@ export default class Registration extends Component {
                         </form>
                     </div>
                 </div>
+                    {this.redirect && <Navigate to="/login" replace={true} />}
 
             </div>
 
