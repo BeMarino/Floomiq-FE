@@ -14,26 +14,30 @@ import UserProjects from './pages/UserProjects';
 import PageNotFound from './pages/404';
 import UserFavourites from './pages/UserFavourites';
 import Registration from './pages/Registration';
+import PersonalInfo from './pages/personalInfo';
+import { AuthProvider } from './AuthProvider';
 
 function App() {
   return (
-
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/explore-plants" element={<ExplorePlants />} />
-        <Route path="/gardening-tips" element={<ExplorePlants />} />
-        <Route path="/plant-details" element={<PlantDetails />} />
-        <Route path="/pdf" element={<CreatePdf />} />
-        <Route path="/my-projects" element={<UserProjects/>} />
-        <Route path="/my-favourites" element={<UserFavourites/>} />
-        <Route path="/register" element={<Registration/>} />
-        <Route path="/*" element={<PageNotFound/>} />
-      </Routes>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/explore-plants" element={<ExplorePlants />} />
+          <Route path="/gardening-tips" element={<ExplorePlants />} />
+          <Route path="/plant-details" element={<PlantDetails />} />
+          <Route path="/pdf" element={<CreatePdf />} />
+          <Route path="/my-projects" element={<UserProjects />} />
+          <Route path="/my-favourites" element={<UserFavourites />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/personal-info" element={<PersonalInfo />} />
+          <Route path="/*" element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }
 

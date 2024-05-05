@@ -314,7 +314,6 @@ export default class Registration extends Component {
                                     >
                                         Registrati
                                     </button>
-                                    <div className='spinner'> {this.isLoading && <Spinner color="info" aria-label="Info spinner example" size="xl" />}</div>
                                 </div>
 
                             </div>

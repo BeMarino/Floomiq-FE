@@ -55,8 +55,20 @@
   top: 0;
 }
 
+.progress-bar {
+  position: absolute;
+  background-color: #3868f9;
+  height: 3px;
+  width: 92.44%;		
+  bottom: 0;
+  animation-name: snackBarCountDown;
+  animation-duration: 3s;	
+  animation-timing-function: linear;
+}
+
 .button.is-primary {
   background-color: #a0df3b;
+  color: #000;
 }
 
 .visible {
@@ -1181,4 +1193,144 @@ input:focus::placeholder {
 
 .still-question div {
   font-size: 18px;
+}
+
+
+@keyframes snackBarCountDown {
+  from {width: 92.45%;}
+  to {width: 0;}
+}
+
+.alert .sign {
+  font-size: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+  text-align: center;
+  width: 25px;
+  display: inline-block;
+}
+
+.alert-success {
+  background-color: #dbf6d3;
+  border-color: #aed4a5;
+  color: #569745;
+}
+
+
+.spinner {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #1f981d; /* Change this to your desired spinner color */
+  animation: spin 1s linear infinite; /* Apply the animation */
+ 
+}
+
+/* Define the animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #98cce6;
+  color: #3a87ad;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #f1daab;
+  color: #c09853;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #e0b1b8;
+  color: #b94a48;
+}
+
+.alert-white {
+  background-image: linear-gradient(to bottom,#FFFFFF,#F9F9F9);
+  border-top-color: #d8d8d8;
+  border-bottom-color: #bdbdbd;
+  border-left-color: #cacaca;
+  border-right-color: #cacaca;
+  color: #404040;
+  padding-left: 43px;
+  position: relative;
+}
+
+.alert-white .icon {
+  text-align: center;
+  width: 45px;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: -1px;
+  border: 1px solid #bdbdbd;
+}
+
+.alert-white .icon:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  display: block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid #bdbdbd;
+  position: absolute;
+  border-left: 0;
+  border-bottom: 0;
+  top: 50%;
+  right: -6px;
+  margin-top: -5px;
+  background: #fff;
+}
+
+.alert-white.rounded {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.alert-white.rounded .icon {
+  border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+}
+
+.alert-white .icon i {
+  font-size: 20px;
+  color: #FFF;
+  left: 12px;
+  margin-top: -10px;
+  position: absolute;
+  top: 50%;
+}
+
+.alert-white.alert-danger .icon,.alert-white.alert-danger .icon:after {
+  border-color: #ca452e;
+  background: #da4932;
+}
+
+.alert-white.alert-info .icon,.alert-white.alert-info .icon:after {
+  border-color: #3a8ace;
+  background: #4d90fd;
+}
+
+.alert-white.alert-warning .icon,.alert-white.alert-warning .icon:after {
+  border-color: #d68000;
+  background: #fc9700;
+}
+
+.alert-white.alert-success .icon,.alert-white.alert-success .icon:after {
+  border-color: #54a754;
+  background: #60c060;
 }

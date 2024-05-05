@@ -5,7 +5,9 @@ import DropDownRouter from './DropDownRouter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from '../AuthProvider';
 function Header() {
+  const { isLoggedIn, logout } = useAuth();
 
   var [openHamburger, setOpenHamburger] = useState(false)
   const toggleHamburger = () => {
@@ -54,14 +56,18 @@ function Header() {
             Contatti
           </button>
           <div className="navbar-item">
-            <div className="buttons">
+            {isLoggedIn ?<div className="buttons">
+            <Link to="/my-projects" className="button is-primary button-sign-up" id="navbar-sign-up">
+                <strong>My Floomiq</strong>
+              </Link>
+            </div>:<div className="buttons">
               <Link to="/register" className="button is-primary button-sign-up" id="navbar-sign-up">
                 <strong>Sign up</strong>
               </Link>
               <Link to="/login" className="button is-light button-sign-up">
                 Log in
               </Link>
-            </div>
+            </div>}
           </div>
         </div>
         <div className='navigation-outer' style={{ "display": openHamburger ? "inline" : "none" }}>

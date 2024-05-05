@@ -11,8 +11,8 @@ import FavouriteCard from '../pageComponents/explorePlantsComponent/FavouriteCar
 
 
 
-let pdfRef = null;
 export default function UserFavourites() {
+    let pdfRef = null;
     pdfRef = useRef();
 
     const productList = [{

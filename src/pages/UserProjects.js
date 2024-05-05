@@ -162,7 +162,7 @@ export default function UserProjects() {
                     </div>
                     <div className='flex flex-col gap-2'>
                         <div className='text-left text-stone-400 text-sm'>Pages</div>
-                        <Link className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400'>
+                        <Link to="/personal-info" className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400'>
                             <PiIdentificationCard />
                             <div className='text-left text-sm'>
                                 Account
