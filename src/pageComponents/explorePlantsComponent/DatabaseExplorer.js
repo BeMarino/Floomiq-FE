@@ -234,7 +234,7 @@ export default function DatabaseExplorer() {
 
           </div>
         </div>
-        <div className="results">
+        <div className="results ">
           {productList.map((_, index) => (
             <ProductCard key={index}  product={productList[index]} addItemToCart={addItemToCart} />
           ))}

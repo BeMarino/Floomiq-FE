@@ -5,9 +5,8 @@ import DropDownRouter from './DropDownRouter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { useAuth } from '../AuthProvider';
+import Constant from '../utils/constant';
 function Header() {
-  const { isLoggedIn, logout } = useAuth();
 
   var [openHamburger, setOpenHamburger] = useState(false)
   const toggleHamburger = () => {
@@ -28,10 +27,10 @@ function Header() {
     })
   })
   let navigate = useNavigate();
-  const cls = visible ? "visible" : "hidden";
 
   const location = useLocation();
   const path = location.pathname;
+  const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey));
 
   //if(path !== "/login" && path !== "/register")
   return (
@@ -56,7 +55,7 @@ function Header() {
             Contatti
           </button>
           <div className="navbar-item">
-            {isLoggedIn ?<div className="buttons">
+            {user ?<div className="buttons">
             <Link to="/my-projects" className="button is-primary button-sign-up" id="navbar-sign-up">
                 <strong>My Floomiq</strong>
               </Link>

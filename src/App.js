@@ -15,11 +15,9 @@ import PageNotFound from './pages/404';
 import UserFavourites from './pages/UserFavourites';
 import Registration from './pages/Registration';
 import PersonalInfo from './pages/personalInfo';
-import { AuthProvider } from './AuthProvider';
 
 function App() {
   return (
-    <AuthProvider>
       <div className="App">
         <Header />
         <Routes>
@@ -37,7 +35,6 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </AuthProvider>
   );
 }
 

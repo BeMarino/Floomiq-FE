@@ -2,7 +2,7 @@ import React from "react";
 import { Spinner } from 'flowbite-react';
 import { Label, TextInput, Popover } from "flowbite-react";
 import { HiMail } from 'react-icons/hi';
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, json } from "react-router-dom";
 import Constant from "../utils/constant";
 import SnackBar from "../pageComponents/snackbar";
 import { Button } from "flowbite-react";
@@ -23,10 +23,6 @@ export default function Login() {
     const [loggedOut, setLoggedOut] = useState(false);
     const [snackBarMessage, setSnackBarMessage] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Call a function to handle login, passing username and password
-    };
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -59,12 +55,8 @@ export default function Login() {
                 .then((response) => {
                     if (response.status === 200) {
                         // Authentication was successful
-                        user = username;
-                        localStorage.setItem('user', username);
-                        const credentials = `${username}:${password}`;
-                        const encodedCredentials = btoa(credentials); // Base64 encoding
-                        localStorage.setItem('userCred', encodedCredentials);
-                        localStorage.setItem('timestamp', Date.now());
+                        setUser(username);
+                        localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
                         getUserInfo();
                         setSnackBarMessage('Username o password errati.');
 
@@ -115,7 +107,7 @@ export default function Login() {
                     handleError();
                 }
             }).then(function (data) {
-                localStorage.setItem('userJSON', data);
+                localStorage.setItem(Constant.localStorageUserKey, JSON.stringify( data));
             })
             .catch((error) => {
                 console.log(error)
@@ -141,7 +133,7 @@ export default function Login() {
                         <span className="font-light text-l text-balance">Utilizza le credenziali inserite in fase di registrazione per accedere al tuo account</span>
                     </div>
                     <form className="space-y-4 flex flex-col" type='submit' onSubmit={e => e.preventDefault()}>
-                        <div className="max-w-md flex flex-col justify-items-start">
+                        <div className=" flex flex-col justify-items-start">
                             <div className="mb-2 block self-start">
                                 <Label htmlFor="email4" value="Email" />
                             </div>
@@ -155,7 +147,7 @@ export default function Login() {
 
                             />
                         </div>
-                        <div className="max-w-md flex flex-col justify-items-start">
+                        <div className="flex flex-col justify-items-start">
                             <div className="mb-2 block self-start">
                                 <Label htmlFor="password" value="Password" />
                             </div>
