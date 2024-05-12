@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { RiBook3Fill } from "react-icons/ri";
-import { AiOutlineUserDelete  } from "react-icons/ai";
+import { BiSolidSave } from "react-icons/bi";
+import { AiOutlineUserDelete } from "react-icons/ai";
 import { BsBagHeart } from "react-icons/bs";
 import { IoLibraryOutline } from "react-icons/io5";
 import { PiIdentificationCard } from "react-icons/pi";
@@ -12,15 +13,53 @@ import Constant from '../utils/constant';
 export default function PersonalInfo() {
 
     const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey))
+    let [userName, setUserName] = useState(user.name);
+    let [lastName, setLastName] = useState(user.surname);
+    let [userEmail, setUserEmail] = useState(user.username);
+    let [userPhone, setUserPhone] = useState(user.phone);
+    let [pass, setPass] = useState('');
+    let [pass2, setPass2] = useState('');
     const location = useLocation();
     const path = location.pathname;
+    let [changes, setChanges] = useState(false)
 
-    return (<div className="w-11/12 flex flex-row mt-24 gap-16">
-        <div className="flex flex-col w-1/4 px-8 gap-5 pb-4">
+    const handleNameChanges = (e) => {
+        userName = setUserName(e.target.value);
+        setChanges(true);
+    };
+
+    const handleLastNameChanges = (e) => {
+        lastName = setLastName(e.target.value);
+        setChanges(true);
+    };
+    const handleMailChanges = (e) => {
+        userEmail = setUserEmail(e.target.value);
+        setChanges(true);
+    };
+    const handlePhoneChanges = (e) => {
+        userPhone = setUserPhone(e.target.value);
+        setChanges(true);
+    };
+    const handlePassChanges = (e) => {
+        pass = setPass(e.target.value);
+        setChanges(true);
+    };
+    const handlePass2Changes = (e) => {
+        pass2 = setPass2(e.target.value);
+        setChanges(true);
+    };
+
+    const handleChanges = (e) => {
+        userName = e.target.value;
+        setChanges(true);
+    };
+
+    return (<div className="w-11/12 flex flex-row mt-24 gap-32">
+        <div className="flex flex-col w-1/5 px-8 gap-5 pb-4">
             <div class=" place-self-center 	relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                 <svg class="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
             </div>
-            <div className='font-normal place-self-center	text-base'>{user.name} {user.surname}</div>
+            <div className='font-bold place-self-center text-lg'>{user.name} {user.surname}</div>
             <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
                 <div className='flex flex-col gap-2'>
                     <div className='text-left text-stone-400 text-sm'>Dashboard</div>
@@ -56,6 +95,11 @@ export default function PersonalInfo() {
                     <div className='flex flex-col'>
                         <div className='place-self-center text-2xl font-light'>Informazioni personali</div>
                     </div>
+                    {changes && <div className='flex flex-col'>
+                        <button
+                            className="mt-4 gap-2 flex flex-row bg-green-500 border-2 border-green-800 text-gray-900 text-sm rounded-lg hover:bg-green-300 block p-2.5"
+                        ><BiSolidSave className='size-5' /> Salva modifiche</button>
+                    </div>}
                 </div>
                 <div className='flex flex-row gap-32'>
                     <div className='flex flex-col'>
@@ -70,7 +114,8 @@ export default function PersonalInfo() {
                             id="nome"
                             required
                             className="w-96 mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value={user.name}
+                            value={userName}
+                            onChange={handleNameChanges}
                         />
                     </div>
                     <div className='flex flex-col'>
@@ -180,7 +225,7 @@ export default function PersonalInfo() {
                     <div className='flex flex-col'>
                         <button
                             className="mt-4 gap-2 flex flex-row bg-red-500 border-2 border-red-800 text-gray-900 text-sm rounded-lg hover:bg-red-300 block p-2.5"
-                        ><AiOutlineUserDelete  className='size-5'/> Elimina Account</button>
+                        ><AiOutlineUserDelete className='size-5' /> Elimina Account</button>
                     </div>
                 </div>
             </div>
