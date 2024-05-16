@@ -18,16 +18,15 @@ export default function Sidebar(props) {
     let navigate = useNavigate();
     return (
 
-        <div>
-            <div className="sidebar"  >
-                <div className="sidebar-logo"></div>
-                <ul>
-                    <li><Link to={"/"} style={{color: 'black'}}><div className="sidebar__listItem"><FaHome className="sidebar__icon" /><span >Home</span></div></Link></li>
-                    <li><Link to={"/explore-plants"} style={{color: 'black'}}><div className="sidebar__listItem"><FaSearch className="sidebar__icon" /><span>Explore Plants</span></div></Link></li>
-                    <li><div className="sidebar__listItem"><GiPlantWatering className="sidebar__icon" /><span>Gardening Tips</span></div></li>
-                    <li><div className="sidebar__listItem"><FaInfo className="sidebar__icon" /><span>About us</span></div></li>
-                    <li><div className="sidebar__listItem"><FaMessage className="sidebar__icon" /><span>Contact us</span></div></li>
-                    <li><a className="button is-light">Sign in<FaSignInAlt className="sidebar__icon" /></a></li>
+        <div className="transition-all ease-in-out delay-150 duration-1000  opacity 0.3s ">
+            <div className="w-full h-screen flex flex-col bg-lime-300 justify-between overflow-hidden"  >
+                <ul className="flex flex-col justify-between">
+                    <li><Link to={"/"} style={{color: 'black'}}><div ><FaHome  /><span >Home</span></div></Link></li>
+                    <li><Link to={"/explore-plants"} style={{color: 'black'}}><div ><FaSearch  /><span>Explore Plants</span></div></Link></li>
+                    <li><div ><GiPlantWatering  /><span>Gardening Tips</span></div></li>
+                    <li><div ><FaInfo  /><span>About us</span></div></li>
+                    <li><div ><FaMessage  /><span>Contact us</span></div></li>
+                    <li><a className="button is-light">Sign in<FaSignInAlt  /></a></li>
                 </ul>
                 <SocialLinks/>
             </div>

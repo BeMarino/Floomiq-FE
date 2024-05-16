@@ -25,7 +25,7 @@ export default function SnackBar(props) {
                     ×</button>
                     <div className="icon"><i><IoMdCloseCircle /></i></div>
                     {message}
-                    <div class="progress-bar blue stripes">
+                    <div className="progress-bar blue stripes">
                        
                     </div>
                 </div>

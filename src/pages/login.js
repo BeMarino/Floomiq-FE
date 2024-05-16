@@ -9,6 +9,7 @@ import { Button } from "flowbite-react";
 import { Alert, AlertTitle } from "@mui/material";
 import { sha256 } from "js-sha256";
 import { useState } from "react";
+import { API } from "../APIService/API";
 
 
 export default function Login() {
@@ -26,11 +27,11 @@ export default function Login() {
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
-      };
-    
-      const handlePasswordChange = (e) => {
+    };
+
+    const handlePasswordChange = (e) => {
         setPassword(e.target.value);
-      };
+    };
 
     const submitCredetials = (e) => {
         // Create an object to represent the form data
@@ -45,17 +46,14 @@ export default function Login() {
             setSnackBarMessage('Username o password errati.');
 
             // Make an HTTP POST request using fetch against j_security_check endpoint
-            fetch(Constant.apiEndpoint + "j_security_check", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            })
+            API.login(formData)
                 .then((response) => {
                     if (response.status === 200) {
                         // Authentication was successful
                         setUser(username);
+                        const credentials = `${username}:${password}`;
+                        const encodedCredentials = btoa(credentials); // Base64 encoding
+                        localStorage.setItem(Constant.localStorageUserCredKey, encodedCredentials);
                         localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
                         getUserInfo();
                         setSnackBarMessage('Username o password errati.');
@@ -79,20 +77,8 @@ export default function Login() {
         setIsError(setTimeout(() => {
             setSnackBarMessage('Username o password errati.')
         }, 3000)
-    )
+        )
     }
-
-    const logout = () => {
-        // delete the credential cookie, essentially killing the session
-        const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
-        localStorage.removeItem("user");
-        localStorage.removeItem("userCred");
-        localStorage.removeItem("timestamp");
-        document.cookie = removeCookie;
-        setLoggedOut(true);
-        setSnackBarMessage('Username o password errati.')
-        // perform post-logout actions here, such as redirecting back to your login page
-    };
 
     const getUserInfo = () => {
         fetch(Constant.apiEndpoint + "user/" + username, {
@@ -107,7 +93,7 @@ export default function Login() {
                     handleError();
                 }
             }).then(function (data) {
-                localStorage.setItem(Constant.localStorageUserKey, JSON.stringify( data));
+                localStorage.setItem(Constant.localStorageUserKey, JSON.stringify(data));
             })
             .catch((error) => {
                 console.log(error)
@@ -123,7 +109,7 @@ export default function Login() {
                 <Link to="/">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="26" cy="26" r="26" fill="#C8F44D" />
-                        <path d="M27.7029 40.6503L27.7029 40.6503C26.1869 40.9816 23.7618 41.4771 21.6306 39.956C20.4548 39.1167 18.5351 37.2173 16.6106 35.1399C14.741 33.1216 12.9422 31.0181 11.9469 29.7439C11.5105 28.8933 11.0122 27.6164 11.0002 26.3345C10.9885 25.0854 11.4287 23.814 12.9976 22.8347L28.9245 13.1244C30.2065 12.3716 31.7802 11.8445 33.1663 12.0417C34.4392 12.2229 35.7705 13.0452 36.6232 15.5086C37.6491 18.4723 38.651 21.5308 39.4349 24.193C40.2254 26.8779 40.7733 29.0915 40.9212 30.3984C40.9245 30.4273 40.9291 30.4561 40.9349 30.4847C41.2488 32.0326 40.4335 34.1763 37.9345 35.5662C36.5409 36.3413 34.3538 37.5383 32.3083 38.5859C31.2849 39.1101 30.3055 39.5925 29.4828 39.9647C28.6321 40.3497 28.03 40.5788 27.7242 40.6456L27.7029 40.6503Z" stroke="black" stroke-width="2" stroke-linejoin="round" />
+                        <path d="M27.7029 40.6503L27.7029 40.6503C26.1869 40.9816 23.7618 41.4771 21.6306 39.956C20.4548 39.1167 18.5351 37.2173 16.6106 35.1399C14.741 33.1216 12.9422 31.0181 11.9469 29.7439C11.5105 28.8933 11.0122 27.6164 11.0002 26.3345C10.9885 25.0854 11.4287 23.814 12.9976 22.8347L28.9245 13.1244C30.2065 12.3716 31.7802 11.8445 33.1663 12.0417C34.4392 12.2229 35.7705 13.0452 36.6232 15.5086C37.6491 18.4723 38.651 21.5308 39.4349 24.193C40.2254 26.8779 40.7733 29.0915 40.9212 30.3984C40.9245 30.4273 40.9291 30.4561 40.9349 30.4847C41.2488 32.0326 40.4335 34.1763 37.9345 35.5662C36.5409 36.3413 34.3538 37.5383 32.3083 38.5859C31.2849 39.1101 30.3055 39.5925 29.4828 39.9647C28.6321 40.3497 28.03 40.5788 27.7242 40.6456L27.7029 40.6503Z" stroke="black" strokeWidth="2" strokeLinejoin="round" />
                     </svg>
                 </Link>
                 <div className="flex flex-col gap-y-6 w-4/5 justify-center items-stretch items-center ">

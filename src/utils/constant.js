@@ -3,4 +3,5 @@ export default class Constant{
 
     static localStorageUserKey = "floomiqUser"
     static localStorageSessionStartKey = "sessionStartedAt"
+    static localStorageUserCredKey = "userCred"
 }

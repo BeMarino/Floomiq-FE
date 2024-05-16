@@ -39,7 +39,7 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
                             <button onClick={toggleAccordion} type="button" className="plantName flex items-center justify-between  w-11/12 rtl:text-right text-gray-500 dark:text-gray-400" aria-expanded="true" >
                                 <span>{product.name}</span>
                                 <svg data-accordion-icon className={accordionOpen?"w-3 h-3 shrink-0" :"w-3 h-3 rotate-180 shrink-0"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
                                 </svg>
                             </button>
                         </h2>
