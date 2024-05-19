@@ -30,7 +30,7 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
         <>
             <div className="product-card">
                 <div className="main">
-                    <div style={{ "background-image": imageUrl }} className="image" >
+                    <div style={{ "backgroundImage": imageUrl }} className="image" >
                         <button className="addToFav" onClick={addProduct}><CiHeart /></button>
                     </div>
                     <button className="addToCart" onClick={addProduct}><GoPlus /></button>

@@ -19,7 +19,7 @@ export default function ProjectCard({ project }) {
         <>
             <div className="project-card">
                 <div className="main">
-                    <div style={{ "background-image": imageUrl }} className="image" >
+                    <div style={{ "backgroundImage": imageUrl }} className="image" >
                     </div>
                 </div>
                 <div className="flex flex-col w-full px-4 gap-2 justify-between  pb-2 rounded-b-lg">

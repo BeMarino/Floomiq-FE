@@ -9,7 +9,7 @@ export default function SideCartProductCard({ product, removeFromList }) {
 
     return (
         <div className="sideCart-element">
-            <div style={{ "background-image": imageUrl }} className='sidecart-product-card'>
+            <div style={{ "backgroundImage": imageUrl }} className='sidecart-product-card'>
 
                 <div className="plant-name">
                     {product.name}

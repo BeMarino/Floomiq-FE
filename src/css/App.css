@@ -1256,7 +1256,6 @@ input:focus::placeholder {
 }
 
 .alert-white {
-  background-image: linear-gradient(to bottom,#FFFFFF,#F9F9F9);
   border-top-color: #d8d8d8;
   border-bottom-color: #bdbdbd;
   border-left-color: #cacaca;

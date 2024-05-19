@@ -30,7 +30,7 @@ export default function FavouriteCard({ product, addItemToCart, toggleCart, open
         <>
             <div className="fav-card">
                 <div className="main">
-                    <div style={{ "background-image": imageUrl }} className="image" >
+                    <div style={{ "backgroundImage": imageUrl }} className="image" >
                     </div>
                     <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id={"accordion-flush-heading"}>

@@ -6,8 +6,8 @@ let token = localStorage.getItem('userCred');
 export const API = {
   updateUserInfo: async function (body, cancel = false) {
     const response = await api.request({
-      url: `/user/updateInfo`,
-      method: "POST",
+      url: `/user/update`,
+      method: "PUT",
       headers: {
         'Authorization': `Basic ${token}`
       },
@@ -15,6 +15,19 @@ export const API = {
       signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
     })
     return response
+  },
+
+  register: async function (body, cancel = false) {
+    const response = await api.request({
+      url: `/user/register`,
+      method: "POST",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      data: body,
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response;
   },
 
   login: async function (body, cancel = false) {
@@ -30,6 +43,29 @@ export const API = {
     return response;
   },
 
+  getUserInfo: async function(username, cancel = false) {
+    const response = await api.request({
+      url: `/user/`+username,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+},
+
+verifyMail: async function (token, cancel = false) {
+  const response = await api.request({
+    url: `/user/verify/`+token,
+    method: "PUT",
+    headers: {
+      'Authorization': `Basic ${token}`
+    },
+    signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+  })
+  return response
+},
 }
 
 

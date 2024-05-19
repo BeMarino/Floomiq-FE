@@ -12,16 +12,16 @@ import { redirect } from "react-router-dom";
 import { Popover, TextInput } from 'flowbite-react';
 
 
-export default function PersonalInfo() {
+export default function PersonalInfo({user,setUser}) {
 
-    const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey))
     const [redirect, setRedirect] = useState(false);
-
+    console.log(user)
 
     let [userName, setUserName] = useState(user.name);
     let [lastName, setLastName] = useState(user.surname);
     let [userEmail, setUserEmail] = useState(user.username);
     let [userPhone, setUserPhone] = useState(user.phone);
+    let [userFloomiqBy, setUserFloomiqBy] = useState(user.floomiqFrom);
     const [loggedOut, setLoggedOut] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -126,17 +126,20 @@ export default function PersonalInfo() {
 
     const updateUserInfo = (e) => {
         const body = {
-            nome: userName,
-            cognome: lastName,
-            email: userEmail,
-            telefono: userPhone,
+            name: userName,
+            surname: lastName,
+            oldUsername: user.username,
+            username: userEmail,
+            phone: userPhone,
             pass: pass
         }
         API.updateUserInfo(body)
             .then((response) => {
                 if (response.status === 200) {
                     // Authentication was successful
-
+                    showErrorSnackbar(response.data)
+                    console.log("klnnsdklcmkls")
+                    getUserInfo(userEmail)
                 } else {
                     handleError();
                 }
@@ -145,6 +148,21 @@ export default function PersonalInfo() {
                 showErrorSnackbar("Qualcosa è andato storto")
             )
             .finally(setIsLoading(false))
+    }
+
+    const getUserInfo = (username) => {
+        API.getUserInfo(username)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response)
+                    // Authentication was successful
+                    console.log(response)
+                    setUser(JSON.stringify(response.data));
+                    window.location.reload();
+                } else {
+                    handleError();
+                }
+            });
     }
 
     let open = false;
@@ -159,7 +177,7 @@ export default function PersonalInfo() {
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
-            stroke-width="2"
+            strokeWidth="2"
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
         />
     </svg>
@@ -175,7 +193,7 @@ export default function PersonalInfo() {
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
-            stroke-width="2"
+            strokeWidth="2"
             d="M1 5.917 5.724 10.5 15 1.5"
         />
     </svg>
@@ -190,20 +208,20 @@ export default function PersonalInfo() {
                 <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
                     <div className='flex flex-col gap-2'>
                         <div className='text-left text-stone-400 text-sm'>Dashboard</div>
-                        <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "background-color": "#DEFE9A" } : { "background-color": "" }}>
+                        <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
                             <BsBagHeart />
                             <div className='text-left text-sm 0'>
                                 Preferiti
                             </div>
                         </Link>
-                        <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "background-color": "#DEFE9A" } : { "background-color": "" }}>
+                        <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
                             <IoLibraryOutline />
                             <div className='text-left  text-sm'>Progetti</div>
                         </Link>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <div className='text-left text-stone-400 text-sm'>Pages</div>
-                        <Link to="/personal-info" className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400' style={path === "/personal-info" ? { "background-color": "#DEFE9A" } : { "background-color": "" }}>
+                        <Link to="/personal-info" className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400' style={path === "/personal-info" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
                             <PiIdentificationCard />
                             <div className='text-left text-sm'>
                                 Account
@@ -256,7 +274,7 @@ export default function PersonalInfo() {
                                 id="cognome"
                                 required
                                 className="w-full mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value={user.surname}
+                                value={lastName}
                                 onChange={handleLastNameChanges}
 
                             />
@@ -270,11 +288,11 @@ export default function PersonalInfo() {
                                 Telefono
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 id="telefono"
                                 required
                                 className="w-full mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value={user.name}
+                                value={userPhone}
                                 onChange={handlePhoneChanges}
 
                             />
@@ -290,7 +308,7 @@ export default function PersonalInfo() {
                                 id="floomiqBy"
                                 required
                                 className="w-full mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value={user.name}
+                                value={userFloomiqBy}
                                 readOnly
                             />
                         </div>
@@ -314,7 +332,7 @@ export default function PersonalInfo() {
                                 id="email"
                                 required
                                 className="w-full mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value={user.username}
+                                value={userEmail}
                                 onChange={handleMailChanges}
 
                             />
@@ -359,8 +377,8 @@ export default function PersonalInfo() {
                                 }
                             >
                                 <TextInput id="pass1"
-                                placeholder={pass}
-                                defaultValue={pass}
+                                    placeholder={pass}
+                                    defaultValue={pass}
                                     type="password" required value={pass} onChange={handlePassChanges} />
 
                             </Popover>

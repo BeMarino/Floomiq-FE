@@ -51,7 +51,7 @@ export default function DatabaseExplorer() {
 
   const productList = [{
     name: 'Abelia Edward Goucher',
-    image: 'Abelia_Edward_Goucher.jpeg',
+    image: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/6e61b/MainAfter.avif',
     height: "2m",
     durability: "Eternal"
   },

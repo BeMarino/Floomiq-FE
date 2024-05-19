@@ -1,21 +1,19 @@
 import React from "react";
 import { Spinner } from 'flowbite-react';
-import { Label, TextInput, Popover } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import { HiMail } from 'react-icons/hi';
 import { Link, Navigate, json } from "react-router-dom";
 import Constant from "../utils/constant";
-import SnackBar from "../pageComponents/snackbar";
-import { Button } from "flowbite-react";
 import { Alert, AlertTitle } from "@mui/material";
 import { sha256 } from "js-sha256";
 import { useState } from "react";
 import { API } from "../APIService/API";
+import Header from "../pageComponents/header";
 
 
-export default function Login() {
+export default function Login({user,setUser}) {
 
 
-    const [user, setUser] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isError, setIsError] = useState(false);
@@ -50,20 +48,16 @@ export default function Login() {
                 .then((response) => {
                     if (response.status === 200) {
                         // Authentication was successful
-                        setUser(username);
                         const credentials = `${username}:${password}`;
                         const encodedCredentials = btoa(credentials); // Base64 encoding
                         localStorage.setItem(Constant.localStorageUserCredKey, encodedCredentials);
                         localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
-                        getUserInfo();
-                        setSnackBarMessage('Username o password errati.');
-
+                        getUserInfo(username);
                     } else {
                         handleError();
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
                     handleError();
                 });
 
@@ -80,30 +74,22 @@ export default function Login() {
         )
     }
 
-    const getUserInfo = () => {
-        fetch(Constant.apiEndpoint + "user/" + username, {
-            method: "GET",
-        })
+    const getUserInfo = (username) => {
+
+        API.getUserInfo(username)
             .then((response) => {
                 if (response.status === 200) {
                     // Authentication was successful
-                    return response.json()
-
+                    setUser(response.data);
                 } else {
                     handleError();
                 }
-            }).then(function (data) {
-                localStorage.setItem(Constant.localStorageUserKey, JSON.stringify(data));
-            })
-            .catch((error) => {
-                console.log(error)
-                handleError();
             });
-
     }
 
 
     return (
+        <>
         <div className="justify-center  flex h-auto w-full py-16" >
             <div className="flex flex-col gap-y-3 border-solid w-11/12 lg:w-1/3 justify-center items-center py-8 mx-auto my-6 border-2 border-slate-300 rounded-[32px]">
                 <Link to="/">
@@ -178,5 +164,6 @@ export default function Login() {
                 </div>
             </div>
         </div>
+        </>
     )
 }

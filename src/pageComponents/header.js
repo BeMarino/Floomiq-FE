@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
-import Hamburger from './Hamburger';
-import DropDownRouter from './DropDownRouter';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Constant from '../utils/constant';
-import { API } from '../APIService/API';
-function Header() {
+function Header({user, setUser}) {
 
   var [openHamburger, setOpenHamburger] = useState(false)
   const toggleHamburger = () => {
@@ -15,13 +10,10 @@ function Header() {
   }
   const [position, setPosition] = useState(window.scrollY)
   const [visible, setVisible] = useState(true)
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [snackMessage, setSnackMessage] = useState("");
-
-
+  const [location , setLocation] = useState(window.location.pathname);
+  
   useEffect(() => {
+    setLocation(window.location.pathname)
     const handleScroll = () => {
       let moving = window.scrollY;
 
@@ -33,33 +25,21 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     })
   })
+
   let navigate = useNavigate();
 
-  function showErrorSnackbar(msg) {
-    setSnackMessage(msg);
-    setIsError(
-      setTimeout(() => {
-        setSnackMessage("");
-        setIsError(false);
-      }, 3000)
-    );
-  }
-
   const logout = () => {
-    
-        // Authentication was successful
-        const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
-        localStorage.removeItem(Constant.localStorageUserKey);
-        localStorage.removeItem(Constant.localStorageUserCredKey);
-        localStorage.removeItem(Constant.localStorageSessionStartKey);
-        document.cookie = removeCookie;
-        console.log("loggedOut")
-        navigate("")
+
+    // Authentication was successful
+    const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
+    localStorage.removeItem(Constant.localStorageUserCredKey);
+    localStorage.removeItem(Constant.localStorageSessionStartKey);
+    setUser(null);
+    document.cookie = removeCookie;
+    navigate("/login")
   }
 
-  const location = useLocation();
   const path = location.pathname;
-  const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey));
 
   //if(path !== "/login" && path !== "/register")
   return (<>
@@ -92,10 +72,10 @@ function Header() {
                 onClick={logout}>Log out</button>
             </div> : <div className="buttons">
               <Link to="/register" className="button is-primary button-sign-up" id="navbar-sign-up">
-                <strong>Sign up</strong>
+                <strong>Registrati</strong>
               </Link>
               <Link to="/login" className="button is-light button-sign-up font-bold">
-                Log in
+                Accedi
               </Link>
             </div>}
           </div>

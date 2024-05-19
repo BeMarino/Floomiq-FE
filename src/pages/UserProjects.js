@@ -15,7 +15,6 @@ let pdfRef = null;
 export default function UserProjects() {
     pdfRef = useRef();
     const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey))
-    console.log(user)
     const productList = [{
         name: 'Abelia Edward Goucher',
         image: 'Abelia_Edward_Goucher.jpeg',
@@ -134,13 +133,13 @@ export default function UserProjects() {
             <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
                 <div className='flex flex-col gap-2'>
                     <div className='text-left text-stone-400 text-sm'>Dashboard</div>
-                    <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "background-color": "#DEFE9A" } : { "background-color": "" }}>
+                    <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
                         <BsBagHeart />
                         <div className='text-left text-sm 0'>
                             Preferiti
                         </div>
                     </Link>
-                    <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "background-color": "#DEFE9A" } : { "background-color": "" }}>
+                    <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
                         <IoLibraryOutline />
                         <div className='text-left  text-sm'>Progetti</div>
                     </Link>

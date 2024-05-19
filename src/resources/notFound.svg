@@ -201,8 +201,8 @@
 					</g>
 				</g>
 				<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="271.4144" y1="361.3425" x2="271.4144" y2="337.2882">
-					<stop  offset="0" style="stop-color:#FFFFFF"/>
-					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="0" style="stopColor:#FFFFFF"/>
+					<stop  offset="1" style="stopColor:#FFFFFF;stopOpacity:0"/>
 				</linearGradient>
 				<rect x="201.295" y="335.666" style="opacity:0.55;fill:url(#SVGID_1_);" width="140.24" height="14.936"/>
 				
