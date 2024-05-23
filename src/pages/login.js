@@ -112,7 +112,6 @@ export default function Login({user,setUser}) {
                             <TextInput
                                 id="email4"
                                 type="email"
-                                icon={HiMail}
                                 placeholder="name@example.com"
                                 required
                                 value={username} onChange={handleUsernameChange}

@@ -1,4 +1,7 @@
 import React from "react";
+import Blog from "./BlogSpotlight";
+import DbDiscover from "./DbDiscover";
+import Faq from "../faq";
 
 export default function Discover() {
   return (
@@ -24,6 +27,9 @@ export default function Discover() {
 
       <div className="discover-row-image"></div>
     </div>
+    <Blog />
+    <DbDiscover />
+    <Faq/> 
   </>
   );
 }

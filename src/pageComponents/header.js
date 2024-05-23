@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Constant from '../utils/constant';
 function Header({user, setUser}) {
 
@@ -30,7 +30,7 @@ function Header({user, setUser}) {
 
   const logout = () => {
 
-    // Authentication was successful
+    console.log("logout")
     const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
     localStorage.removeItem(Constant.localStorageUserCredKey);
     localStorage.removeItem(Constant.localStorageSessionStartKey);

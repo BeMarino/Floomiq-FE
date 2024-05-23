@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { RiBook3Fill } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsBagHeart } from "react-icons/bs";
@@ -6,115 +6,24 @@ import { IoLibraryOutline } from "react-icons/io5";
 import { PiIdentificationCard } from "react-icons/pi";
 import { GrArticle } from "react-icons/gr";
 import ProjectCard from '../pageComponents/explorePlantsComponent/projectCard';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Constant from '../utils/constant';
+import { API } from '../APIService/API';
+import Spinner from '../pageComponents/spinner';
 
 
 
 let pdfRef = null;
-export default function UserProjects() {
+export default function UserProjects({user}) {
+    const username = user.username;
     pdfRef = useRef();
-    const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey))
-    const productList = [{
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }]
-
+    const [productList, setProductList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [page, setPage] = useState(1);
     const location = useLocation();
     const path = location.pathname;
     const [sideCartProductList, setSideCartProductList] = useState([]);
-
+    const navigate = useNavigate();
     function addItemToCart(product) {
         setSideCartProductList([...sideCartProductList, product]);
     }
@@ -123,6 +32,20 @@ export default function UserProjects() {
         sideCartProductList.splice(sideCartProductList.indexOf(product), 1);
         setSideCartProductList([...sideCartProductList]);
     }
+
+    useEffect(() => {
+        setIsLoading(true)
+        API.getUserProjects(username).then((response) => {
+
+          if (response.status === 200) {
+            // Authentication was successful
+            setProductList(productList.concat(response.data));
+          }
+        }).catch((err) =>
+          console.log("Qualcosa è andato storto")
+        );
+        setIsLoading(false)
+      }, [page])
 
     return (<div className="exploreContainer w-11/12 flex flex-row mt-24">
         <div className="flex flex-col w-1/5 px-8 gap-5">
@@ -175,6 +98,7 @@ export default function UserProjects() {
                 {productList.map((_, index) => (
                     <ProjectCard key={index} project={productList[index]} />
                 ))}
+                {isLoading && <Spinner />}
             </div>
         </div>
     </div>)

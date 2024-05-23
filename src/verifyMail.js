@@ -53,7 +53,7 @@ export default function VerifyMail() {
                         </div>
                         <div className="flex alert-white">
                             <div className="flex flex-col justify-between p-2">
-                                <span className="flex font-medium text-3xl text-wrap">No!</span>
+                                <span className="flex font-medium text-3xl text-wrap">Congratulazioni!</span>
                                 <span className="flex font-light text-left">Mail verificata con successo.
                                     Adesso puoi effettuare il login.
                                 </span>

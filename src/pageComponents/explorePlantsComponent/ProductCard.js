@@ -7,6 +7,7 @@ import { MdHeight } from "react-icons/md";
 import { LiaThermometerHalfSolid } from "react-icons/lia";
 
 import { CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 export default function ProductCard({ product, addItemToCart, toggleCart, openSideCart }) {
@@ -21,31 +22,38 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
         addItemToCart(product);
     }
 
-    function toggleAccordion(e){
+    function toggleAccordion(e) {
         setVisible(!accordionOpen);
     }
+    let imageUrl;
+    if (product.immagini[0] === "") {
+        imageUrl = "url(empty_plant.jpeg)";
+    } else {
+        imageUrl = "url(" + product.immagini[0] + ")";
+    }
 
-    let imageUrl = "url(" + product.image + ")";
     return (
         <>
             <div className="product-card">
                 <div className="main">
-                    <div style={{ "backgroundImage": imageUrl }} className="image" >
-                        <button className="addToFav" onClick={addProduct}><CiHeart /></button>
-                    </div>
+                    <Link to="/plant-details">
+                        <div style={{ "backgroundImage": imageUrl }} className="image" >
+                            <button className="addToFav" onClick={addProduct}><CiHeart /></button>
+                        </div>
+                    </Link>
                     <button className="addToCart" onClick={addProduct}><GoPlus /></button>
                     <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id={"accordion-flush-heading"}>
                             <button onClick={toggleAccordion} type="button" className="plantName flex items-center justify-between  w-11/12 rtl:text-right text-gray-500 dark:text-gray-400" aria-expanded="true" >
-                                <span>{product.name}</span>
-                                <svg data-accordion-icon className={accordionOpen?"w-3 h-3 shrink-0" :"w-3 h-3 rotate-180 shrink-0"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <span className="truncate" title={product.nome}>{product.nome}</span>
+                                <svg data-accordion-icon className={accordionOpen ? "w-3 h-3 shrink-0" : "w-3 h-3 rotate-180 shrink-0"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
                                 </svg>
                             </button>
                         </h2>
-                        <div className={accordionOpen ? "":"hidden"} aria-labelledby={"accordion-flush-heading"}>
+                        <div className={accordionOpen ? "" : "hidden"} aria-labelledby={"accordion-flush-heading"}>
                             <div className="py-2 border-b border-gray-200 dark:border-gray-700">
-                                <p className="mx-2 text-xs text-left text-gray-500 dark:text-gray-400">L’acero è un albero presente in molte varietà, alcune caratterizzate da spettacolari chiome rosse che le rendono particolarmente apprezzate a scopo ornamentale. Si tratta di un albero splendido, rustico e resistente, semplice da coltivare in giardino e in vaso.</p>
+                                <p className="mx-2 text-xs text-left text-gray-500 dark:text-gray-400">{product.descrizione}</p>
                             </div>
                         </div>
                     </div>
@@ -54,7 +62,7 @@ export default function ProductCard({ product, addItemToCart, toggleCart, openSi
                                 <p className="description" >Outdoor</p>
                             </div> */}
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdHeight title="Height" /><a>2m (max)</a></div>
+                        <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate" title={product.altezza}>{product.altezza}</a></div>
                         <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a>Eternal</a></div>
                         <div className="main-characteristic"><LiaThermometerHalfSolid title="Sun condition" /><a></a></div>
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>

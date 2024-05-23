@@ -43,9 +43,9 @@ export const API = {
     return response;
   },
 
-  getUserInfo: async function(username, cancel = false) {
+  getUserInfo: async function (username, cancel = false) {
     const response = await api.request({
-      url: `/user/`+username,
+      url: `/user/` + username,
       method: "GET",
       headers: {
         'Authorization': `Basic ${token}`
@@ -53,19 +53,51 @@ export const API = {
       signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
     })
     return response
-},
+  },
 
-verifyMail: async function (token, cancel = false) {
-  const response = await api.request({
-    url: `/user/verify/`+token,
-    method: "PUT",
-    headers: {
-      'Authorization': `Basic ${token}`
-    },
-    signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
-  })
-  return response
-},
+  verifyMail: async function (token, cancel = false) {
+    const response = await api.request({
+      url: `/user/verify/` + token,
+      method: "PUT",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  plants: async function (filters, page, cancel = false) {
+    const response = await api.request({
+      url: `/plant?size=10&page=` + page,
+      method: "POST",
+      data: filters,
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  submitProject: async function (project, cancel = false) {
+    const response = await api.request({
+      url: `/projects`,
+      method: "POST",
+      data: project,
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+  
+  getUserProjects: async function (username, cancel = false) {
+    const response = await api.request({
+      url: `/projects/` + username,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
 }
 
 

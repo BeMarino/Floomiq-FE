@@ -19,8 +19,11 @@ import { useEffect, useRef, useState } from 'react';
 import PrivateRoute from './privateRoute'
 import Constant from './utils/constant';
 import VerifyMail from './verifyMail';
+import DatabaseExplorer from './pageComponents/explorePlantsComponent/DatabaseExplorer';
+import DbDiscover from './pageComponents/home/DbDiscover';
+import Discover from './pageComponents/home/Discover';
 const onTouchStart = () => {
-  localStorage.setItem('timestamp', Date.now());
+  localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
 
 
@@ -44,17 +47,18 @@ function App() {
     const checkExpiration = () => {
       const storedData = localStorage.getItem(Constant.localStorageUserKey);
       const storedTimestamp = localStorage.getItem(Constant.localStorageSessionStartKey);
-      console.log(user)
+
       if (storedData && storedTimestamp) {
         const timestamp = parseInt(storedTimestamp);
         // Check if one hour has passed
+        console.log("checkMinute")
         if (Date.now() - timestamp > 3600000) {
+          console.log("checkHour")
           localStorage.removeItem(Constant.localStorageUserKey);
           localStorage.removeItem(Constant.localStorageUserCredKey);
           localStorage.removeItem(Constant.localStorageSessionStartKey);
           navigate("/")
         } else {
-
         }
       }
     }
@@ -74,12 +78,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+        <Route path="/discover" element={<Discover />} />
         <Route path="/verify-mail" element={<VerifyMail />} />
-        <Route path="/explore-plants" element={<ExplorePlants />} />
+        <Route path="/explore-plants" element={<DatabaseExplorer user={user} />} />
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />
         <Route path="/pdf" element={<CreatePdf />} />
-        <Route path="/my-projects" element={<PrivateRoute> <UserProjects /> </PrivateRoute>} />
+        <Route path="/my-projects" element={<PrivateRoute> <UserProjects user={user}/> </PrivateRoute>} />
         <Route path="/my-favourites" element={<PrivateRoute> <UserFavourites /> </PrivateRoute>} />
         <Route path="/register" element={<Registration />} />
         <Route path="/personal-info" element={<PrivateRoute> <PersonalInfo user={user} setUser={setUser} /> </PrivateRoute>} />
