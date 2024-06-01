@@ -8,29 +8,17 @@ function Header({user, setUser}) {
   const toggleHamburger = () => {
     setOpenHamburger(!openHamburger)
   }
-  const [position, setPosition] = useState(window.scrollY)
-  const [visible, setVisible] = useState(true)
   const [location , setLocation] = useState(window.location.pathname);
   
   useEffect(() => {
     setLocation(window.location.pathname)
-    const handleScroll = () => {
-      let moving = window.scrollY;
-
-      setVisible(position > moving);
-      setPosition(moving)
-    };
-    window.addEventListener("scroll", handleScroll);
-    return (() => {
-      window.removeEventListener("scroll", handleScroll);
-    })
+    
   })
 
   let navigate = useNavigate();
 
   const logout = () => {
 
-    console.log("logout")
     const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
     localStorage.removeItem(Constant.localStorageUserCredKey);
     localStorage.removeItem(Constant.localStorageSessionStartKey);
@@ -43,7 +31,7 @@ function Header({user, setUser}) {
 
   //if(path !== "/login" && path !== "/register")
   return (<>
-    <div className='App-header' style={{ top: visible ? "0px" : "-160px" }}>
+    <div className='App-header' >
       <Link to="/" className="header-logo">
         <svg width="160" height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.7029 29.6503L17.7029 29.6503C16.1869 29.9816 13.7618 30.4771 11.6306 28.956C10.4548 28.1167 8.53513 26.2173 6.61065 24.1399C4.741 22.1216 2.9422 20.0181 1.94687 18.7439C1.51049 17.8933 1.01225 16.6164 1.00022 15.3345C0.988502 14.0854 1.42873 12.814 2.99761 11.8347L18.9245 2.12439C20.2065 1.37161 21.7802 0.84447 23.1663 1.04174C24.4392 1.22289 25.7705 2.04522 26.6232 4.50859C27.6491 7.47228 28.651 10.5308 29.4349 13.193C30.2254 15.8779 30.7733 18.0915 30.9212 19.3984C30.9245 19.4273 30.9291 19.4561 30.9349 19.4847C31.2488 21.0326 30.4335 23.1763 27.9345 24.5662C26.5409 25.3413 24.3538 26.5383 22.3083 27.5859C21.2849 28.1101 20.3055 28.5925 19.4828 28.9647C18.6321 29.3497 18.03 29.5788 17.7242 29.6456L17.7029 29.6503Z" stroke="white" strokeWidth="2" strokeLinejoin="round" />
@@ -52,7 +40,7 @@ function Header({user, setUser}) {
 
 
       </Link>
-      <div className="navbar-end">
+      <div className="navbar-end mr-[2%]">
         <div className='header-nav'>
           <button className='nav-button' style={{ "color": path === "/explore-plants" ? "#cdff7c" : "#c6c4c4" }} onClick={() => { navigate('/explore-plants') }}>
             Elenco Piante

@@ -15,7 +15,6 @@ import { Popover, TextInput } from 'flowbite-react';
 export default function PersonalInfo({user,setUser}) {
 
     const [redirect, setRedirect] = useState(false);
-    console.log(user)
 
     let [userName, setUserName] = useState(user.name);
     let [lastName, setLastName] = useState(user.surname);
@@ -61,7 +60,6 @@ export default function PersonalInfo({user,setUser}) {
         setChanges(true);
     };
     const handlePassChanges = (e) => {
-        console.log(e.target.value)
         if (e.target.value.length >= 8) {
             setReq1(true);
         } else {
@@ -138,7 +136,6 @@ export default function PersonalInfo({user,setUser}) {
                 if (response.status === 200) {
                     // Authentication was successful
                     showErrorSnackbar(response.data)
-                    console.log("klnnsdklcmkls")
                     getUserInfo(userEmail)
                 } else {
                     handleError();
@@ -154,9 +151,7 @@ export default function PersonalInfo({user,setUser}) {
         API.getUserInfo(username)
             .then((response) => {
                 if (response.status === 200) {
-                    console.log(response)
                     // Authentication was successful
-                    console.log(response)
                     setUser(JSON.stringify(response.data));
                     window.location.reload();
                 } else {

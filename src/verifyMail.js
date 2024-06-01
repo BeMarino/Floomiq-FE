@@ -12,12 +12,10 @@ export default function VerifyMail() {
     const token = useQuery().get("tk");
 
     useEffect(() => {
-        console.log("token")
         API.verifyMail(token)
             .then((response) => {
                 if (response.status === 200) {
                     setVerified(true);
-                    console.log("login")
                 } 
             })
             .catch((error) => {

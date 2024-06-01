@@ -1,11 +1,12 @@
 .App {
   text-align: center;
-  overflow-x: hidden;
-
+  overflow: hidden;
   font-family: 'Inter Variable';
+  overflow-x: hidden;
   font-size: 16px;
-
 }
+
+
 @media (max-width: 640px) {
   .home-image{
     margin-top: 10dvh;

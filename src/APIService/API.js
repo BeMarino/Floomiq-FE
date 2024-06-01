@@ -86,10 +86,85 @@ export const API = {
     })
     return response
   },
-  
+
   getUserProjects: async function (username, cancel = false) {
     const response = await api.request({
       url: `/projects/` + username,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  getSuggestion: async function (inputSearchValue, cancel = false) {
+    const response = await api.request({
+      url: `/plant?q=` + inputSearchValue,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  searchPlantByName: async function (plantName, cancel = false) {
+    const response = await api.request({
+      url: `/plant/` + plantName,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  addToFavourite: async function (user, plantId, cancel = false){
+    let data = {plantId: plantId, username:user}
+    const response = await api.request({
+      url: `/plant/newFav`,
+      method: "POST",
+      data: data,
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  removeFromFavourite: async function (user, plantId, cancel = false){
+    let data = {plantId: plantId, username:user}
+    const response = await api.request({
+      url: `/plant/removeFav`,
+      method: "DELETE",
+      data: data,
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  plantDetails: async function (plantId, cancel = false) {
+    const response = await api.request({
+      url: `/plant/details/` + plantId,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+  findPlantByName: async function (plantName, cancel = false) {
+    const response = await api.request({
+      url: `/plant/` + plantName,
       method: "GET",
       headers: {
         'Authorization': `Basic ${token}`

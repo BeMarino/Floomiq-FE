@@ -14,7 +14,7 @@ export default function SuccessDialog({ projectName, setShowProjectCreated }) {
                 <div className="flex alert-white">
                     <div className="flex flex-col justify-between p-2">
                         <span className="flex font-medium text-3xl text-wrap">Congratulazioni!</span>
-                        <span className="flex font-light text-left">Il progetto {projectName} è stato creato con correttamente!</span>
+                        <span className="flex font-light text-left">Il progetto {projectName} è stato creato correttamente!</span>
                         <div>
 
                             <div className="flex flex-row">

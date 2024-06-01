@@ -1,8 +1,10 @@
-export default function ButtonSwitch({ name, handler, filter, filterObj  }) {
+function ButtonSwitch({ name, handler, filter, filterObj, selected }) {
     return (
         <label className="switch">
-            <input type="checkbox" onChange={(e) => handler(e, filter, filterObj)}/>
+            <input type="checkbox" checked={selected === true} onChange={(e) => handler(e, filter, filterObj)} />
             <span className="slider">{name}</span>
         </label>
     )
 }
+
+export default ButtonSwitch;

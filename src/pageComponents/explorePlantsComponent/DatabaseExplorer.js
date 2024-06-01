@@ -5,8 +5,6 @@ import SideCart from "./sideCart";
 import CreatePdf from "../../utils/pdf";
 import { savePdf } from "../../utils/pdf";
 import { API } from '../../APIService/API';
-import usePagination from '@mui/material/usePagination/usePagination';
-import spinner from '../spinner';
 import Spinner from '../spinner';
 import { Label, TextInput, Textarea } from 'flowbite-react';
 import Constant from '../../utils/constant';
@@ -14,6 +12,10 @@ import SuccessDialog from '../SuccessDialog';
 import LoginRequiredDialog from './LoginRequiredDialog';
 import ErrorDialog from '../ErrorDialog';
 import ButtonSwitch from '../toggleSwitch';
+import { PiPaintBrushHousehold } from "react-icons/pi";
+import NewFavouriteDialog from '../newFavouriteDialog';
+import FiltersColumn from './filtersColumn';
+import { LuFilter } from "react-icons/lu";
 
 let pdfRef = null;
 export default function DatabaseExplorer({ user }) {
@@ -25,21 +27,23 @@ export default function DatabaseExplorer({ user }) {
     );
   });
   pdfRef = useRef();
-  const [open, setOpen] = useState(false);
-  const [openTwo, setOpenTwo] = useState(false);
-  const [openThree, setOpenThree] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [filters, setFilters] = useState([]);
-  const [filtersObj, setFiltersObj] = useState({});
+  const [filters, setFilters] = useState({ tag: [], obj: {} });
   const [page, setPage] = useState(1);
   const [productList, setProductList] = useState([]);
   const [showCreateProjectDialog, setShowCreateProjectDialog] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [projectDesc, setProjectDesc] = useState("");
   const [showProjectCreated, setShowProjectCreated] = useState(false);
+  const [showNewFavourite, setShowNewFavourite] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showLoginRequired, setShowLoginRequired] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [inputSearchValue, setInputSearchValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [lastFavourite, setLastFavourite] = useState(null);
+  const scrollDivRef = useRef(null);
 
 
   const closeCreateProjectDialog = () => {
@@ -53,94 +57,28 @@ export default function DatabaseExplorer({ user }) {
     setProjectDesc(e.target.value)
   }
 
-  const handleSwitchToggle = (e, filter, filterObj) => {
-    if (e.target.checked) {
-      setFilters([...filters, filter]);
-      setFiltersObj({ ...filtersObj, ...filterObj })
-    } else {
-      let filtersSet = new Set([...filters, filter])
-      filtersSet.delete(filter)
-      setFilters(Array.from(filtersSet));
-      let toRemove = Object.keys(filterObj)[0];
-      let newFilters = filtersObj
-      newFilters[toRemove] = null;
-      setFiltersObj(newFilters)
-    }
-  }
 
-  const handleCheckboxClick = (e, filter, filterObj) => {
-    if (e.target.checked) {
-      let filtersSet = new Set([...filters, filter])
-      setFilters(Array.from(filtersSet));
-
-
-      let toAdd = Object.keys(filterObj)[0];
-      let newArray
-
-      if (filtersObj[toAdd]) {
-        newArray = [...filtersObj[toAdd], ...filterObj[toAdd]]
+  useEffect(() => {
+    API.getSuggestion(inputSearchValue).then((response) => {
+      if (response.status === 200) {
+        // Authentication was successful
+        setShowSuggestions(true)
+        setSuggestions(response.data);
       } else {
-        newArray = filterObj[toAdd]
+
       }
-      let newFilterObj = {}
-      newFilterObj[toAdd] = newArray
-      let newFiltersObj = { ...filtersObj, ...newFilterObj }
-      setFiltersObj(newFiltersObj)
-    } else {
-      let filtersSet = new Set([...filters, filter])
-      filtersSet.delete(filter)
-      setFilters(Array.from(filtersSet));
-      let toRemove = Object.keys(filterObj)[0];
-      let filterObjSet = new Set(filtersObj[toRemove]);
-      filterObjSet.delete(filterObj[toRemove][0])
-      filtersObj[toRemove] = [filterObjSet]
-      setFiltersObj(Array.from(filterObj))
+    }).catch((err) => {
+      console.log("Qualcosa è andato storto");
+      setShowSuggestions(false)
     }
-  }
+    );
+  }, [inputSearchValue])
 
-  const toggle = () => {
-    setOpen(!open);
-  };
-
-  const toggleOpenTwo = () => {
-    setOpenTwo(!openTwo);
-  };
-
-  const toggleOpenThree = () => {
-    setOpenThree(!openThree);
-  };
-
-  function addToFilters(filterTag, filterObj) {
-    let filtersSet = new Set([...filters, filterTag])
-    setFiltersObj({ ...filtersObj, ...filterObj })
-    setFilters(Array.from(filtersSet));
-  };
-
-  function removeFilter(filter) {
-    let filtersSet = new Set([...filters])
-    filtersSet.delete(filter);
-    setFilters(Array.from(filtersSet));
-  }
-
-  function clearFilter() {
-    setFilters([]);
-    setFiltersObj({})
-  }
-
-  function loadMore() {
+  const searchByName = (e) => {
+    setInputSearchValue(e.target.title)
+    setShowSuggestions(false)
     setIsLoading(true)
-    setPage(page + 1)
-  }
-
-  const closeErrorDialog = () => {
-    setShowErrorMessage(false)
-    setShowCreateProjectDialog(true)
-  }
-
-  function applyFilter(){
-    console.log(filtersObj)
-    setIsLoading(true)
-    API.plants(filtersObj, page).then((response) => {
+    API.findPlantByName(e.target.title).then((response) => {
       if (response.status === 200) {
         // Authentication was successful
         setProductList(response.data);
@@ -154,7 +92,64 @@ export default function DatabaseExplorer({ user }) {
   }
 
   useEffect(() => {
-    API.plants(filtersObj, page).then((response) => {
+    const handleScroll = () => {
+      const scrollDiv = scrollDivRef.current;
+      const { scrollTop, scrollHeight, clientHeight } = scrollDiv;
+      // Check for overscroll at the bottom
+      if (scrollTop >= scrollHeight - clientHeight - 10) {
+        setPage(page + 1)
+      }
+    };
+
+    const scrollDiv = scrollDivRef.current;
+    scrollDiv.addEventListener('scroll', handleScroll);
+  }, [page]);
+
+
+  function removeFilter(filter) {
+    console.log(filter)
+    let key = filter.split(" ")[0]
+    let value = filter.substring(key.length).trimStart()
+    console.log(key, value)
+    let filtersSet = new Set([...filters["tag"]])
+    filtersSet.delete(filter);
+    filters["tag"] = [...filtersSet]
+    if (filter.split(" ").length > 1) {
+      let filterObjSet = new Set(filters["obj"][key])
+      filterObjSet.delete(value)
+      filters["obj"][key] = Array.from(filterObjSet)
+    }
+    else {
+      delete filters["obj"][key]
+    }
+    setFilters({...filters});
+  }
+
+  function clearFilter() {
+    setFilters({ tag: [], obj: {} });
+  }
+
+  const closeErrorDialog = () => {
+    setShowErrorMessage(false)
+  }
+
+  function applyFilter() {
+    setIsLoading(true)
+    API.plants(filters["obj"], page).then((response) => {
+      if (response.status === 200) {
+        // Authentication was successful
+        setProductList(response.data);
+      } else {
+
+      }
+    }).catch((err) =>
+      console.log("Qualcosa è andato storto")
+    );
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    API.plants(filters["obj"], page).then((response) => {
       if (response.status === 200) {
         // Authentication was successful
         setProductList(productList.concat(response.data));
@@ -180,14 +175,12 @@ export default function DatabaseExplorer({ user }) {
         setShowCreateProjectDialog(false)
         setShowProjectCreated(true);
       } else {
-        console.log("error")
         setShowErrorMessage(true)
       }
     }).catch(err => {
       setErrorMessage(err.response.data);
       setShowCreateProjectDialog(false)
       setShowErrorMessage(true)
-      console.log(errorMessage)
     }
     ).finally(() => {
       setIsLoading(false)
@@ -207,18 +200,41 @@ export default function DatabaseExplorer({ user }) {
     setSideCartProductList([...sideCartProductList]);
   }
 
+  const suggestionsListComponent = showSuggestions && inputSearchValue && (
+    <ul className="suggestions">
+      {suggestions.length ? (
+        suggestions.map((suggestion, index) => {
+          return (
+            <li key={index} value={suggestion} title={suggestion} onClick={searchByName}>
+              {suggestion}
+            </li>
+          );
+        })
+      ) : (
+        <li>No suggestions available</li>
+      )}
+    </ul>
+  );
+
+
   return (<div className="exploreContainer">
     <div className="column">
       <div className="row">
         <div className="filter-clear">
 
-          <button onClick={((e) => clearFilter())}>Clear all</button>
+          <button className='underline flex flex-row gap-1' onClick={((e) => clearFilter())}>
+            <PiPaintBrushHousehold className='mt-1' />
+            Rimuovi filtri
+          </button>
+          <button className='underline flex flex-row gap-1' onClick={applyFilter}>
+          <LuFilter className='mt-1'/>Applica filtri</button>
+
         </div>
-        <div className="tags-sort">
-          {filters.map((_, index) => (
+        <div className="tags-sort w-[50.5%]">
+          {filters["tag"].map((_, index) => (
             <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
-              {filters[index]}
-              <button onClick={((e) => removeFilter(filters[index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+              {filters["tag"][index]}
+              <button onClick={((e) => removeFilter(filters["tag"][index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
                 <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                 </svg>
@@ -227,114 +243,28 @@ export default function DatabaseExplorer({ user }) {
             </span>
           ))}
         </div>
-        <div className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
-          Cerca<IoMdSearch size="20px" />
-        </div>
+        <div className="relative mt-2 rounded-md max-h-9 shadow-sm">
+          <div className="pointer-events-none max-h-9 absolute inset-y-0 left-0 flex items-center pl-3">
+            <span className="text-gray-500 sm:text-sm"><IoMdSearch size="20px" /></span>
+          </div>
+          <input
+            type="text"
+            name="price"
+            id=""
+            value={inputSearchValue}
+            className="block w-full rounded-md max-h-9 border-0 py-1.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-400 sm:text-sm sm:leading-6"
+            placeholder="Cerca"
+            onChange={(e) => { setInputSearchValue(e.target.value) }}
+          />{suggestionsListComponent}</div>
+
       </div>
       <div className="row">
-        <div className="filters-column">
-          <span className="font-bold text-lg">Filtri:</span>
-          <div className='flex flex-row gap-1'>
-            <ButtonSwitch className="w-1/4" filter="Interno" filterObj={{ interno: true }} handler={handleSwitchToggle} />
-            <span className='w-3/4 '>Pianta da interno</span>
-          </div>
-          <div className='flex flex-row gap-1'>
-            <ButtonSwitch className="w-1/4" filter="Esterno" filterObj={{ esterno: true }} handler={handleSwitchToggle} />
-            <span className='w-3/4 '>Pianta da esterno</span>
-          </div>
-          <div className="column-filter-spacer"></div>
-
-          <div className="collapsable-filters">
-            <div className="filter-type pb-1">
-              Colore corteccia
-              <div>{open ? <IoIosArrowUp onClick={toggle} /> : <IoIosArrowDown onClick={toggle} />}</div>
-
-            </div>
-            {open && (
-              <div className="options">
-                <div className="filters">
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Corteccia Marrone", { coloreCorteccia: ["Marrone"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Marrone</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Corteccia Verde", { coloreCorteccia: ["Verde"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Verde</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Corteccia Grigia", { coloreCorteccia: ["Grigia"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Grigia</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Corteccia Rossa", { coloreCorteccia: ["Rossa"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Rossa</span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="column-filter-spacer"></div>
-
-          </div>
-          <div className="collapsable-filters">
-            <div className="filter-type pb-1">
-              Colore Foglia
-              <div>{openTwo ? <IoIosArrowUp onClick={toggleOpenTwo} /> : <IoIosArrowDown onClick={toggleOpenTwo} />}</div>
-
-            </div>
-            {openTwo && (
-              <div className="options">
-                <div className="filters">
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Foglia Marrone", { coloreFoglia: ["Marrone"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Marrone</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Foglia Verde", { oloreFoglia: ["Verde"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Verde</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Foglia Grigia", { oloreFoglia: ["Grigia"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Grigia</span>
-                  </div>
-                  <div className='flex flex-row'>
-                    <label className="cl-checkbox">
-                      <input type="checkbox" id="option-one" name="option-one" value="option-one" onChange={(e) => handleCheckboxClick(e, "Foglia Rossa", { coloreFoglia: ["Rossa"] })}></input>
-                      <span/>
-                    </label>
-                    <span className='w-3/4 text-start'>Rossa</span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="column-filter-spacer"></div>
-
-          </div>
-          <button className='button is-primary button-sign-up' onClick={applyFilter}>Applica filtri</button>
-        </div>
-        <div className="results ">
+        <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
+        <div className="results " ref={scrollDivRef}>
           {productList.map((_, index) => (
-            <ProductCard key={index} product={productList[index]} addItemToCart={addItemToCart} />
+            <ProductCard key={index} product={productList[index]} addItemToCart={addItemToCart}
+              setShowLoginRequired={setShowLoginRequired}
+              setShowNewFavourite={setShowNewFavourite} setShowErrorDialog={setShowErrorMessage} user={user} setLastFavourite={setLastFavourite} />
           ))}
         </div>
         <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} />
@@ -342,8 +272,6 @@ export default function DatabaseExplorer({ user }) {
       </div>
       {/* <ToPrinf ref={pdfRef} />
       <button onClick={savePdf}>download</button> */}
-      <button onClick={loadMore} className="button is-primary button-sign-up mt-4"> Carica altro</button>
-
     </div>
     {isLoading && <Spinner />}
     {showCreateProjectDialog &&
@@ -397,6 +325,7 @@ export default function DatabaseExplorer({ user }) {
       </div>}
     {showLoginRequired && <LoginRequiredDialog setShowLoginRequired={setShowLoginRequired} />}
     {showProjectCreated && <SuccessDialog setShowProjectCreated={setShowProjectCreated} projectName={projectName} />}
+    {showNewFavourite && <NewFavouriteDialog setShowNewFavourite={setShowNewFavourite} plant={lastFavourite.nome} />}
     {showErrorMessage && <ErrorDialog setShowErrorMessage={closeErrorDialog} projectName={projectName} errorMessage={errorMessage} />}
 
   </div>)

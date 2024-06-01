@@ -52,7 +52,7 @@ function App() {
         const timestamp = parseInt(storedTimestamp);
         // Check if one hour has passed
         console.log("checkMinute")
-        if (Date.now() - timestamp > 3600000) {
+        if (Date.now() - timestamp > 1800000) {
           console.log("checkHour")
           localStorage.removeItem(Constant.localStorageUserKey);
           localStorage.removeItem(Constant.localStorageUserCredKey);
@@ -65,7 +65,7 @@ function App() {
     checkExpiration(); // Check on mount
 
     // Set up a timer to periodically check for expiration
-    timerRef.current = setInterval(checkExpiration, 600000); // Check every minute
+    timerRef.current = setInterval(checkExpiration, 60000); // Check every minute
 
     return () => {
       clearInterval(timerRef.current); // Cleanup on unmount

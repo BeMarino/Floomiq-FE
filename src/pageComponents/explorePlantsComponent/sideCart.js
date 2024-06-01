@@ -10,12 +10,9 @@ import { Label, TextInput, Textarea } from 'flowbite-react';
 export default function SideCart({ sideCartProductList, removeFromList, setShowCreateProjectDialog, setShowLoginRequired, user }) {
 
   const openCreateProjectDialog = () => {
-    console.log(user)
     if (user === null) {
-      console.log("no")
       setShowLoginRequired(true)
     } else {
-      console.log("yes")
       setShowCreateProjectDialog(true);
     }
   }
