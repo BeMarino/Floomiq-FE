@@ -186,10 +186,11 @@
     gap: 20px;
     border-radius: 15px;
     overflow-y: scroll;
-    height: 97vh;
+    height: 80vh;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 0px;
 }
 
 .column-filter-spacer {
@@ -589,7 +590,7 @@ input[type=checkbox] {
 }
 
 .sideCart {
-    height: 97vh;
+    height: 80vh;
     width: 15%;
     display: flex;
     flex-direction: column;

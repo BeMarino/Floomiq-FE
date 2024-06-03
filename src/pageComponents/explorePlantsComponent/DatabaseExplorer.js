@@ -16,6 +16,8 @@ import { PiPaintBrushHousehold } from "react-icons/pi";
 import NewFavouriteDialog from '../newFavouriteDialog';
 import FiltersColumn from './filtersColumn';
 import { LuFilter } from "react-icons/lu";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+
 
 let pdfRef = null;
 export default function DatabaseExplorer({ user }) {
@@ -28,6 +30,7 @@ export default function DatabaseExplorer({ user }) {
   });
   pdfRef = useRef();
   const [isLoading, setIsLoading] = useState(true);
+  const [loadMore, setLoadMore] = useState(true);
   const [filters, setFilters] = useState({ tag: [], obj: {} });
   const [page, setPage] = useState(1);
   const [productList, setProductList] = useState([]);
@@ -43,7 +46,10 @@ export default function DatabaseExplorer({ user }) {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [lastFavourite, setLastFavourite] = useState(null);
+  const [showGoOnTop, setShowGoOnTop] = useState(false);
+  const [resultCount, setResultCount] = useState(20);
   const scrollDivRef = useRef(null);
+
 
 
   const closeCreateProjectDialog = () => {
@@ -57,6 +63,12 @@ export default function DatabaseExplorer({ user }) {
     setProjectDesc(e.target.value)
   }
 
+  const scrollToTop = () => {
+    scrollDivRef.current.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     API.getSuggestion(inputSearchValue).then((response) => {
@@ -97,7 +109,11 @@ export default function DatabaseExplorer({ user }) {
       const { scrollTop, scrollHeight, clientHeight } = scrollDiv;
       // Check for overscroll at the bottom
       if (scrollTop >= scrollHeight - clientHeight - 10) {
-        setPage(page + 1)
+        if (resultCount > 10 * page) {
+          setPage(page + 1)
+          setLoadMore(!loadMore)
+          setShowGoOnTop(true)
+        }
       }
     };
 
@@ -107,10 +123,8 @@ export default function DatabaseExplorer({ user }) {
 
 
   function removeFilter(filter) {
-    console.log(filter)
     let key = filter.split(" ")[0]
     let value = filter.substring(key.length).trimStart()
-    console.log(key, value)
     let filtersSet = new Set([...filters["tag"]])
     filtersSet.delete(filter);
     filters["tag"] = [...filtersSet]
@@ -122,11 +136,15 @@ export default function DatabaseExplorer({ user }) {
     else {
       delete filters["obj"][key]
     }
-    setFilters({...filters});
+    setFilters({ ...filters });
+    setPage(1);
   }
 
   function clearFilter() {
     setFilters({ tag: [], obj: {} });
+    setProductList([])
+    setPage(1)
+    setLoadMore(!loadMore)
   }
 
   const closeErrorDialog = () => {
@@ -135,24 +153,20 @@ export default function DatabaseExplorer({ user }) {
 
   function applyFilter() {
     setIsLoading(true)
-    API.plants(filters["obj"], page).then((response) => {
-      if (response.status === 200) {
-        // Authentication was successful
-        setProductList(response.data);
-      } else {
-
-      }
-    }).catch((err) =>
-      console.log("Qualcosa è andato storto")
-    );
-    setIsLoading(false)
+    setPage(1)
+    setLoadMore(!loadMore)
   }
 
   useEffect(() => {
     API.plants(filters["obj"], page).then((response) => {
       if (response.status === 200) {
         // Authentication was successful
-        setProductList(productList.concat(response.data));
+        if (page === 1) {
+          setProductList(response.data.plants)
+        } else {
+          setProductList(productList.concat(response.data.plants));
+        }
+        setResultCount(response.data.totalCount);
       } else {
 
       }
@@ -160,7 +174,7 @@ export default function DatabaseExplorer({ user }) {
       console.log("Qualcosa è andato storto")
     );
     setIsLoading(false)
-  }, [page])
+  }, [loadMore])
 
   function submitProject() {
     setIsLoading(true)
@@ -205,7 +219,8 @@ export default function DatabaseExplorer({ user }) {
       {suggestions.length ? (
         suggestions.map((suggestion, index) => {
           return (
-            <li key={index} value={suggestion} title={suggestion} onClick={searchByName}>
+            <li key={index}
+              value={suggestion} title={suggestion} onClick={searchByName}>
               {suggestion}
             </li>
           );
@@ -217,8 +232,12 @@ export default function DatabaseExplorer({ user }) {
   );
 
 
-  return (<div className="exploreContainer">
+  return (<div className="exploreContainer" onClick={(e) => setShowSuggestions(false)}>
     <div className="column">
+      {showGoOnTop && <button className='absolute  right-[17%] z-50 rounded-lg  top-[20%]  
+      hover:shadow-xl bg-white-50 border-lime-300 border-solid border-2' onClick={scrollToTop}>
+        <MdKeyboardDoubleArrowUp size="32px" />
+      </button>}
       <div className="row">
         <div className="filter-clear">
 
@@ -227,7 +246,7 @@ export default function DatabaseExplorer({ user }) {
             Rimuovi filtri
           </button>
           <button className='underline flex flex-row gap-1' onClick={applyFilter}>
-          <LuFilter className='mt-1'/>Applica filtri</button>
+            <LuFilter className='mt-1' />Applica filtri</button>
 
         </div>
         <div className="tags-sort w-[50.5%]">
@@ -254,13 +273,15 @@ export default function DatabaseExplorer({ user }) {
             value={inputSearchValue}
             className="block w-full rounded-md max-h-9 border-0 py-1.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-400 sm:text-sm sm:leading-6"
             placeholder="Cerca"
-            onChange={(e) => { setInputSearchValue(e.target.value) }}
+            onChange={(e) => { filters["obj"].nome = e.target.value; setFilters(filters); setInputSearchValue(e.target.value) }}
+            onSubmit={(e) => { applyFilter(e) }}
           />{suggestionsListComponent}</div>
 
       </div>
       <div className="row">
         <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
         <div className="results " ref={scrollDivRef}>
+
           {productList.map((_, index) => (
             <ProductCard key={index} product={productList[index]} addItemToCart={addItemToCart}
               setShowLoginRequired={setShowLoginRequired}
