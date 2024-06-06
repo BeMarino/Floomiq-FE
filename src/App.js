@@ -22,6 +22,7 @@ import VerifyMail from './verifyMail';
 import DatabaseExplorer from './pageComponents/explorePlantsComponent/DatabaseExplorer';
 import DbDiscover from './pageComponents/home/DbDiscover';
 import Discover from './pageComponents/home/Discover';
+import Project from './pages/project';
 const onTouchStart = () => {
   localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
@@ -80,6 +81,7 @@ function App() {
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/verify-mail" element={<VerifyMail />} />
+        <Route path="/user-project" element={<Project />} />
         <Route path="/explore-plants" element={<DatabaseExplorer user={user} />} />
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />

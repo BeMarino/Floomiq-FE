@@ -173,6 +173,30 @@ export const API = {
     })
     return response
   },
+  
+  loadProject: async function (projectId, cancel = false) {
+    const response = await api.request({
+      url: `/projects/project/` + projectId,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
+  userFavourites: async function (cancel = false) {
+    const response = await api.request({
+      url: `/user/getFavourite`,
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
 }
 
 

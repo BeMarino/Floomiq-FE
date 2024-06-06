@@ -8,6 +8,7 @@ import { LiaThermometerHalfSolid } from "react-icons/lia";
 import { GiSolidLeaf } from "react-icons/gi";
 import { MdOutlineDateRange } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 export default function ProjectCard({ project }) {
@@ -48,9 +49,9 @@ export default function ProjectCard({ project }) {
                         <MdOutlineDateRange className="text-lg" />
                         <span className="text-sm">{project.creationDate}</span>
                     </div>
-                    <button className="bg-[#E3F5FF] p-2 self-center w-11/12 text-sm rounded-lg hover:bg-[#DEFE9A]">
+                    <Link to={"/user-project?name="+project.name} className="bg-[#E3F5FF] p-2 self-center w-11/12 text-sm rounded-lg hover:bg-[#DEFE9A]">
                         Vai al progetto
-                    </button>
+                    </Link>
                 </div>
             </div>
         </>

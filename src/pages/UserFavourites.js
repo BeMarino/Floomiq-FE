@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { RiBook3Fill } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsBagHeart } from "react-icons/bs";
@@ -9,6 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ProductCard from '../pageComponents/explorePlantsComponent/ProductCard';
 import FavouriteCard from '../pageComponents/explorePlantsComponent/FavouriteCard';
 import Constant from '../utils/constant';
+import { API } from '../APIService/API';
 
 
 
@@ -16,102 +17,19 @@ export default function UserFavourites() {
     let pdfRef = null;
     pdfRef = useRef();
 
-    const productList = [{
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    },
-    {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }, {
-        name: 'Abelia Edward Goucher',
-        image: 'Abelia_Edward_Goucher.jpeg',
-        height: "2m",
-        durability: "Eternal"
-    }]
+    const [productList, setProductList] = useState([])
 
+    useEffect(() => {
+        API.userFavourites()
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setProductList(response.data);
+                }
+            })
+            .catch((error) => {
+            });
+    }, [])
     const location = useLocation();
     const path = location.pathname;
     const [sideCartProductList, setSideCartProductList] = useState([]);

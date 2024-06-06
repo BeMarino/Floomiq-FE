@@ -7,15 +7,16 @@ import { MdHeight } from "react-icons/md";
 import { LiaThermometerHalfSolid } from "react-icons/lia";
 
 import { CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 export default function FavouriteCard({ product, addItemToCart, toggleCart, openSideCart }) {
 
     const [accordionOpen, setVisible] = useState(false);
-
+    console.log(product)
     function addProduct() {
 
-        if (openSideCart == false)
+        if (openSideCart === false)
             toggleCart();
 
         addItemToCart(product);
@@ -25,17 +26,16 @@ export default function FavouriteCard({ product, addItemToCart, toggleCart, open
         setVisible(!accordionOpen);
     }
 
-    let imageUrl = "url(" + product.image + ")";
     return (
         <>
             <div className="fav-card">
                 <div className="main">
-                    <div style={{ "backgroundImage": imageUrl }} className="image" >
-                    </div>
+                    <Link to={"/plant-details?id=" + product.id} style={{ "backgroundImage": product.immagini[0] !== "" ? "url(" + product.immagini[0] + ")" : "url(empty_plant.jpeg)" }} className="image" >
+                    </Link>
                     <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id={"accordion-flush-heading"}>
                             <button onClick={toggleAccordion} type="button" className="plantName flex items-center justify-between  w-11/12 rtl:text-right text-gray-500 dark:text-gray-400" aria-expanded="true" >
-                                <span>{product.name}</span>
+                                <span>{product.nome}</span>
                                 <svg data-accordion-icon className={accordionOpen?"w-3 h-3 shrink-0" :"w-3 h-3 rotate-180 shrink-0"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
                                 </svg>
@@ -52,8 +52,8 @@ export default function FavouriteCard({ product, addItemToCart, toggleCart, open
                                 <p className="description" >Outdoor</p>
                             </div> */}
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdHeight title="Height" /><a>2m (max)</a></div>
-                        <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a>Eternal</a></div>
+                        <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate rounded-xl px-1 bg-lime-200">2m (max)</a></div>
+                        <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a className="truncate rounded-xl px-1 bg-lime-200">Eternal</a></div>
                         <div className="main-characteristic"><LiaThermometerHalfSolid title="Sun condition" /><a></a></div>
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>

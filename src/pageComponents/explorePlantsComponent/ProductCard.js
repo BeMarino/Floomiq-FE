@@ -86,7 +86,7 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
                     <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id={"accordion-flush-heading"}>
                             <button onClick={toggleAccordion} type="button" className="plantName flex items-center justify-between  w-11/12 rtl:text-right text-gray-500 dark:text-gray-400" aria-expanded="true" >
-                                <span className="truncate" title={product.nome}>{product.nome}</span>
+                                <span className="truncate px-2" title={product.nome}>{product.nome}</span>
                                 <svg data-accordion-icon className={accordionOpen ? "w-3 h-3 shrink-0" : "w-3 h-3 rotate-180 shrink-0"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
                                 </svg>
@@ -103,8 +103,8 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
                                 <p className="description" >Outdoor</p>
                             </div> */}
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate" title={product.altezza}>{product.altezza}</a></div>
-                        <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a>Eternal</a></div>
+                        <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate rounded-xl px-1 bg-lime-200" title={product.altezza}>{product.altezza}</a></div>
+                        <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a className="truncate rounded-xl px-1 bg-lime-200">Eternal</a></div>
                         <div className="main-characteristic"><LiaThermometerHalfSolid title="Sun condition" /><a></a></div>
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
                         <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
