@@ -1,5 +1,5 @@
 .column {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -15,6 +15,13 @@
     flex-direction: row;
     align-items: flex-start;
     align-self: flex-start;
+    width: 100%;
+    gap: 30px
+}
+
+.topRow {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     gap: 30px
 }
@@ -112,7 +119,6 @@
     justify-items: flex-start;
     flex-wrap: wrap;
     width: 70%;
-    padding: 5px;
     overflow-y: scroll hidden;
     justify-content: flex-start;
     overflow-x: hidden;
@@ -390,7 +396,7 @@ input[type=checkbox] {
 .product-card {
     width: 32%;
     display: flex;
-    margin-top: 10px;
+    margin-bottom: 10px;
     flex-direction: column;
     border-radius: 15px;
     background-color: white;

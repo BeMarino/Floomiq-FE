@@ -94,7 +94,7 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
                         </h2>
                         <div className={accordionOpen ? "" : "hidden"} aria-labelledby={"accordion-flush-heading"}>
                             <div className="py-2 border-b border-gray-200 dark:border-gray-700">
-                                <p className="mx-2 text-xs text-left text-gray-500 dark:text-gray-400">{product.descrizione}</p>
+                                <p className="mx-2 text-xs text-left text-gray-500 dark:text-gray-400">{product.nomeItaliano}<br></br>{product.descrizione}</p>
                             </div>
                         </div>
                     </div>

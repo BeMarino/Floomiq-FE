@@ -1,13 +1,9 @@
-import { Fragment, useState } from 'react'
-import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-import { GiHighGrass } from "react-icons/gi";
-import { render } from '@testing-library/react';
 import React from 'react';
 import SideCartProductCard from './SideCartProductCard';
 import { BiSolidSave } from 'react-icons/bi';
-import { Label, TextInput, Textarea } from 'flowbite-react';
+import { MdDelete } from 'react-icons/md';
 
-export default function SideCart({ sideCartProductList, removeFromList, setShowCreateProjectDialog, setShowLoginRequired, user }) {
+export default function SideCart({ sideCartProductList, removeFromList, setShowCreateProjectDialog, setShowLoginRequired, user, emptyList }) {
 
   const openCreateProjectDialog = () => {
     if (user === null) {
@@ -19,12 +15,20 @@ export default function SideCart({ sideCartProductList, removeFromList, setShowC
 
   return (
     <div className='flex flex-col sideCart justify-between items-center'>
-      {sideCartProductList.length > 0 &&
-        <button className='p-1 border-solid border-2 border-black rounded-lg hover:bg-lime-400'
-          onClick={openCreateProjectDialog}>
-          <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
-        </button>
-      }
+      <div className='flex flex-row justify-between w-1/2 p-2'>
+        {sideCartProductList.length > 0 &&
+          <>
+            <button className=' rounded-md hover:bg-lime-400'
+              onClick={openCreateProjectDialog}>
+              <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
+            </button>
+            <button className=' rounded-md hover:bg-red-500'
+              onClick={emptyList}>
+              <MdDelete size="32" className='flex self-center mb-1 cursor-pointer' />
+            </button>
+          </>
+        }
+      </div>
       <div className=' w-full overflow-y-scroll noScrollBar h-[96vh] pb-2'>
 
         {sideCartProductList.length > 0 && sideCartProductList.map((product) => (

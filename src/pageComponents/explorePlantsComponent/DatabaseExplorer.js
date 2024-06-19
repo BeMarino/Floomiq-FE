@@ -20,7 +20,7 @@ import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 
 let pdfRef = null;
-export default function DatabaseExplorer({ user }) {
+export default function DatabaseExplorer({ user, sideCartProductList, setSideCartProductList }) {
   const ToPrinf = React.forwardRef((props, ref) => {
     return (
       <div ref={ref}>
@@ -29,6 +29,7 @@ export default function DatabaseExplorer({ user }) {
     );
   });
   pdfRef = useRef();
+  
   const [isLoading, setIsLoading] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
   const [filters, setFilters] = useState({ tag: [], obj: {} });
@@ -49,8 +50,6 @@ export default function DatabaseExplorer({ user }) {
   const [showGoOnTop, setShowGoOnTop] = useState(false);
   const [resultCount, setResultCount] = useState(20);
   const scrollDivRef = useRef(null);
-
-
 
   const closeCreateProjectDialog = () => {
     setShowCreateProjectDialog(false)
@@ -201,8 +200,6 @@ export default function DatabaseExplorer({ user }) {
     });
   }
 
-  const [sideCartProductList, setSideCartProductList] = useState([]);
-
   function addItemToCart(product) {
     if (!sideCartProductList.includes(product)) {
       setSideCartProductList([...sideCartProductList, product]);
@@ -212,6 +209,10 @@ export default function DatabaseExplorer({ user }) {
   function removeFromList(product) {
     sideCartProductList.splice(sideCartProductList.indexOf(product), 1);
     setSideCartProductList([...sideCartProductList]);
+  }
+
+  function emptyList(){
+    setSideCartProductList([])
   }
 
   const suggestionsListComponent = showSuggestions && inputSearchValue && (
@@ -234,12 +235,12 @@ export default function DatabaseExplorer({ user }) {
 
   return (<div className="exploreContainer" onClick={(e) => setShowSuggestions(false)}>
     <div className="column">
-      {showGoOnTop && <button className='absolute  right-[17%] z-50 rounded-lg  top-[20%]  
+      {showGoOnTop && <button className='absolute  right-[17%] z-50 rounded-lg  top-[23%]  
       hover:shadow-xl bg-white-50 border-lime-300 border-solid border-2' onClick={scrollToTop}>
         <MdKeyboardDoubleArrowUp size="32px" />
       </button>}
-      <div className="row">
-        <div className="filter-clear">
+      <div className="topRow flex-row">
+        <div className="w-[15%] filter-clear">
 
           <button className='underline flex flex-row gap-1' onClick={((e) => clearFilter())}>
             <PiPaintBrushHousehold className='mt-1' />
@@ -249,7 +250,9 @@ export default function DatabaseExplorer({ user }) {
             <LuFilter className='mt-1' />Applica filtri</button>
 
         </div>
-        <div className="tags-sort w-[50.5%]">
+        <div className="flex-1">
+        <div className="flex flex-row w-[100%]">
+        <div className="tags-sort w-[70%]">
           {filters["tag"].map((_, index) => (
             <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
               {filters["tag"][index]}
@@ -262,7 +265,7 @@ export default function DatabaseExplorer({ user }) {
             </span>
           ))}
         </div>
-        <div className="relative mt-2 rounded-md max-h-9 shadow-sm">
+        <div className="relative mt-2 mr-2 self-end items-end w-[30%] rounded-md max-h-9 shadow-sm">
           <div className="pointer-events-none max-h-9 absolute inset-y-0 left-0 flex items-center pl-3">
             <span className="text-gray-500 sm:text-sm"><IoMdSearch size="20px" /></span>
           </div>
@@ -276,7 +279,9 @@ export default function DatabaseExplorer({ user }) {
             onChange={(e) => { filters["obj"].nome = e.target.value; setFilters(filters); setInputSearchValue(e.target.value) }}
             onSubmit={(e) => { applyFilter(e) }}
           />{suggestionsListComponent}</div>
-
+          </div>
+      </div>
+      <div className="w-[15%]"></div>
       </div>
       <div className="row">
         <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
@@ -288,7 +293,7 @@ export default function DatabaseExplorer({ user }) {
               setShowNewFavourite={setShowNewFavourite} setShowErrorDialog={setShowErrorMessage} user={user} setLastFavourite={setLastFavourite} />
           ))}
         </div>
-        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} />
+        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList}/>
 
       </div>
       {/* <ToPrinf ref={pdfRef} />

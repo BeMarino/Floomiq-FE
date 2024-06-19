@@ -23,6 +23,7 @@ import DatabaseExplorer from './pageComponents/explorePlantsComponent/DatabaseEx
 import DbDiscover from './pageComponents/home/DbDiscover';
 import Discover from './pageComponents/home/Discover';
 import Project from './pages/project';
+import Tutorial from './pages/tutorial';
 const onTouchStart = () => {
   localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
@@ -43,6 +44,8 @@ function App() {
   const navigate = useNavigate();
 
   const timerRef = useRef(null);
+  const [sideCartProductList, setSideCartProductList] = useState([]);
+
 
   useEffect(() => {
     const checkExpiration = () => {
@@ -77,12 +80,12 @@ function App() {
     <div className="App" onMouseDown={onTouchStart}>
       <Header user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Tutorial />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/verify-mail" element={<VerifyMail />} />
         <Route path="/user-project" element={<Project />} />
-        <Route path="/explore-plants" element={<DatabaseExplorer user={user} />} />
+        <Route path="/explore-plants" element={<DatabaseExplorer user={user} sideCartProductList={sideCartProductList} setSideCartProductList={setSideCartProductList} />} />
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />
         <Route path="/pdf" element={<CreatePdf />} />

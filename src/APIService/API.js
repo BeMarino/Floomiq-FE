@@ -197,6 +197,32 @@ export const API = {
     })
     return response
   },
+
+  removeFromProject: async function (projectId, plantId, cancel = false) {
+    let data = {project: projectId, plant: plantId}
+    const response = await api.request({
+      url: `/projects/project/removePlant`,
+      method: "POST",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      data: data,
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+  
+  cancellaProgetto: async function (projectId, cancel = false) {
+    const response = await api.request({
+      url: `/projects/`+projectId,
+      method: "DELETE",
+      headers: {
+        'Authorization': `Basic ${token}`
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
 }
 
 
