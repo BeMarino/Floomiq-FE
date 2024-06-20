@@ -83,7 +83,7 @@ export default function UserProjects({user}) {
             </div>
         </div>
         <div className='flex flex-col w-4/5 mt-16'>
-            <div className='flex flex-row w-ful justify-between py-2'>
+            <div className='flex flex-row w-full justify-between py-2'>
                 <div className='flex flex-col'>
                     <div className='place-self-center	text-2xl font-light	'>I miei progetti</div>
                 </div>
@@ -94,7 +94,7 @@ export default function UserProjects({user}) {
                     <RiBook3Fill />
                 </Link>
             </div>
-            <div className='resultsProject gap-4'>
+            <div className='resultsProject w-full gap-4'>
                 {productList.map((_, index) => (
                     <ProjectCard key={index} project={productList[index]} />
                 ))}

@@ -594,11 +594,10 @@
   /* Add a border to make the button visible */
   color: #c6c4c4;
   /* Text color */
-  padding-inline: 2em;
+  padding-inline: 1em;
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */
-  display: inline-block;
   /* Ensure the button behaves as a block element */
   cursor: pointer;
   /* Add cursor pointer for interaction */

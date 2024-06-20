@@ -80,9 +80,9 @@ function App() {
     <div className="App" onMouseDown={onTouchStart}>
       <Header user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<Tutorial />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-        <Route path="/discover" element={<Discover />} />
+        <Route path="/discover" element={<Tutorial />} />
         <Route path="/verify-mail" element={<VerifyMail />} />
         <Route path="/user-project" element={<Project />} />
         <Route path="/explore-plants" element={<DatabaseExplorer user={user} sideCartProductList={sideCartProductList} setSideCartProductList={setSideCartProductList} />} />

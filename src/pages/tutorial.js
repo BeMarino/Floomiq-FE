@@ -8,9 +8,9 @@ export default function Tutorial() {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="h-screen bg-center bg-no-repeat" style={{ "backgroundImage": imageUrl }}>
-                <div className="w-4/5 flex flex-col mt-[5%] ml-[5%] self-center">
-                    <div className="text-left font-extrabold text-6xl text-lime-500">Floomiq</div>
+            <div className="md:h-screen h-fit pb-4 min-h-fit bg-center bg-no-repeat md:p-0 pt-12" style={{ "backgroundImage": imageUrl }}>
+                <div className="w-4/5 flex flex-col ml-[5%] self-center">
+                    <div className="text-left font-extrabold text-6xl text-lime-500  sm:mt[15%] md:mt-[10%] mt[5%]">Floomiq</div>
                     <div className="text-left font-extrabold text-3xl text-wrap mt-[5%]">
                         <p>Il <span className="text-lime-500">“Cerca piante” </span>che apre il mondo agli appassionati di piante e ai professionisti del settore</p></div>
                 </div>
@@ -38,7 +38,7 @@ export default function Tutorial() {
                     <div className="text-left font-extrabold text-xl text-wrap mt-[2%]">
                         <p>Vuoi sapere quali piante si addicono meglio alle tue esigenze? Lasciati ispirare dal nostro vasto database.</p></div>
                 </div>
-                <div className="w-[80%] p-4 grid grid-cols-3 grid-rows-2 gap-y-4 gap-x-8 mt-[2%]  ml-[10%] self-center border-lime-500 border-solid rounded-lg border-2">
+                <div className="w-[80%] p-4 grid sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-3 md:grid-rows-2 gap-y-4 gap-x-8 grid-cols-1 grid-rows-6 mt-[2%]  ml-[10%] self-center border-lime-500 border-solid rounded-lg border-2">
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
                         <div className="flex bg-lime-300 rounded-md ml-[5%] w-[90%] justify-center">Accedi allo strumento</div>
                         <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
@@ -111,7 +111,7 @@ export default function Tutorial() {
                             a seconda della tua regione
                         </p></div>
                 </div>
-                <div className="w-[80%] p-4 grid grid-cols-3 grid-rows-2 gap-y-4 gap-x-8 mt-[2%]  ml-[10%] self-center border-lime-500 border-solid rounded-lg border-2">
+                <div className="w-[80%] p-4 grid sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-3 md:grid-rows-2 gap-y-4 gap-x-8 grid-cols-1 grid-rows-6 gap-y-4 gap-x-8 mt-[2%]  ml-[10%] self-center border-lime-500 border-solid rounded-lg border-2">
 
                     <div className="flex flex-col  bg-lime-300 shadow-md justify-between p-2 h-full">
                         <div className="flex rounded-md ml-[5%] w-[90%] justify-center"></div>
