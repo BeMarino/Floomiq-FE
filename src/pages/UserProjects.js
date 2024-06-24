@@ -82,7 +82,7 @@ export default function UserProjects({user}) {
                 </div>
             </div>
         </div>
-        <div className='flex flex-col w-4/5 mt-16'>
+        <div className='flex flex-col w-full mt-16'>
             <div className='flex flex-row w-full justify-between py-2'>
                 <div className='flex flex-col'>
                     <div className='place-self-center	text-2xl font-light	'>I miei progetti</div>

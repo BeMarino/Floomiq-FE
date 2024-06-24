@@ -18,15 +18,15 @@ export default function Sidebar(props) {
     let navigate = useNavigate();
     return (
 
-        <div className="transition-all ease-in-out delay-150 duration-1000  opacity 0.3s ">
-            <div className="w-full h-screen flex flex-col bg-lime-300 justify-between overflow-hidden"  >
-                <ul className="flex flex-col justify-between">
-                    <li><Link to={"/"} style={{color: 'black'}}><div ><FaHome  /><span >Home</span></div></Link></li>
-                    <li><Link to={"/explore-plants"} style={{color: 'black'}}><div ><FaSearch  /><span>Explore Plants</span></div></Link></li>
-                    <li><div ><GiPlantWatering  /><span>Gardening Tips</span></div></li>
-                    <li><div ><FaInfo  /><span>About us</span></div></li>
-                    <li><div ><FaMessage  /><span>Contact us</span></div></li>
-                    <li><a className="button is-light">Sign in<FaSignInAlt  /></a></li>
+        <div className="sidebar  items-stretch justify-between w-full">
+                <div className="flex flex-col bg-lime-200 justify-between overflow-hidden h-full py-6">
+                <ul className="flex flex-col justify-between text-xl pt-4 gap-8 ml-[10%]">
+                    <li><Link className="flex flex-row gap-4 w-fit" to={"/"} style={{color: 'black'}} onClick={() => setOpenHamburger(false)}><FaHome/><span>Home</span></Link></li>
+                    <li><Link className="flex flex-row text-nowrap gap-4 w-fit" to={"/explore-plants"} onClick={() => setOpenHamburger(false)} style={{color: 'black'}}><FaSearch/><span>Ricerca piante</span></Link></li>
+                    <li><Link className="flex flex-row text-nowrap gap-4 w-fit text-black" onClick={() => setOpenHamburger(false)}> <GiPlantWatering/><span>Chi siamo</span></Link></li>
+                    <li><Link className="flex flex-row gap-4 w-fit text-black" onClick={() => setOpenHamburger(false)}><FaInfo/><span>News</span></Link></li>
+                    <li><Link className="flex flex-row gap-4 w-fit text-black" onClick={() => setOpenHamburger(false)}><FaMessage/><span>Contatti</span></Link></li>
+                    <li><Link to={"/login"} className="button " onClick={() => setOpenHamburger(false)}>Sign in<FaSignInAlt/></Link></li>
                 </ul>
                 <SocialLinks/>
             </div>

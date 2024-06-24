@@ -43,52 +43,53 @@ export default function UserFavourites() {
         setSideCartProductList([...sideCartProductList]);
     }
 
-    return (<div className="exploreContainer w-11/12 flex flex-row mt-24">
-    <div className="flex flex-col w-1/5 px-8 gap-5">
-        <div className=" place-self-center 	relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-            <svg className="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
-        </div>
-        <div className='font-bold place-self-center text-lg'>{user.name} {user.surname}</div>
-        <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
-            <div className='flex flex-col gap-2'>
-                <div className='text-left text-stone-400 text-sm'>Dashboard</div>
-                <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
-                    <BsBagHeart />
-                    <div className='text-left text-sm 0'>
-                        Preferiti
+    return (
+        <div className="exploreContainer w-11/12 flex flex-row mt-16">
+            <div className="toolbar">
+                <div className=" place-self-center 	relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    <svg className="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                </div>
+                <div className='font-bold place-self-center text-lg'>{user.name} {user.surname}</div>
+                <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
+                    <div className='flex flex-col gap-2'>
+                        <div className='text-left text-stone-400 text-sm'>Dashboard</div>
+                        <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
+                            <BsBagHeart />
+                            <div className='text-left text-sm 0'>
+                                Preferiti
+                            </div>
+                        </Link>
+                        <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
+                            <IoLibraryOutline />
+                            <div className='text-left  text-sm'>Progetti</div>
+                        </Link>
                     </div>
-                </Link>
-                <Link to="/my-projects" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' hover={path !== "/my-projects" && "bg-gray-400"} style={path === "/my-projects" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
-                    <IoLibraryOutline />
-                    <div className='text-left  text-sm'>Progetti</div>
-                </Link>
-            </div>
-            <div className='flex flex-col gap-2'>
-                <div className='text-left text-stone-400 text-sm'>Pages</div>
-                <Link to="/personal-info" className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400'>
-                    <PiIdentificationCard />
-                    <div className='text-left text-sm'>
-                        Account
+                    <div className='flex flex-col gap-2'>
+                        <div className='text-left text-stone-400 text-sm'>Pages</div>
+                        <Link to="/personal-info" className='flex flex-row text-lg gap-2 rounded-full  py-2 px-4 hover:bg-gray-400'>
+                            <PiIdentificationCard />
+                            <div className='text-left text-sm'>
+                                Account
+                            </div>
+                        </Link>
+                        <Link className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400'>
+                            <GrArticle />
+                            <div className='text-left  text-sm'>Blog</div>
+                        </Link>
                     </div>
-                </Link>
-                <Link className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400'>
-                    <GrArticle />
-                    <div className='text-left  text-sm'>Blog</div>
-                </Link>
+                </div>
             </div>
-        </div>
-    </div>
-    <div className='flex flex-col w-4/5 mt-16'>
-        <div className='flex flex-row w-ful justify-between py-2'>
-            <div className='flex flex-col'>
-                <div className='place-self-center	text-2xl font-light	'>I miei preferiti</div>
+            <div className='flex flex-col w-4/5 mt-16'>
+                <div className='flex flex-row w-ful mt-8 justify-between py-2'>
+                    <div className='flex flex-col'>
+                        <div className='place-self-center	text-2xl font-light	'>I miei preferiti</div>
+                    </div>
+                </div>
+                <div className='resultsFavourite gap-x-4'>
+                    {productList.map((_, index) => (
+                        <FavouriteCard key={index} product={productList[index]} />
+                    ))}
+                </div>
             </div>
-        </div>
-        <div className='resultsProject gap-4'>
-            {productList.map((_, index) => (
-                <FavouriteCard  key={index} product={productList[index]}/>
-            ))}
-        </div>
-    </div>
-</div>)
+        </div>)
 };

@@ -40,6 +40,27 @@
     padding-block: 2%;
   }
 }
+
+@media (max-width: 400px) {
+  .mobile-hidden{
+    visibility: hidden;
+  }
+}
+
+.mobile{
+  display: none;
+  visibility: hidden;
+}
+
+@media (max-width: 400px) {
+  .mobile{
+    visibility: visible;
+    display: flex;
+  }
+}
+
+
+
 .App-header {
   display: flex;
   flex-direction: row;
@@ -594,7 +615,6 @@
   /* Add a border to make the button visible */
   color: #c6c4c4;
   /* Text color */
-  padding-inline: 1em;
   /* Adjust padding as needed */
   text-decoration: none;
   /* Remove underline for anchor elements */
@@ -663,19 +683,10 @@
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 80%;
-  z-index: 3;
-  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: #cdff7c;
+  height: 100%;
   animation-name: sider;
   animation-duration: 500ms;
-  transform-origin: top left;
+  transform-origin: top right;
 }
 
 .sidebar button {

@@ -24,6 +24,7 @@ import DbDiscover from './pageComponents/home/DbDiscover';
 import Discover from './pageComponents/home/Discover';
 import Project from './pages/project';
 import Tutorial from './pages/tutorial';
+import Sidebar from './pageComponents/Sidebar';
 const onTouchStart = () => {
   localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
@@ -45,6 +46,8 @@ function App() {
 
   const timerRef = useRef(null);
   const [sideCartProductList, setSideCartProductList] = useState([]);
+
+  const [openHamburger, setOpenHamburger] = useState(false)
 
 
   useEffect(() => {
@@ -77,8 +80,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App" onMouseDown={onTouchStart}>
-      <Header user={user} setUser={setUser} />
+    <div className="App h-screen" onMouseDown={onTouchStart}>
+      <Header user={user} setUser={setUser} setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} />
+      {openHamburger && <Sidebar/>}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />

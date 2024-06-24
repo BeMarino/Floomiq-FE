@@ -285,7 +285,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       </div>
       <div className="row">
         <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
-        <div className="results " ref={scrollDivRef}>
+        <div className="results" ref={scrollDivRef}>
 
           {productList.map((_, index) => (
             <ProductCard key={index} product={productList[index]} addItemToCart={addItemToCart}

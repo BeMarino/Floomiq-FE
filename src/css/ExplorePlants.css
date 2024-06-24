@@ -146,10 +146,24 @@
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
-    padding: 5px;
+    padding-block: 5px;
     /* Firefox */
 }
 
+.resultsFavourite {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll hidden;
+    overflow-x: hidden;
+    width: 100%;
+    height: 90vh;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    padding-block: 5px;
+    /* Firefox */
+}
 
 .resultsFav::-webkit-scrollbar {
     display: none;
@@ -407,7 +421,7 @@ input[type=checkbox] {
 }
 
 .fav-card {
-    width: 23.2%;
+    width: 250px;
     display: flex;
     margin-top: 10px;
     flex-direction: column;
@@ -621,7 +635,6 @@ input[type=checkbox] {
 }
 
 .exploreContainer {
-    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -629,6 +642,35 @@ input[type=checkbox] {
     gap: 20px
 }
 
+@media (max-width: 400px) {
+    .exploreContainer {
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px
+    }
+  }
+
+  @media (max-width: 400px) {
+    .toolbar {
+        height: 100vh;
+        display: flex;
+        left: 0;
+        position: fixed;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 10%;
+        gap: 20px
+    }
+  }
+
+  .toolbar{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-inline: 32px;
+  }
 
 .sidecart-product-card {
     display: flex;
