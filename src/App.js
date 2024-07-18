@@ -25,6 +25,7 @@ import Discover from './pageComponents/home/Discover';
 import Project from './pages/project';
 import Tutorial from './pages/tutorial';
 import Sidebar from './pageComponents/Sidebar';
+import ScrollToTop from './utils/scrollToTop';
 const onTouchStart = () => {
   localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
@@ -82,8 +83,8 @@ function App() {
   return (
     <div className="App h-screen" onMouseDown={onTouchStart}>
       <Header user={user} setUser={setUser} setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} />
-      {openHamburger && <Sidebar/>}
-
+      {openHamburger && <Sidebar setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} user={user}/>}
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />

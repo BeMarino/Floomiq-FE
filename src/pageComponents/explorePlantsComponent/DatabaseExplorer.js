@@ -16,7 +16,13 @@ import { PiPaintBrushHousehold } from "react-icons/pi";
 import NewFavouriteDialog from '../newFavouriteDialog';
 import FiltersColumn from './filtersColumn';
 import { LuFilter } from "react-icons/lu";
-import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import { MdDelete, MdKeyboardDoubleArrowUp } from "react-icons/md";
+import Cart from './Cart';
+import SideCartProductCard from './SideCartProductCard';
+import { BiSolidSave } from 'react-icons/bi';
+import { HiFilter, HiOutlineFilter } from 'react-icons/hi';
+import FiltersColumnMobile from './filtersColumnMobile';
+import NewProjectDialog from './newProjectDialog';
 
 
 let pdfRef = null;
@@ -29,7 +35,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     );
   });
   pdfRef = useRef();
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
   const [filters, setFilters] = useState({ tag: [], obj: {} });
@@ -37,7 +43,6 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
   const [productList, setProductList] = useState([]);
   const [showCreateProjectDialog, setShowCreateProjectDialog] = useState(false);
   const [projectName, setProjectName] = useState("");
-  const [projectDesc, setProjectDesc] = useState("");
   const [showProjectCreated, setShowProjectCreated] = useState(false);
   const [showNewFavourite, setShowNewFavourite] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -50,17 +55,9 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
   const [showGoOnTop, setShowGoOnTop] = useState(false);
   const [resultCount, setResultCount] = useState(20);
   const scrollDivRef = useRef(null);
+  const [openCart, setOpenCart] = useState(false)
+  const [openFilter, setOpenFilter] = useState(false)
 
-  const closeCreateProjectDialog = () => {
-    setShowCreateProjectDialog(false)
-  }
-
-  const handleProjectNameChange = (e) => {
-    setProjectName(e.target.value)
-  }
-  const handleProjectDescChange = (e) => {
-    setProjectDesc(e.target.value)
-  }
 
   const scrollToTop = () => {
     scrollDivRef.current.scrollTo({
@@ -68,6 +65,14 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       behavior: 'smooth'
     });
   };
+
+  const openCreateProjectDialog = () => {
+    if (user === null) {
+      setShowLoginRequired(true)
+    } else {
+      setShowCreateProjectDialog(true);
+    }
+  }
 
   useEffect(() => {
     API.getSuggestion(inputSearchValue).then((response) => {
@@ -175,30 +180,6 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     setIsLoading(false)
   }, [loadMore])
 
-  function submitProject() {
-    setIsLoading(true)
-    let plants = []
-    sideCartProductList.map((element, index) => (
-      plants = [...plants, { id: element.id }])
-    )
-    let body = { name: projectName, description: projectDesc, owner: user.username, plants: plants }
-    API.submitProject(body).then((response) => {
-      if (response.status === 200) {
-        // Authentication was successful
-        setShowCreateProjectDialog(false)
-        setShowProjectCreated(true);
-      } else {
-        setShowErrorMessage(true)
-      }
-    }).catch(err => {
-      setErrorMessage(err.response.data);
-      setShowCreateProjectDialog(false)
-      setShowErrorMessage(true)
-    }
-    ).finally(() => {
-      setIsLoading(false)
-    });
-  }
 
   function addItemToCart(product) {
     if (!sideCartProductList.includes(product)) {
@@ -211,12 +192,12 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     setSideCartProductList([...sideCartProductList]);
   }
 
-  function emptyList(){
+  function emptyList() {
     setSideCartProductList([])
   }
 
   const suggestionsListComponent = showSuggestions && inputSearchValue && (
-    <ul className="suggestions">
+    <ul className="suggestions text-left">
       {suggestions.length ? (
         suggestions.map((suggestion, index) => {
           return (
@@ -236,7 +217,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
   return (<div className="exploreContainer" onClick={(e) => setShowSuggestions(false)}>
     <div className="column">
       {showGoOnTop && <button className='absolute  right-[17%] z-50 rounded-lg  top-[23%]  
-      hover:shadow-xl bg-white-50 border-lime-300 border-solid border-2' onClick={scrollToTop}>
+      hover:shadow-xl bg-white-50 border-lime-300 border-solid border-2 hidden sm:block' onClick={scrollToTop}>
         <MdKeyboardDoubleArrowUp size="32px" />
       </button>}
       <div className="topRow flex-row">
@@ -251,37 +232,40 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
 
         </div>
         <div className="flex-1">
-        <div className="flex flex-row w-[100%]">
-        <div className="tags-sort w-[70%]">
-          {filters["tag"].map((_, index) => (
-            <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
-              {filters["tag"][index]}
-              <button onClick={((e) => removeFilter(filters["tag"][index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
-                <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span className="sr-only">Remove badge</span>
-              </button>
-            </span>
-          ))}
+          <div className="flex flex-row w-[100%]">
+            <div className="tags-sort w-[70%]">
+              {filters["tag"].map((_, index) => (
+                <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
+                  {filters["tag"][index]}
+                  <button onClick={((e) => removeFilter(filters["tag"][index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+                    <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span className="sr-only">Remove badge</span>
+                  </button>
+                </span>
+              ))}
+            </div>
+            <div className="relative flex-row mt-2 mr-2 self-end items-end w-full sm:w-[30%] rounded-md max-h-9 shadow-sm">
+              <div className="pointer-events-none max-h-9 absolute inset-y-0 left-0 flex items-center pl-3 w-full">
+                <span className="text-gray-500 sm:text-sm"><IoMdSearch size="20px" /></span>
+              </div>
+              <input
+                type="text"
+                name="price"
+                id=""
+                value={inputSearchValue}
+                className="block w-full rounded-md max-h-9 border-0 py-1.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-400 sm:text-sm sm:leading-6"
+                placeholder="Cerca"
+                onChange={(e) => { filters["obj"].nome = e.target.value; setFilters(filters); setInputSearchValue(e.target.value) }}
+                onSubmit={(e) => { applyFilter(e) }}
+              />{suggestionsListComponent}
+            </div>
+            <Cart sideCartProductList={sideCartProductList} openCart={openCart} setOpenCart={setOpenCart} />
+
+          </div>
         </div>
-        <div className="relative mt-2 mr-2 self-end items-end w-[30%] rounded-md max-h-9 shadow-sm">
-          <div className="pointer-events-none max-h-9 absolute inset-y-0 left-0 flex items-center pl-3">
-            <span className="text-gray-500 sm:text-sm"><IoMdSearch size="20px" /></span>
-          </div>
-          <input
-            type="text"
-            name="price"
-            id=""
-            value={inputSearchValue}
-            className="block w-full rounded-md max-h-9 border-0 py-1.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-400 sm:text-sm sm:leading-6"
-            placeholder="Cerca"
-            onChange={(e) => { filters["obj"].nome = e.target.value; setFilters(filters); setInputSearchValue(e.target.value) }}
-            onSubmit={(e) => { applyFilter(e) }}
-          />{suggestionsListComponent}</div>
-          </div>
-      </div>
-      <div className="w-[15%]"></div>
+        <div className="sm:w-[15%]"></div>
       </div>
       <div className="row">
         <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
@@ -293,7 +277,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
               setShowNewFavourite={setShowNewFavourite} setShowErrorDialog={setShowErrorMessage} user={user} setLastFavourite={setLastFavourite} />
           ))}
         </div>
-        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList}/>
+        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList} />
 
       </div>
       {/* <ToPrinf ref={pdfRef} />
@@ -301,58 +285,32 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     </div>
     {isLoading && <Spinner />}
     {showCreateProjectDialog &&
-      <div className="absolute w-screen h-screen self-center  backdrop-blur-lg items-center z-30" >
-        <form type='submit' onSubmit={e => e.preventDefault()} className="flex flex-col justify-between w-1/2 p-4 gap-4 mt-[10%] ml-[25%] border-solid border-2 border-slate-300	bg-white  rounded self-center">
-          <div className='flex flex-row items-stretch'>
-            <div className="mb-2 block self-start text-left w-1/4">
-              <Label htmlFor="nome" value="Nome progetto" />
-            </div>
-            <TextInput
-              id="nome"
-              type="text"
-              placeholder="Giardino inglese"
-              required
-              className='w-3/4'
-              value={projectName} onChange={handleProjectNameChange}
-
-            />
-          </div>
-          <div className='flex flex-row items-stretch'>
-            <div className="mb-2 block self-start text-left w-1/4">
-              <Label htmlFor="descrizione" value="Descrizione progetto" />
-            </div>
-            <Textarea
-              id="nome"
-              type="text"
-              placeholder="Giardino inglese"
-              className='w-3/4'
-              value={projectDesc} onChange={handleProjectDescChange}
-
-            />
-          </div>
-          <div className="flex flex-row items-stretch">
-            <div className="mb-2 block self-start text-left w-1/4">
-              <Label htmlFor="Le tue piante" value="Le tue piante" />
-            </div>
-            <div className='flex flex-row gap-1 flex-wrap w-3/4'>
-              {sideCartProductList.map((_, index) => (
-                <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                  {sideCartProductList[index].nome}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-row justify-center gap-12">
-            <button className='button border-black border-2 border-solid  button-sign-up bg-red-600 hover:bg-red-400 text-white' onClick={closeCreateProjectDialog}>Annulla</button>
-            <button className='button border-black border-2 border-solid hover:bg-green-400 bg-[#a0df3b] button-sign-up' onClick={submitProject}> Salva</button>
-          </div>
-        </form>
-
-      </div>}
+      <NewProjectDialog sideCartProductList={sideCartProductList} setIsLoading={setIsLoading} user={user} setShowProjectCreated={setShowProjectCreated} setShowErrorMessage={setShowErrorMessage} setErrorMessage={setErrorMessage} setShowCreateProjectDialog={setShowCreateProjectDialog}/>}
     {showLoginRequired && <LoginRequiredDialog setShowLoginRequired={setShowLoginRequired} />}
     {showProjectCreated && <SuccessDialog setShowProjectCreated={setShowProjectCreated} projectName={projectName} />}
     {showNewFavourite && <NewFavouriteDialog setShowNewFavourite={setShowNewFavourite} plant={lastFavourite.nome} />}
     {showErrorMessage && <ErrorDialog setShowErrorMessage={closeErrorDialog} projectName={projectName} errorMessage={errorMessage} />}
-
+    {openCart && <div className="absolute h-4/5 bottom-0 rounded-t-xl  border-2 border-solid border-gray-400 shadow-lg shadow-gray-400 justify-center w-full z-10">
+      <div className='flex flex-row bg-white justify-center gap-10 rounded-t-xl'>
+        <button className=' rounded-md hover:bg-lime-400'
+          onClick={openCreateProjectDialog}>
+          <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
+        </button>
+        <button className=' rounded-md hover:bg-red-500'
+          onClick={emptyList}>
+          <MdDelete size="32" className='flex self-center mb-1 cursor-pointer' />
+        </button>
+      </div>
+      <div className="flex flex-col items-center bg-white rounded-t-xl h-full overflow-y-scroll justify-between py-6">
+        {sideCartProductList.length > 0 && sideCartProductList.map((product) => (
+          <SideCartProductCard product={product} sideCartProductList={sideCartProductList} removeFromList={removeFromList} />
+        ))}
+      </div>
+    </div>}
+    {openFilter && <FiltersColumnMobile setFilters={setFilters} filters={filters} applyFilter={applyFilter} />  }
+    <div class=" absolute cart z-[2] bottom-4 left-2 p-2" onClick={() => setOpenFilter(!openFilter)}>
+            {!openFilter && <HiOutlineFilter className="self-end ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} />}
+            {openFilter && <HiFilter className="self-start ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} onClick={applyFilter}/>}
+        </div>
   </div>)
 };

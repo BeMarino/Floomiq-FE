@@ -10,6 +10,7 @@ import Constant from '../utils/constant';
 import { API } from '../APIService/API';
 import { redirect } from "react-router-dom";
 import { Popover, TextInput } from 'flowbite-react';
+import TabSwitch from '../pageComponents/explorePlantsComponent/tabSwitch';
 
 
 export default function PersonalInfo({user,setUser}) {
@@ -35,6 +36,7 @@ export default function PersonalInfo({user,setUser}) {
     const location = useLocation();
     const path = location.pathname;
     let [changes, setChanges] = useState(false)
+    const navigate = useNavigate()
     const [uiState, setUiState] = useState({
         email: "",
         password: "",
@@ -194,13 +196,24 @@ export default function PersonalInfo({user,setUser}) {
     </svg>
 
     return (
-        <div className="w-auto flex flex-row mt-24 ">
-            <div className="flex flex-col w-1/5 px-8 gap-5 pb-4">
+        <div className="w-full sm:w-auto flex flex-col sm:flex-row mt-16 sm:mt-24 ">
+            <div className="flex flex-col w-full sm:w-1/5 px-8 sm:gap-5 pb-4">
                 <div className="place-self-center relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg className="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                 </div>
                 <div className='font-bold place-self-center text-lg'>{user.name} {user.surname}</div>
-                <div className='p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
+                <div className='tabSwitch'>
+                    <TabSwitch className=" hidden sm:visible"
+                        nameLeft={"Progetti"}
+                        nameMiddle={"Preferiti"}
+                        nameRight={"Account"}
+                        onLeftSelected={() => navigate("/my-projects")}
+                        onMiddleSelected={() => navigate("/my-favourites")}
+                        onRightSelected={() => navigate("/personal-info")}
+                        activeTab={2}
+                    />
+                </div>
+                <div className='no-mobile p-4 flex flex-col  rounded-lg bg-[#d2d1d1] h-[73vh] gap-8'>
                     <div className='flex flex-col gap-2'>
                         <div className='text-left text-stone-400 text-sm'>Dashboard</div>
                         <Link to="/my-favourites" className='flex flex-row text-lg gap-2 rounded-full py-2 px-4 hover:bg-gray-400' style={path === "/my-favourites" ? { "backgroundColor": "#DEFE9A" } : { "backgroundColor": "" }}>
@@ -229,9 +242,9 @@ export default function PersonalInfo({user,setUser}) {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col w-4/5 flex-wrap mt-24 divide-lime-300 divide-y-2 pr-6 '>
-                <div className='flex flex-row  justify-between py-2'>
-                    <div className='flex flex-col'>
+            <div className='flex flex-col w-full sm:w-4/5 flex-wrap sm:mt-24 sm:divide-lime-300 sm:divide-y-2 sm:pr-6 '>
+                <div className='flex flex-row  justify-between py-2 ml-[10%] sm:ml-0'>
+                    <div className='no-mobile flex flex-col'>
                         <div className='place-self-center text-2xl font-light'>Informazioni personali</div>
                     </div>
                     {changes && <div className='flex flex-col'>
@@ -242,8 +255,8 @@ export default function PersonalInfo({user,setUser}) {
                     </div>}
                 </div>
                 <div>
-                    <div className='flex flex-row gap-32 pt-2 items-stretch'>
-                        <div className='flex flex-col w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 justify-center sm:items-stretch'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -258,7 +271,7 @@ export default function PersonalInfo({user,setUser}) {
                                 onChange={handleNameChanges}
                             />
                         </div>
-                        <div className='flex flex-col w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -275,8 +288,8 @@ export default function PersonalInfo({user,setUser}) {
                             />
                         </div>
                     </div>
-                    <div className='flex flex-row gap-32 pt-2'>
-                        <div className='flex flex-col  w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 ml-[10%] sm:ml-0'>
+                        <div className='flex flex-col  w-4/5 sm:w-full '>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -292,7 +305,7 @@ export default function PersonalInfo({user,setUser}) {
 
                             />
                         </div>
-                        <div className='flex flex-col  w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -310,13 +323,13 @@ export default function PersonalInfo({user,setUser}) {
                     </div>
                 </div>
                 <div>
-                    <div className='flex flex-row w-full justify-between py-2 divide-y divide-lime-800'>
+                    <div className='flex flex-row w-4/5 sm:w-full justify-between py-2 divide-y divide-lime-800 ml-[10%] sm:ml-0'>
                         <div className='flex flex-col'>
                             <div className='place-self-center text-2xl font-light'>Impostazioni account</div>
                         </div>
                     </div>
-                    <div className='flex flex-row gap-32'>
-                        <div className='flex flex-col  w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 ml-[10%] sm:ml-0'>
+                        <div className='flex flex-col w-4/5 sm:w-full'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -332,7 +345,7 @@ export default function PersonalInfo({user,setUser}) {
 
                             />
                         </div>
-                        <div className='flex flex-col  w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -381,8 +394,8 @@ export default function PersonalInfo({user,setUser}) {
                         </div>
 
                     </div>
-                    <div className='flex flex-row gap-32'>
-                        <div className='flex flex-col  w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 ml-[10%] sm:ml-0'>
+                        <div className='flex flex-col  w-4/5 sm:w-full'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -396,7 +409,7 @@ export default function PersonalInfo({user,setUser}) {
                                 onChange={handlePass2Changes}
                             />
                         </div>
-                        <div className='flex flex-col w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full'>
                             <button
                                 className="mt-4 gap-2 flex flex-row bg-red-500 border-2 border-red-800 text-gray-900 text-sm rounded-lg hover:bg-red-300 p-2.5"
                             ><AiOutlineUserDelete className='size-5' /> Elimina Account</button>
@@ -405,12 +418,12 @@ export default function PersonalInfo({user,setUser}) {
                 </div>
                 <div>
                     <div className='flex flex-row w-full justify-between py-2'>
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col ml-[10%] sm:ml-0'>
                             <div className='place-self-center text-2xl font-light'>Interessi</div>
                         </div>
                     </div>
                     <div className='flex flex-row gap-16'>
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >

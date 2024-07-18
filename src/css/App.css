@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  overflow: hidden;
   font-family: 'Inter Variable';
   overflow-x: hidden;
   font-size: 16px;
@@ -35,13 +34,13 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .App-header{
     padding-block: 2%;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .mobile-hidden{
     visibility: hidden;
   }
@@ -52,7 +51,7 @@
   visibility: hidden;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .mobile{
     visibility: visible;
     display: flex;
@@ -685,6 +684,9 @@
 .sidebar {
   height: 100%;
   animation-name: sider;
+  overflow: hidden;
+  position: fixed;
+  z-index: 10;
   animation-duration: 500ms;
   transform-origin: top right;
 }
@@ -711,7 +713,7 @@
 
 @media (width> 767px) {
   .sidebar {
-    display: none
+    display: none;
   }
 }
 
@@ -1273,6 +1275,19 @@ input:focus::placeholder {
   color: #404040;
   padding-left: 43px;
   position: relative;
+}
+
+@media(max-width: 420px){
+  .alert-white {
+    border-top-color: #d8d8d8;
+    border-bottom-color: #bdbdbd;
+    border-left-color: #cacaca;
+    border-right-color: #cacaca;
+    color: #404040;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+  }
 }
 
 .alert-white .icon {
