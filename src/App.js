@@ -26,6 +26,10 @@ import Project from './pages/project';
 import Tutorial from './pages/tutorial';
 import Sidebar from './pageComponents/Sidebar';
 import ScrollToTop from './utils/scrollToTop';
+import Privacy from './utils/PdfViewer';
+import ReactDOM from 'react-dom';
+import PdfViewer from './utils/PdfViewer';
+
 const onTouchStart = () => {
   localStorage.setItem(Constant.localStorageSessionStartKey, Date.now());
 }
@@ -83,8 +87,8 @@ function App() {
   return (
     <div className="App h-screen" onMouseDown={onTouchStart}>
       <Header user={user} setUser={setUser} setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} />
-      {openHamburger && <Sidebar setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} user={user}/>}
-      <ScrollToTop/>
+      {openHamburger && <Sidebar setOpenHamburger={setOpenHamburger} openHamburger={openHamburger} user={user} />}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} />} />
@@ -95,9 +99,11 @@ function App() {
         <Route path="/gardening-tips" element={<ExplorePlants />} />
         <Route path="/plant-details" element={<PlantDetails />} />
         <Route path="/pdf" element={<CreatePdf />} />
-        <Route path="/my-projects" element={<PrivateRoute> <UserProjects user={user}/> </PrivateRoute>} />
+        <Route path="/my-projects" element={<PrivateRoute> <UserProjects user={user} /> </PrivateRoute>} />
         <Route path="/my-favourites" element={<PrivateRoute> <UserFavourites /> </PrivateRoute>} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/privacy" element={<PdfViewer pdfFile={"http://77.37.120.115:9000/floomiq-docs/Privacy_Policy_Floomiq-v0.4_lug24.pdf"} />} /> 
+        <Route path="/terms" element={<PdfViewer pdfFile={"http://77.37.120.115:9000/floomiq-docs/Floomiq_terms.pdf"} />} /> 
         <Route path="/personal-info" element={<PrivateRoute> <PersonalInfo user={user} setUser={setUser} /> </PrivateRoute>} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>

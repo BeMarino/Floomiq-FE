@@ -79,7 +79,9 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       if (response.status === 200) {
         // Authentication was successful
         setShowSuggestions(true)
-        setSuggestions(response.data);
+        if (inputSearchValue.length > 2) {
+          setSuggestions(response.data.suggestions);
+        }
       } else {
 
       }
@@ -126,23 +128,6 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
   }, [page]);
 
 
-  function removeFilter(filter) {
-    let key = filter.split(" ")[0]
-    let value = filter.substring(key.length).trimStart()
-    let filtersSet = new Set([...filters["tag"]])
-    filtersSet.delete(filter);
-    filters["tag"] = [...filtersSet]
-    if (filter.split(" ").length > 1) {
-      let filterObjSet = new Set(filters["obj"][key])
-      filterObjSet.delete(value)
-      filters["obj"][key] = Array.from(filterObjSet)
-    }
-    else {
-      delete filters["obj"][key]
-    }
-    setFilters({ ...filters });
-    setPage(1);
-  }
 
   function clearFilter() {
     setFilters({ tag: [], obj: {} });
@@ -237,12 +222,6 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
               {filters["tag"].map((_, index) => (
                 <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
                   {filters["tag"][index]}
-                  <button onClick={((e) => removeFilter(filters["tag"][index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
-                    <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                    <span className="sr-only">Remove badge</span>
-                  </button>
                 </span>
               ))}
             </div>
@@ -285,7 +264,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     </div>
     {isLoading && <Spinner />}
     {showCreateProjectDialog &&
-      <NewProjectDialog sideCartProductList={sideCartProductList} setIsLoading={setIsLoading} user={user} setShowProjectCreated={setShowProjectCreated} setShowErrorMessage={setShowErrorMessage} setErrorMessage={setErrorMessage} setShowCreateProjectDialog={setShowCreateProjectDialog}/>}
+      <NewProjectDialog sideCartProductList={sideCartProductList} setIsLoading={setIsLoading} user={user} setShowProjectCreated={setShowProjectCreated} setShowErrorMessage={setShowErrorMessage} setErrorMessage={setErrorMessage} setShowCreateProjectDialog={setShowCreateProjectDialog} />}
     {showLoginRequired && <LoginRequiredDialog setShowLoginRequired={setShowLoginRequired} />}
     {showProjectCreated && <SuccessDialog setShowProjectCreated={setShowProjectCreated} projectName={projectName} />}
     {showNewFavourite && <NewFavouriteDialog setShowNewFavourite={setShowNewFavourite} plant={lastFavourite.nome} />}
@@ -307,10 +286,10 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
         ))}
       </div>
     </div>}
-    {openFilter && <FiltersColumnMobile setFilters={setFilters} filters={filters} applyFilter={applyFilter} />  }
+    {openFilter && <FiltersColumnMobile setFilters={setFilters} filters={filters} applyFilter={applyFilter} />}
     <div class=" absolute cart z-[2] bottom-4 left-2 p-2" onClick={() => setOpenFilter(!openFilter)}>
-            {!openFilter && <HiOutlineFilter className="self-end ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} />}
-            {openFilter && <HiFilter className="self-start ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} onClick={applyFilter}/>}
-        </div>
+      {!openFilter && <HiOutlineFilter className="self-end ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} />}
+      {openFilter && <HiFilter className="self-start ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} onClick={applyFilter} />}
+    </div>
   </div>)
 };

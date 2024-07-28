@@ -3,6 +3,7 @@ import Links from './Links';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import SocialLinks from './SocialsLinks';
+import { Link } from 'react-router-dom';
 
 
 function Footer() {
@@ -22,7 +23,9 @@ function Footer() {
               </button>
             </div>
             <div className='footer-row-policy' >
-              By subscribe, you accept our Privacy Policy
+              By subscribe, you accept our <span><Link to={"/privacy"} >
+              Terms of Service
+            </Link></span>
             </div>
           </div>
         </div>
@@ -39,12 +42,12 @@ function Footer() {
             <div >
               © 2023 Floomiq. All rights reserved
             </div>
-            <div >
+            <Link to={"/privacy"} >
               Privacy Policy
-            </div>
-            <div >
+            </Link>
+            <Link to={"/terms"} >
               Terms of Service
-            </div>
+            </Link>
             <div >
               Cookies Settings
             </div>

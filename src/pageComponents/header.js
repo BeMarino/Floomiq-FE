@@ -55,13 +55,13 @@ function Header({ user, setUser, setOpenHamburger, openHamburger }) {
           <MdClose color={"white"} size={"26px"} onClick={()=>setOpenHamburger(false)}></MdClose>}
         </div> 
           <div className='mobile-hidden flex flex-row items-center w-1/2 justify-between'>
-            <Link to="#" className='nav-button w-1/3 text-[1vw] text-nowrap'>
+            <Link to="/discover" className='nav-button w-1/3 text-[1vw] text-nowrap'>
               Chi Siamo
             </Link>
-            <Link to="#" className='nav-button w-1/3 text-[1vw]'>
+            <Link to="/discover" className='nav-button w-1/3 text-[1vw]'>
               News
             </Link>
-            <Link to="#" className="nav-button w-1/3 text-[1vw]">
+            <Link to="/discover" className="nav-button w-1/3 text-[1vw]">
               Contatti
             </Link>
           </div>

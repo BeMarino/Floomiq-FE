@@ -17,6 +17,7 @@ export default function FiltersColumn({ setFilters, filters }) {
     const [openUtilizzo, setOpenUtilizzo] = useState(false);
     const [openFiore, setOpenFiore] = useState(false);
     const [openFioritura, setOpenFioritura] = useState(false);
+    const [openFruttificazione, setOpenFruttificazione] = useState(false);
     const [openColoreFiore, setOpenColoreFiore] = useState(false);
     const [openFoglia, setOpenFoglia] = useState(false);
     const [openFrutto, setOpenFrutto] = useState(false);
@@ -294,7 +295,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("Terreno") !== -1 && filters["obj"]["Terreno"].indexOf("Argilloso") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Argilloso", obj: { Terreno: ["Argilloso"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Terreno Argilloso", obj: { Terreno: ["Argilloso"] } })}></input>
                                             <span className='w-3/4 text-start'>Argilloso</span>
                                         </label>
                                     </div>
@@ -302,7 +303,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("Terreno") !== -1 && filters["obj"]["Terreno"].indexOf("Limoso") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Limoso", obj: { Terreno: ["Limoso"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Terreno Limoso", obj: { Terreno: ["Limoso"] } })}></input>
                                             <span className='w-3/4 text-start'>Limoso</span>
                                         </label>
                                     </div>
@@ -310,7 +311,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("Terreno") !== -1 && filters["obj"]["Terreno"].indexOf("Calcareo") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Calcareo", obj: { Terreno: ["Calcareo"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Terreno Calcareo", obj: { Terreno: ["Calcareo"] } })}></input>
                                             <span className='w-3/4 text-start'>Calcareo</span>
                                         </label>
                                     </div>
@@ -318,7 +319,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("Terreno") !== -1 && filters["obj"]["Terreno"].indexOf("Sabbioso") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Sabbioso", obj: { Terreno: ["Sabbioso"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Terreno Sabbioso", obj: { Terreno: ["Sabbioso"] } })}></input>
                                             <span className='w-3/4 text-start'>Sabbioso</span>
                                         </label>
                                     </div>
@@ -339,7 +340,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("PhTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Neutro") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Neutro", obj: { PhTerreno: ["Neutro"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "PhTerreno Neutro", obj: { PhTerreno: ["Neutro"] } })}></input>
                                             <span className='w-3/4 text-start'>Neutro</span>
                                         </label>
                                     </div>
@@ -347,7 +348,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("PhTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Acido") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Acido", obj: { PhTerreno: ["Acido"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "PhTerreno Acido", obj: { PhTerreno: ["Acido"] } })}></input>
                                             <span className='w-3/4 text-start'>Acido</span>
                                         </label>
                                     </div>
@@ -355,7 +356,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
                                                 checked={Object.keys(filters["obj"]).indexOf("PhTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Alcalino") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Alcalino", obj: { PhTerreno: ["Alcalino"] } })}></input>
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "PhTerreno Alcalino", obj: { PhTerreno: ["Alcalino"] } })}></input>
                                             <span className='w-3/4 text-start'>Alcalino</span>
                                         </label>
                                     </div>
@@ -433,56 +434,6 @@ export default function FiltersColumn({ setFilters, filters }) {
                 }
 
             </div>
-            {/* <div className="collapsable-filters cursor-pointer">
-
-                <div className="filter-type hover:bg-lime-200 p-1 rounded-md  pb-1" onClick={() => toggle(setOpenFiore, openFiore)}>
-                    Fiore
-                    <div>{openFiore ? <IoIosArrowUp /> : <IoIosArrowDown/>}</div>
-
-                </div>
-                {
-                    openFiore && (
-                        <div className="options pl-2">
-                            <div className="filters">
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("TipoPianta") !== -1 && filters["obj"]["TipoPianta"].indexOf("Arbusto") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Arbusto", obj: { TipoPianta: ["Arbusto"] } })}></input>
-                                        <span className='w-3/4 text-start'>Arbusto</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("TipoPianta") !== -1 && filters["obj"]["TipoPianta"].indexOf("Rampicante") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Rampicante", obj: { TipoPianta: ["Rampicante"] } })}></input>
-                                        <span className='w-3/4 text-start'>Rampicante</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("TipoPianta") !== -1 && filters["obj"]["TipoPianta"].indexOf("Erbacea") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Erbacea", obj: { TipoPianta: ["Erbacea"] } })}></input>
-                                        <span className='w-3/4 text-start'>Erbacea</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("TipoPianta") !== -1 && filters["obj"]["TipoPianta"].indexOf("Graminacea") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Graminacea", obj: { TipoPianta: ["Graminacea"] } })}></input>
-                                        <span className='w-3/4 text-start'>Graminacea</span>
-                                    </label>
-                                </div>
-
-                            </div>
-                        </div>
-                    )
-                }
-
-            </div> */}
             <div className="collapsable-filters cursor-pointer">
 
                 <div className="filter-type hover:bg-lime-200 p-1 rounded-md  pb-1" onClick={() => toggle(setOpenFiore, openFiore)}>
@@ -504,40 +455,40 @@ export default function FiltersColumn({ setFilters, filters }) {
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox flex flex-row">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Verde") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Verde", obj: { Foglia: ["Verde"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Fiore") !== -1 && filters["obj"]["Fiore"].indexOf("Verde") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Fiore Verde", obj: { Fiore: ["Verde"] } })}></input>
                                             <span className='w-3/4 text-start'>Verde</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Marrone") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Marrone", obj: { Foglia: ["Marrone"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Fiore") !== -1 && filters["obj"]["Fiore"].indexOf("Marrone") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Fiore Marrone", obj: { Fiore: ["Marrone"] } })}></input>
                                             <span className='w-3/4 text-start'>Marrone</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Rossa") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Rossa", obj: { Foglia: ["Rossa"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Fiore") !== -1 && filters["obj"]["Fiore"].indexOf("Rosso") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Fiore Rosso", obj: { Fiore: ["Rosso"] } })}></input>
                                             <span className='w-3/4 text-start'>Rosso</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Arancione") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Arancione", obj: { Foglia: ["Arancione"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Fiore") !== -1 && filters["obj"]["Fiore"].indexOf("Arancione") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Fiore Arancione", obj: { Fiore: ["Arancione"] } })}></input>
                                             <span className='w-3/4 text-start'>Arancione</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Gialla") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Gialla", obj: { Foglia: ["Gialla"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Fiore") !== -1 && filters["obj"]["Fiore"].indexOf("Giallo") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Fiore Giallo", obj: { Fiore: ["Giallo"] } })}></input>
                                             <span className='w-3/4 text-start'>Giallo</span>
                                         </label>
                                     </div>
@@ -644,48 +595,48 @@ export default function FiltersColumn({ setFilters, filters }) {
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox flex flex-row">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Verde") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Verde", obj: { Foglia: ["Verde"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Verde") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Verde", obj: { Frutto: ["Verde"] } })}></input>
                                             <span className='w-3/4 text-start'>Verde</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Marrone") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Marrone", obj: { Foglia: ["Marrone"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Marrone") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Marrone", obj: { Frutto: ["Marrone"] } })}></input>
                                             <span className='w-3/4 text-start'>Marrone</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Rossa") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Rossa", obj: { Foglia: ["Rossa"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Rosso") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Rossa", obj: { Frutto: ["Rosso"] } })}></input>
                                             <span className='w-3/4 text-start'>Rosso</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Arancione") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Foglia Arancione", obj: { Foglia: ["Arancione"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Arancione") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Arancione", obj: { Frutto: ["Arancione"] } })}></input>
                                             <span className='w-3/4 text-start'>Arancione</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Gialla") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Gialla", obj: { Foglia: ["Gialla"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Giallo") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Giallo", obj: { Frutto: ["Giallo"] } })}></input>
                                             <span className='w-3/4 text-start'>Giallo</span>
                                         </label>
                                     </div>
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Foglia") !== -1 && filters["obj"]["Foglia"].indexOf("Viola") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Viola", obj: { Foglia: ["Viola"] } })}></input>
+                                                checked={Object.keys(filters["obj"]).indexOf("Frutto") !== -1 && filters["obj"]["Frutto"].indexOf("Viola") !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Frutto Viola", obj: { Frutto: ["Viola"] } })}></input>
                                             <span className='w-3/4 text-start'>Viola</span>
                                         </label>
                                     </div>
@@ -694,12 +645,12 @@ export default function FiltersColumn({ setFilters, filters }) {
                         </div>
                         <div className="collapsable-filters cursor-pointer  pl-4 ">
 
-                            <div className="filter-type hover:bg-lime-200 p-1 rounded-md   pb-1" onClick={() => toggle(setOpenFioritura, openFioritura)}>
+                            <div className="filter-type hover:bg-lime-200 p-1 rounded-md   pb-1" onClick={() => toggle(setOpenFruttificazione, openFruttificazione)}>
                                 Periodo fruttificazione
-                                <div>{openFioritura ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
+                                <div>{openFruttificazione ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
 
                             </div>
-                            {openFioritura && <div className="options pl-2">
+                            {openFruttificazione && <div className="options pl-2">
                                 <div className="filters">{["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"].map((value) => (
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
@@ -806,7 +757,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                     <div>{openCaratteristiche ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
 
                 </div>
-                {
+               {/*  {
                     openCaratteristiche && (
                         <div className="options pl-2">
                             <div className="filters">
@@ -846,7 +797,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                             </div>
                         </div>
                     )
-                }
+                } */}
 
             </div>
             <div className='flex flex-row gap-1'>

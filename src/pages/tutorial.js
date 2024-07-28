@@ -8,7 +8,7 @@ export default function Tutorial() {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="md:h-screen h-fit pb-4 min-h-fit bg-center bg-no-repeat md:p-0 pt-12" style={{ "backgroundImage": imageUrl }}>
+            <div className="md:h-screen h-fit pb-4 min-h-fit bg-center bg-no-repeat bg-cover md:p-0 pt-12" style={{ "backgroundImage": imageUrl }}>
                 <div className="w-4/5 flex flex-col ml-[5%] self-center">
                     <div className="text-left font-extrabold text-6xl text-lime-500  sm:mt[15%] md:mt-[10%] mt[5%]">Floomiq</div>
                     <div className="text-left font-extrabold text-3xl text-wrap mt-[5%]">

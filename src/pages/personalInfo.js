@@ -288,8 +288,8 @@ export default function PersonalInfo({user,setUser}) {
                             />
                         </div>
                     </div>
-                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 ml-[10%] sm:ml-0'>
-                        <div className='flex flex-col  w-4/5 sm:w-full '>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 justify-center sm:items-stretch'>
+                        <div className='flex flex-col  w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -305,7 +305,7 @@ export default function PersonalInfo({user,setUser}) {
 
                             />
                         </div>
-                        <div className='flex flex-col w-4/5 sm:w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -328,8 +328,8 @@ export default function PersonalInfo({user,setUser}) {
                             <div className='place-self-center text-2xl font-light'>Impostazioni account</div>
                         </div>
                     </div>
-                    <div className='flex flex-col sm:flex-row sm:gap-32 ml-[10%] sm:ml-0'>
-                        <div className='flex flex-col w-4/5 sm:w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 justify-center sm:items-stretch'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -345,7 +345,7 @@ export default function PersonalInfo({user,setUser}) {
 
                             />
                         </div>
-                        <div className='flex flex-col w-4/5 sm:w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -394,8 +394,8 @@ export default function PersonalInfo({user,setUser}) {
                         </div>
 
                     </div>
-                    <div className='flex flex-col sm:flex-row sm:gap-32 ml-[10%] sm:ml-0'>
-                        <div className='flex flex-col  w-4/5 sm:w-full'>
+                    <div className='flex flex-col sm:flex-row sm:gap-32 pt-2 justify-center sm:items-stretch'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <label
                                 className="flex flex-start text-sm font-medium text-gray-900 dark:text-white"
                             >
@@ -409,7 +409,7 @@ export default function PersonalInfo({user,setUser}) {
                                 onChange={handlePass2Changes}
                             />
                         </div>
-                        <div className='flex flex-col w-4/5 sm:w-full'>
+                        <div className='flex flex-col w-4/5 sm:w-full ml-[10%] sm:ml-0'>
                             <button
                                 className="mt-4 gap-2 flex flex-row bg-red-500 border-2 border-red-800 text-gray-900 text-sm rounded-lg hover:bg-red-300 p-2.5"
                             ><AiOutlineUserDelete className='size-5' /> Elimina Account</button>
