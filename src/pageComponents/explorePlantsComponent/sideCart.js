@@ -1,9 +1,12 @@
 import React from 'react';
 import SideCartProductCard from './SideCartProductCard';
 import { BiSolidSave } from 'react-icons/bi';
+import { FaRegFilePdf } from "react-icons/fa";
 import { MdDelete } from 'react-icons/md';
+import CreatePdf from '../../utils/pdf';
+import { API } from '../../APIService/API';
 
-export default function SideCart({ sideCartProductList, removeFromList, setShowCreateProjectDialog, setShowLoginRequired, user, emptyList }) {
+export default function SideCart({ sideCartProductList, removeFromList, setShowCreateProjectDialog, setShowLoginRequired, user, emptyList, downloadPdf }) {
 
   const openCreateProjectDialog = () => {
     if (user === null) {
@@ -21,6 +24,10 @@ export default function SideCart({ sideCartProductList, removeFromList, setShowC
             <button className=' rounded-md hover:bg-lime-400'
               onClick={openCreateProjectDialog}>
               <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
+            </button>
+            <button className=' rounded-md hover:bg-lime-400'
+              onClick={downloadPdf}>
+              <FaRegFilePdf size="32" className='flex self-center mb-1 cursor-pointer' />
             </button>
             <button className=' rounded-md hover:bg-red-500'
               onClick={emptyList}>

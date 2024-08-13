@@ -11,7 +11,7 @@ function Footer() {
     <div className='App-footer'>
       <div className='footer-container'>
         <div className='footer-row'>
-          <div className='footer-column-updates'>
+          <div className='footer-column-updates mt-8'>
             <div className='footer-newsletter'>Get our updates</div>
             <div className='footer-newsletter-2'>Get our updates</div>
           </div>
@@ -24,16 +24,12 @@ function Footer() {
             </div>
             <div className='footer-row-policy' >
               By subscribe, you accept our <span><Link to={"/privacy"} >
-              Terms of Service
-            </Link></span>
+                Terms of Service
+              </Link></span>
             </div>
           </div>
-        </div>
-        <div className='footer-row'>
           <div className='footer-logo'>
-
           </div>
-          <Links />
         </div>
 
         <div className='footer-spacer'></div>
@@ -52,7 +48,7 @@ function Footer() {
               Cookies Settings
             </div>
           </div>
-          <SocialLinks/>
+          <SocialLinks />
         </div>
       </div>
 

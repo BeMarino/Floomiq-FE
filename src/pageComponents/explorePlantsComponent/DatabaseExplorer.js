@@ -23,6 +23,7 @@ import { BiSolidSave } from 'react-icons/bi';
 import { HiFilter, HiOutlineFilter } from 'react-icons/hi';
 import FiltersColumnMobile from './filtersColumnMobile';
 import NewProjectDialog from './newProjectDialog';
+import jsPDF from 'jspdf';
 
 
 let pdfRef = null;
@@ -72,6 +73,36 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     } else {
       setShowCreateProjectDialog(true);
     }
+  }
+
+  const downloadPdf = () => {
+    setIsLoading(true)
+    let plants = []
+    sideCartProductList.map((element, index) => (
+      plants = [...plants, { id: element.id }])
+    )
+    let body = { name: projectName, plants: plants }
+
+    API.downloadPdf(body).then((response) => {
+      console.log(response.data)
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      console.log(blob)
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Styled_Plant_Info.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+    }).catch(err => {
+      console.log(err)
+      setErrorMessage(err.response.data);
+      setShowErrorMessage(true)
+    }
+    ).finally(() => {
+      setIsLoading(false)
+    })
   }
 
   useEffect(() => {
@@ -256,7 +287,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
               setShowNewFavourite={setShowNewFavourite} setShowErrorDialog={setShowErrorMessage} user={user} setLastFavourite={setLastFavourite} />
           ))}
         </div>
-        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList} />
+        <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList} downloadPdf={downloadPdf} />
 
       </div>
       {/* <ToPrinf ref={pdfRef} />

@@ -42,6 +42,18 @@ export const API = {
     })
     return response;
   },
+  
+  logout: async function (cancel = false) {
+    const response = await api.request({
+      url: `user/logout`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response;
+  },
 
   getUserInfo: async function (username, cancel = false) {
     const response = await api.request({
@@ -82,6 +94,17 @@ export const API = {
       url: `/projects`,
       method: "POST",
       data: project,
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+  
+  downloadPdf: async function (project, cancel = false) {
+    const response = await api.request({
+      url: `/plant/pdf`,
+      method: "POST",
+      data: project,
+      responseType: 'blob', // Imp
       signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
     })
     return response

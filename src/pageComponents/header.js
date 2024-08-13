@@ -5,6 +5,7 @@ import Constant from '../utils/constant';
 import { MdClose, MdPerson } from 'react-icons/md';
 import { FaCross, FaHamburger } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { API } from '../APIService/API';
 function Header({ user, setUser, setOpenHamburger, openHamburger }) {
 
   const toggleHamburger = () => {
@@ -21,12 +22,19 @@ function Header({ user, setUser, setOpenHamburger, openHamburger }) {
 
   const logout = () => {
 
+    console.log("logout")
     const removeCookie = `quarkus-credential=; Max-Age=0;path=/`;
+    localStorage.removeItem(Constant.localStorageUserKey);
     localStorage.removeItem(Constant.localStorageUserCredKey);
     localStorage.removeItem(Constant.localStorageSessionStartKey);
     setUser(null);
+    API.logout().then(response => {
+      if(response.status === 200 ){
+        navigate("/login")
+      }
+    })
     document.cookie = removeCookie;
-    navigate("/login")
+    
   }
 
   const path = location.pathname;
@@ -71,7 +79,7 @@ function Header({ user, setUser, setOpenHamburger, openHamburger }) {
                 <Link to="/my-projects" className="flex flex-row items-center text-[1vw] nav-button text-nowrap" id="navbar-sign-up">
                   <MdPerson size={"26px"} color='lime'></MdPerson>My Floomiq
                 </Link>
-                <Link className=' w-1/2 text-[1vw] nav-button text-nowrap'
+                <Link to={"/"} className=' w-1/2 text-[1vw] nav-button text-nowrap'
                   onClick={logout}>Log out</Link>
               </div> :
               <div className='flex flex-row items-center w-full '>

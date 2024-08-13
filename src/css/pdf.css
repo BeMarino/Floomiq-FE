@@ -76,3 +76,108 @@
     height: 100%;
     background-color: rgb(66, 131, 86);
 }
+
+pdf-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.pdf-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    height: fit-content;
+}
+.pdf-header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+.plant-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.plant-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+.plant-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.plant-info {
+    flex: 1;
+}
+.plant-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.timeline {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.timeline div {
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 4px;
+    margin: 2px 2px;
+}
+.flowering { background-color: pink; }
+.leafing { background-color: green; }
+.fruiting { background-color: orange; }
+.image-section img {
+    width: 50px;
+    height: 100px;
+    object-fit: cover;
+}
+.icons {
+    text-align: center;
+}
+.icons img {
+    width: 50px;
+    height: 50px;
+}
+.icons p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+     
+    .timelinesContainer{
+      width: 500px;
+    height: 150px;
+    left: calc(50% - 245px/2 - 42px);
+    top: 88px;
+    
+    background: #F3F3F3;
+    border-radius: 12px;
+      
+    }
+    
+    .seasons{
+    padding-top:5px;
+    justify-content:space-between;
+    width:400px;
+    color: #2F322B;
+    margin-left:100px;
+    padding-bottom:5px;
+    }
+    
+    .season{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 12px;
+    text-align: center;
+    color: #2F322B;}
+    
+    
+    
