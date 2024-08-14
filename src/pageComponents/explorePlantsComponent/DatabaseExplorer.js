@@ -173,7 +173,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
 
   function applyFilter() {
     setIsLoading(true)
-    setPage(1)
+    setPage(0)
     setLoadMore(!loadMore)
   }
 
@@ -181,7 +181,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     API.plants(filters["obj"], page).then((response) => {
       if (response.status === 200) {
         // Authentication was successful
-        if (page === 1) {
+        if (page === 0) {
           setProductList(response.data.plants)
         } else {
           setProductList(productList.concat(response.data.plants));
@@ -229,6 +229,17 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     </ul>
   );
 
+  const handleKeyDown = (event) => {
+    if (isLetter(event.key) || event.key === 'Enter') {
+      applyFilter();        // You can add additional logic for letter keys here if needed
+    }
+
+
+  };
+
+  const isLetter = (str) => {
+    return str.length === 1 && str.match(/[a-z]/i);
+  };
 
   return (<div className="exploreContainer" onClick={(e) => setShowSuggestions(false)}>
     <div className="column">
@@ -269,6 +280,8 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
                 placeholder="Cerca"
                 onChange={(e) => { filters["obj"].nome = e.target.value; setFilters(filters); setInputSearchValue(e.target.value) }}
                 onSubmit={(e) => { applyFilter(e) }}
+                onKeyDown={handleKeyDown}
+
               />{suggestionsListComponent}
             </div>
             <Cart sideCartProductList={sideCartProductList} openCart={openCart} setOpenCart={setOpenCart} />
