@@ -7,6 +7,11 @@ import { FaHeart } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../APIService/API";
+import { IoFlowerSharp } from "react-icons/io5";
+import { PiTreeBold } from "react-icons/pi";
+import { GiCherry } from "react-icons/gi";
+
+
 
 
 export default function ProductCard({ product, addItemToCart, user, setShowErrorDialog, setLastFavourite, setShowLoginRequired }) {
@@ -75,7 +80,7 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
 
     return (
         <>
-            <div className="product-card">
+            <div className="product-card pb-2">
                 <div className="main">
                     <div style={{ "backgroundImage": imageUrl }} onClick={() => navigate("/plant-details?id=" + product.id)} className="image cursor-pointer hover:bg-lime-400 z-0" >
                         <button className={!product.userFavourite ? "addToFav bg-[#d7d7d7] hover:bg-lime-300":"addToFav bg-[#d7d7d7] hover:bg-red-600"} onMouseDown={e => e.stopPropagation()} onClick={(event) => {
@@ -102,14 +107,12 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
                         {/* <div className="detail"><p className="type"><img src={indoor_outdoor} title="Environment" /></p>
                                 <p className="description" >Outdoor</p>
                             </div> */}
-                        <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate rounded-xl px-1 bg-lime-200" title={product.altezza}>{product.altezza}</a></div>
-                        <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a className="truncate rounded-xl px-1 bg-lime-200">Eternal</a></div>
-                        <div className="main-characteristic"><LiaThermometerHalfSolid title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                        <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
+                        <div className="main-characteristic"><MdOutlineWbSunny title="Condizione sole" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.esposizione.split(",")[0]}</a></div>
+                        <div className="main-characteristic"><MdHeight title="Altezza" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.altezza.split(/,(?!\d)/)[0].replaceAll("\"","")}</a></div>
+                        <div className="main-characteristic"><LiaThermometerHalfSolid title="Ph terreno" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.phTerreno.split(",")[0]}</a></div>
+                        <div className="main-characteristic"><IoFlowerSharp title="Fioritura" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.periodoFioritura.split(",")[0]}</a></div>
+                        <div className="main-characteristic"><PiTreeBold title="Sun condition" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.tipoPianta.split(",")[0]}</a></div>
+                        <div className="main-characteristic"><GiCherry title="Sun condition" color="black" size={"20px"}/><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.periodoFruttificazione.split(",")[0]}</a></div>
                     </div>
                 </div>
             </div>

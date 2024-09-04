@@ -40,7 +40,7 @@ export default function Tutorial() {
                 </div>
                 <div className="w-[80%] p-4 grid sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-3 md:grid-rows-2 gap-y-4 gap-x-8 grid-cols-1 grid-rows-6 mt-[2%]  ml-[10%] self-center border-lime-500 border-solid rounded-lg border-2">
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
-                        <div className="flex bg-lime-300 rounded-md ml-[5%] w-[90%] justify-center">Accedi allo strumento</div>
+                        <div className="flex bg-lime-300 rounded-md ml-[5%] w-[90%] justify-center">Accedi allo "Cerca Piante"</div>
                         <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
                             <img src="tutorial1.png" className="h-28"></img>
                         </div>
@@ -56,29 +56,29 @@ export default function Tutorial() {
                     </div>
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
                         <div className="bg-lime-300 rounded-md ml-[5%] w-[90%]">Seleziona le piante</div>
-                        <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
-                            <img src="tutorial2.png" className="h-28"></img>
+                        <div className="flex w-full  bg-center bg-no-repeat justify-center" >
+                            <img src="tutorial3.png" className="h-36"></img>
                         </div>
                         <div className="flex rounded-md ml-[5%] w-[90%] justify-center">Seleziona le piante tramite il pulsante +</div>
                     </div>
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
                         <div className="bg-lime-300 rounded-md ml-[5%] w-[90%]">Aggiungi le piante ai preferiti</div>
                         <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
-                            <img src="tutorial2.png" className="h-28"></img>
+                            <img src="tutorial4.png" className="h-36"></img>
                         </div>
                         <div className="flex rounded-md ml-[5%] w-[90%] justify-center">Aggiungi le piante tra i tuoi preferiti</div>
                     </div>
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
                         <div className="bg-lime-300 rounded-md ml-[5%] w-[90%]">Salva la tua selezione</div>
                         <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
-                            <img src="tutorial2.png" className="h-28"></img>
+                            <img src="tutorial5.png" className="h-28"></img>
                         </div>
                         <div className="flex rounded-md ml-[5%] w-[90%] justify-center">Registrati su MyFloomiq per avere sempre a portata di mano le piante da te scelte</div>
                     </div>
                     <div className="flex flex-col shadow-md justify-between border-solid rounded-md border-gray-400 border-2 w-full p-2 h-full">
                         <div className="bg-lime-300 rounded-md ml-[5%] w-[90%]">Esporta in PDF</div>
                         <div className="flex w-full p-5 bg-center bg-no-repeat justify-center" >
-                            <img src="tutorial2.png" className="h-28"></img>
+                            <img src="tutorial6.png" className="h-28"></img>
                         </div>
                         <div className="flex rounded-md ml-[5%] w-[90%] justify-center">Clicca sul logo “PDF” per scaricare la presentazione con la selezione delle piante scelte </div>                    </div>
                 </div>

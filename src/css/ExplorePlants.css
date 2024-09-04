@@ -645,7 +645,11 @@ input[type=checkbox] {
 }
 
 .main-characteristic a {
-    font-size: small;
+    font-size: x-small;
+    align-self: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-block: 1px;
 }
 
 /* .main-characteristic a {
@@ -679,7 +683,7 @@ input[type=checkbox] {
 
 .details {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, auto));
+    grid-template-columns: repeat(3, minmax(0, auto));
     grid-template-rows: 1fr 1fr;
     padding-inline: 20px;
     height: 10%;
