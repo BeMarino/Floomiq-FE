@@ -1,17 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { IoIosArrowUp, IoIosArrowDown, IoMdSearch } from "react-icons/io";
 import ProductCard from "./ProductCard";
 import SideCart from "./sideCart";
 import CreatePdf from "../../utils/pdf";
-import { savePdf } from "../../utils/pdf";
 import { API } from '../../APIService/API';
 import Spinner from '../spinner';
-import { Label, TextInput, Textarea } from 'flowbite-react';
-import Constant from '../../utils/constant';
 import SuccessDialog from '../SuccessDialog';
 import LoginRequiredDialog from './LoginRequiredDialog';
 import ErrorDialog from '../ErrorDialog';
-import ButtonSwitch from '../toggleSwitch';
 import { PiPaintBrushHousehold } from "react-icons/pi";
 import NewFavouriteDialog from '../newFavouriteDialog';
 import FiltersColumn from './filtersColumn';
@@ -23,7 +18,8 @@ import { BiSolidSave } from 'react-icons/bi';
 import { HiFilter, HiOutlineFilter } from 'react-icons/hi';
 import FiltersColumnMobile from './filtersColumnMobile';
 import NewProjectDialog from './newProjectDialog';
-import jsPDF from 'jspdf';
+import { FaRegFilePdf } from "react-icons/fa";
+import { IoMdSearch } from 'react-icons/io';
 
 
 let pdfRef = null;
@@ -90,7 +86,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'Styled_Plant_Info.pdf');
+      link.setAttribute('download', 'Floomiq_Plant_Info.pdf');
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
@@ -285,7 +281,9 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
               />{suggestionsListComponent}
             </div>
             <Cart sideCartProductList={sideCartProductList} openCart={openCart} setOpenCart={setOpenCart} />
-
+            <div class="w-1/5 self-end items-end cart " onClick={() => setOpenCart(!openCart)}>
+              <FaRegFilePdf className="self-end ml-[50%] shadow-gray-400 shadow-lg rounded-md" size={"32px"} onClick={downloadPdf} />
+            </div>
           </div>
         </div>
         <div className="sm:w-[15%]"></div>
