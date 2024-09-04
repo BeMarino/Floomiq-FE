@@ -42,7 +42,7 @@ export const API = {
     })
     return response;
   },
-  
+
   logout: async function (cancel = false) {
     const response = await api.request({
       url: `user/logout`,
@@ -98,7 +98,7 @@ export const API = {
     })
     return response
   },
-  
+
   downloadPdf: async function (project, cancel = false) {
     const response = await api.request({
       url: `/plant/pdf`,
@@ -146,8 +146,8 @@ export const API = {
     return response
   },
 
-  addToFavourite: async function (user, plantId, cancel = false){
-    let data = {plantId: plantId, username:user}
+  addToFavourite: async function (user, plantId, cancel = false) {
+    let data = { plantId: plantId, username: user }
     const response = await api.request({
       url: `/plant/newFav`,
       method: "POST",
@@ -160,8 +160,8 @@ export const API = {
     return response
   },
 
-  removeFromFavourite: async function (user, plantId, cancel = false){
-    let data = {plantId: plantId, username:user}
+  removeFromFavourite: async function (user, plantId, cancel = false) {
+    let data = { plantId: plantId, username: user }
     const response = await api.request({
       url: `/plant/removeFav`,
       method: "DELETE",
@@ -196,7 +196,7 @@ export const API = {
     })
     return response
   },
-  
+
   loadProject: async function (projectId, cancel = false) {
     const response = await api.request({
       url: `/projects/project/` + projectId,
@@ -222,7 +222,7 @@ export const API = {
   },
 
   removeFromProject: async function (projectId, plantId, cancel = false) {
-    let data = {project: projectId, plant: plantId}
+    let data = { project: projectId, plant: plantId }
     const response = await api.request({
       url: `/projects/project/removePlant`,
       method: "POST",
@@ -234,10 +234,10 @@ export const API = {
     })
     return response
   },
-  
+
   cancellaProgetto: async function (projectId, cancel = false) {
     const response = await api.request({
-      url: `/projects/`+projectId,
+      url: `/projects/` + projectId,
       method: "DELETE",
       headers: {
         'Authorization': `Basic ${token}`
