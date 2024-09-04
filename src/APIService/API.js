@@ -110,6 +110,16 @@ export const API = {
     return response
   },
 
+  downloadProjectPdf: async function (project, cancel = false) {
+    const response = await api.request({
+      url: `/projects/project/`+project+`/pdf`,
+      method: "GET",
+      responseType: 'blob', // Imp
+      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
+    })
+    return response
+  },
+
   getUserProjects: async function (username, cancel = false) {
     const response = await api.request({
       url: `/projects/` + username,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RxWidth } from "react-icons/rx";
-import { GiTreeGrowth, GiSandsOfTime } from "react-icons/gi";
+import { GiTreeGrowth, GiSandsOfTime, GiCherry } from "react-icons/gi";
 import { GoPlus } from "react-icons/go";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { MdHeight } from "react-icons/md";
@@ -8,6 +8,8 @@ import { LiaThermometerHalfSolid } from "react-icons/lia";
 
 import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { IoFlowerSharp } from "react-icons/io5";
+import { PiTreeBold } from "react-icons/pi";
 
 
 export default function FavouriteCard({ product, addItemToCart, toggleCart, openSideCart }) {
@@ -50,14 +52,13 @@ export default function FavouriteCard({ product, addItemToCart, toggleCart, open
                     {/* <div className="detail"><p className="type"><img src={indoor_outdoor} title="Environment" /></p>
                                 <p className="description" >Outdoor</p>
                             </div> */}
-                    <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                    <div className="main-characteristic"><MdHeight title="Height" /><a className="truncate rounded-xl px-1 bg-lime-200">2m (max)</a></div>
-                    <div className="main-characteristic"><LiaThermometerHalfSolid title="LifeCycle" /><a className="truncate rounded-xl px-1 bg-lime-200">Eternal</a></div>
-                    <div className="main-characteristic"><LiaThermometerHalfSolid title="Sun condition" /><a></a></div>
-                    <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                    <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                    <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
-                    <div className="main-characteristic"><MdOutlineWbSunny title="Sun condition" /><a></a></div>
+                    <div className="main-characteristic"><MdOutlineWbSunny title="Condizione sole" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.esposizione.split(",")[0]}</a></div>
+                    <div className="main-characteristic"><MdHeight title="Altezza" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.altezza.split(/,(?!\d)/)[0].replaceAll("\"", "")}</a></div>
+                    <div className="main-characteristic"><LiaThermometerHalfSolid title="Ph terreno" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.phTerreno.split(",")[0]}</a></div>
+                    <div className="main-characteristic"><IoFlowerSharp title="Fioritura" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.periodoFioritura.split(",")[0]}</a></div>
+                    <div className="main-characteristic"><PiTreeBold title="Sun condition" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.tipoPianta.split(",")[0]}</a></div>
+                    <div className="main-characteristic"><GiCherry title="Sun condition" color="black" size={"20px"} /><a className="truncate rounded-xl px-1 border-solid border border-gray-500">{product.periodoFruttificazione.split(",")[0]}</a></div>
+
                 </div>
             </div>
         </div>
