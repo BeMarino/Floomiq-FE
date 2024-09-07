@@ -144,7 +144,23 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     scrollDiv.addEventListener('scroll', handleScroll);
   }, [page]);
 
+  function removeFilter(filter) {
+    console.log(filter)
+    console.log(filters)
+    let key = filter.split(":")[0]
+    let value = filter.split("_").pop()
+    let filtersSet = new Set([...filters["tag"]])
+    filtersSet.delete(filter);
+    filters["tag"] = [...filtersSet]
 
+    let filterObjSet = new Set(filters["obj"][key])
+    filterObjSet.delete(value)
+    filters["obj"][key] = Array.from(filterObjSet)
+
+
+    setFilters({ ...filters });
+    setPage(1);
+  }
 
   function clearFilter() {
     setFilters({ tag: [], obj: {} });
@@ -251,7 +267,13 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
             <div className="tags-sort w-[70%]">
               {filters["tag"].map((_, index) => (
                 <span key={index} id="badge-dismiss-dark" className="inline-flex items-center px-2 py-1 me-2 text-xs font-normal text-gray-500 border-black border-2 rounded-full dark:bg-gray-700 dark:text-gray">
-                  {filters["tag"][index]}
+                  {filters["tag"][index].split(":")[1].replace("_true", "").replace("_false", "").replace("_", "")}
+                  <button onClick={((e) => removeFilter(filters["tag"][index]))} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+                    <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span className="sr-only">Remove badge</span>
+                  </button>
                 </span>
               ))}
             </div>
@@ -291,7 +313,7 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
           )) :
             <div className='w-full justify-center items-center'>
               <div className='w-1/2 rounded-lg border-solid border-2 border-gray-400 ml-[25%] mt-[20%] self-center justify-between flex flex-row divide-x-2 p-2'>
-                <div className='flex w-2/3'><img src="no_result.svg"/></div>
+                <div className='flex w-2/3'><img src="no_result.svg" /></div>
                 <div className='flex w-1/3 justify-center items-center'>
                   <span className='flex'>Nessun risultato trovato</span>
                 </div>
@@ -301,8 +323,6 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
         <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList} downloadPdf={downloadPdf} />
 
       </div>
-      {/* <ToPrinf ref={pdfRef} />
-      <button onClick={savePdf}>download</button> */}
     </div>
     {isLoading && <Spinner />}
     {showCreateProjectDialog &&
