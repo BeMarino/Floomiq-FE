@@ -174,38 +174,15 @@ export default function FiltersColumn({ setFilters, filters }) {
                     openAltezza && (
                         <div className="options pl-2">
                             <div className="filters">
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("Altezza") !== -1 && filters["obj"]["Altezza"].indexOf("Da 0m a 1m") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Altezza Da 0m a 1m", obj: { Altezza: ["Da 0m a 1m"] } })}></input>
-                                        <span className='w-3/4 text-start'>Da 0m a 1m</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("Altezza") !== -1 && filters["obj"]["Altezza"].indexOf("Da 1m a 3m") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Altezza Da 1m a 3m", obj: { Altezza: ["Da 1m a 3m"] } })}></input>
-                                        <span className='w-3/4 text-start'>Da 1m a 3m</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("Altezza") !== -1 && filters["obj"]["Altezza"].indexOf("Da 3m a 5m") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Altezza Da 3m a 5m", obj: { Altezza: ["Da 3m a 5m"] } })}></input>
-                                        <span className='w-3/4 text-start'>Da 3m a 5m</span>
-                                    </label>
-                                </div>
-                                <div className='flex flex-row'>
-                                    <label className="cl-checkbox">
-                                        <input type="checkbox" id="option-one" name="option-one"
-                                            checked={Object.keys(filters["obj"]).indexOf("Altezza") !== -1 && filters["obj"]["Altezza"].indexOf("Più di 5m") !== -1}
-                                            value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Altezza Più di 5m", obj: { Altezza: ["Più di 5m"] } })}></input>
-                                        <span className='w-3/4 text-start'>Più di 5m</span>
-                                    </label>
-                                </div>
+                                {['da 0 a 0,15 cm', 'da 0,15 cm a 0,50 cm', 'da 0,50 cm a 1 m', 'da 1 m a 1,5 m', 'da 1,5 m a 2 m', 'da 2 m a 3 m', 'da 3 m a 5 m', 'da 5 m a 8 m', 'da 8 m a 15 m', 'da 15 m a 25 m', 'da 25 m a 35 m', 'maggiore > di 35 m'].map(element =>
+                                    <div className='flex flex-row'>
+                                        <label className="cl-checkbox">
+                                            <input type="checkbox" id="option-one" name="option-one"
+                                                checked={Object.keys(filters["obj"]).indexOf("Altezza") !== -1 && filters["obj"]["Altezza"].indexOf(element) !== -1}
+                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Altezza Da 0m a 1m", obj: { Altezza: [element] } })}></input>
+                                            <span className='w-3/4 text-start'>{element}</span>
+                                        </label>
+                                    </div>)}
 
                             </div>
                         </div>
@@ -403,30 +380,15 @@ export default function FiltersColumn({ setFilters, filters }) {
                             </div>
                             {openUmTerreno && <div className="options pl-2">
                                 <div className="filters">
-                                    {/* <div className='flex flex-row'>
-                                        <label className="cl-checkbox">
-                                            <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("UmiditàTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Neutro") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Umidità Terreno", obj: { PhTerreno: ["Neutro"] } })}></input>
-                                            <span className='w-3/4 text-start'>Neutro</span>
-                                        </label>
-                                    </div>
-                                    <div className='flex flex-row'>
-                                        <label className="cl-checkbox">
-                                            <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("PhTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Acido") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "PhTerreno Acido", obj: { PhTerreno: ["Acido"] } })}></input>
-                                            <span className='w-3/4 text-start'>Acido</span>
-                                        </label>
-                                    </div>
-                                    <div className='flex flex-row'>
-                                        <label className="cl-checkbox">
-                                            <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("PhTerreno") !== -1 && filters["obj"]["PhTerreno"].indexOf("Alcalino") !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "PhTerreno Alcalino", obj: { PhTerreno: ["Alcalino"] } })}></input>
-                                            <span className='w-3/4 text-start'>Alcalino</span>
-                                        </label>
-                                    </div> */}
+                                    {['Asciutto', 'Ben Drenato', 'Fertile', 'In Acqua', 'Umido',].map(element =>
+                                        <div className='flex flex-row'>
+                                            <label className="cl-checkbox">
+                                                <input type="checkbox" id="option-one" name="option-one"
+                                                    checked={Object.keys(filters["obj"]).indexOf("umiditaTerreno") !== -1 && filters["obj"]["umiditaTerreno"].indexOf(element) !== -1}
+                                                    value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Umidità Terreno", obj: { umiditaTerreno: [element] } })}></input>
+                                                <span className='w-3/4 text-start'>{element}</span>
+                                            </label>
+                                        </div>)}
                                 </div>
                             </div>}
                         </div>
@@ -446,7 +408,7 @@ export default function FiltersColumn({ setFilters, filters }) {
                     openUtilizzo && (
                         <div className="options pl-2">
                             <div className="filters">
-                                {['Aiuola', 'Anti-zanzare', 'Areeurbane', 'Balcone', 'Bonsai', 'Bordure', 'Deserto', 'Fioriere', 'Fitodepurazione', 'Frutteti', 'Frutteto', 'Giardinoperenne', 'Giardinoroccioso', 'Giardinozen', 'Laghetto', 'Ornamentale', 'Orto', 'Palude', 'Pergolati', 'Pienaterra', 'Siccità', 'Siepe', 'Usoincucina', 'Vaso', 'Vialialberati', 'giardinocostiero', 'rampicante'].map(element => (
+                                {['Aiuola', 'Anti-zanzare', 'Aree urbane', 'Balcone', 'Bonsai', 'Bordure', 'Deserto', 'Fioriere', 'Fitodepurazione', 'Frutteti', 'Frutteto', 'Giardino perenne', 'Giardino roccioso', 'Giardino zen', 'Laghetto', 'Ornamentale', 'Orto', 'Palude', 'Pergolati', 'Piena terra', 'Siccità', 'Siepe', 'Uso in cucina', 'Vaso', 'Viali alberati', 'giardino costiero', 'rampicante'].map(element => (
                                     <div className='flex flex-row'>
                                         <label className="cl-checkbox">
                                             <input type="checkbox" id="option-one" name="option-one"
@@ -691,9 +653,18 @@ export default function FiltersColumn({ setFilters, filters }) {
                                 <div className="filters">
                                     <div className='flex flex-row'>
                                         <div className='flex flex-row gap-1'>
-                                            <ButtonSwitch className="w-1/4" selected={filters["obj"]["Edibile"]}
-                                                filter={{ tag: "Frutto edibile", obj: { Edibile: true } }} handler={handleSwitchToggle} />
-                                            <span className='w-3/4 '>Frutto edibile</span>
+                                            <label className="cl-checkbox">
+                                                <input type="checkbox" id="option-one" name="option-one"
+                                                    checked={Object.keys(filters["obj"]).indexOf("Edibile") !== -1 && filters["obj"]["Edibile"] === true}
+                                                    value="option-one" onChange={(e) => handleSwitchToggle(e, { tag: "Frutto edibile Sì", obj: { Edibile: true } })}></input>
+                                                <span className='w-3/4 text-start'>Sì</span>
+                                            </label>
+                                            <label className="cl-checkbox">
+                                                <input type="checkbox" id="option-one" name="option-one"
+                                                    checked={Object.keys(filters["obj"]).indexOf("Edibile") !== -1 && filters["obj"]["Edibile"] === false}
+                                                    value="option-one" onChange={(e) => handleSwitchToggle(e, { tag: "Frutto edibile Sì", obj: { Edibile: false } })}></input>
+                                                <span className='w-3/4 text-start'>No</span>
+                                            </label>
                                         </div>
                                     </div>
 
@@ -769,15 +740,40 @@ export default function FiltersColumn({ setFilters, filters }) {
                     openZona && (
                         <div className="options pl-2">
                             <div className="filters">
-                                {['Zona 10a = da -1.1 a +1.7', 'Zona 10b = da +1.7 a +4.4', 'Zona 11a = da +4.4 a +7.2', 'Zona 11b = da +7.2 a +10', 'Zona 12a = da +10 a +12.8', 'Zona 12b = da +12.8 a +15.6', 'Zona 13a = da +15.6 a +18.3', 'Zona 13b = da +18.3 a +21.1', 'Zona 2a = da -45.6 a -42.8', 'Zona 2b = da -42.8 a -40', 'Zona 3a = da -40 a -37.2', 'Zona 3b = da -37.2 a -34.4', 'Zona 4a = da -34.4 a -31.7', 'Zona 4b = da -31.7 a -28.9', 'Zona 5a = da -28.9 a -26.1', 'Zona 5b = da -26.1 a -23.3', 'Zona 5b = da 26.1 a -23.3', 'Zona 6a = da -23.3 a -20.6', 'Zona 6b = da -20.6 a -17.8', 'Zona 7a = da -17.8 a -15', 'Zona 7b = da -15 a -12.2', 'Zona 8a = da -12.2 a -9.4', 'Zona 8b = da -9.4 a -6.7', 'Zona 9a = da -6.7 a -3.9', 'Zona 9b = da -3.9 a -1.1'].map(element =>
-                                    <div className='flex flex-row'>
-                                        <label className="cl-checkbox flex flex-row">
-                                            <input type="checkbox" id="option-one" name="option-one"
-                                                checked={Object.keys(filters["obj"]).indexOf("Zona") !== -1 && filters["obj"]["Zona"].indexOf(element) !== -1}
-                                                value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Zona: " + element, obj: { Zona: [element] } })}></input>
-                                            <span className='w-3/4 text-start'>{element}</span>
-                                        </label>
-                                    </div>)}
+                                {['Zona 1a = < -51.1'
+                                    , 'Zona 1b = da -51.1 a -45.6'
+                                    , 'Zona 2a = da -45.6 a -42.8'
+                                    , 'Zona 2b = da -42.8 a -40'
+                                    , 'Zona 3a = da -40 a -37.2'
+                                    , 'Zona 3b = da -37.2 a -34.4'
+                                    , 'Zona 4a = da -34.4 a -31.7'
+                                    , 'Zona 4b = da -31.7 a -28.9'
+                                    , 'Zona 5a = da -28.9 a -26.1'
+                                    , 'Zona 5b = da -26.1 a -23.3'
+                                    , 'Zona 6a = da -23.3 a -20.6'
+                                    , 'Zona 6b = da -20.6 a -17.8'
+                                    , 'Zona 7a = da -17.8 a -15'
+                                    , 'Zona 7b = da -15 a -12.2'
+                                    , 'Zona 8a = da -12.2 a -9.4'
+                                    , 'Zona 8b = da -9.4 a -6.7'
+                                    , 'Zona 9a = da -6.7 a -3.9'
+                                    , 'Zona 9b = da -3.9 a -1.1'
+                                    , 'Zona 10a = da -1.1 a +1.7'
+                                    , 'Zona 10b = da +1.7 a +4.4'
+                                    , 'Zona 11a = da +4.4 a +7.2'
+                                    , 'Zona 11b = da +7.2 a +10'
+                                    , 'Zona 12a = da +10 a +12.8'
+                                    , 'Zona 12b = da +12.8 a +15.6'
+                                    , 'Zona 13a = da +15.6 a +18.3'
+                                    , 'Zona 13a = da +18.3 a +21.1'].map(element =>
+                                        <div className='flex flex-row'>
+                                            <label className="cl-checkbox flex flex-row">
+                                                <input type="checkbox" id="option-one" name="option-one"
+                                                    checked={Object.keys(filters["obj"]).indexOf("Zona") !== -1 && filters["obj"]["Zona"].indexOf(element) !== -1}
+                                                    value="option-one" onChange={(e) => handleCheckboxClick(e, { tag: "Zona: " + element, obj: { Zona: [element] } })}></input>
+                                                <span className='w-3/4 text-start'>{element}</span>
+                                            </label>
+                                        </div>)}
                             </div>
                         </div>
                     )
@@ -866,7 +862,7 @@ export default function FiltersColumn({ setFilters, filters }) {
 
                     {openSiccita && <div className="options pl-2">
                         <div className="filters">
-                            {[].map(element =>
+                            {["Sì", "No", "Discreta"].map(element =>
                                 <div className='flex flex-row'>
                                     <label className="cl-checkbox flex flex-row">
                                         <input type="checkbox" id="option-one" name="option-one"
@@ -932,7 +928,7 @@ export default function FiltersColumn({ setFilters, filters }) {
 
                     {openToxic && <div className="options pl-2">
                         <div className="filters">
-                            {[].map(element =>
+                            {['No', 'Per Animali Domestici', 'Si', 'In Parte', 'Frutto', 'Foglia'].map(element =>
                                 <div className='flex flex-row'>
                                     <label className="cl-checkbox flex flex-row">
                                         <input type="checkbox" id="option-one" name="option-one"
@@ -954,7 +950,7 @@ export default function FiltersColumn({ setFilters, filters }) {
 
                     {openGelo && <div className="options pl-2">
                         <div className="filters">
-                            {["No","Sì", "Si in giovane età"].map(element =>
+                            {["No", "Sì", "Si in giovane età"].map(element =>
                                 <div className='flex flex-row'>
                                     <label className="cl-checkbox flex flex-row">
                                         <input type="checkbox" id="option-one" name="option-one"
@@ -976,7 +972,7 @@ export default function FiltersColumn({ setFilters, filters }) {
 
                     {openAutoctona && <div className="options pl-2">
                         <div className="filters">
-                            {[].map(element =>
+                            {["Sì", "No"].map(element =>
                                 <div className='flex flex-row'>
                                     <label className="cl-checkbox flex flex-row">
                                         <input type="checkbox" id="option-one" name="option-one"
@@ -1011,16 +1007,6 @@ export default function FiltersColumn({ setFilters, filters }) {
                     </div>}
                 </div>
 
-            </div>
-            <div className='flex flex-row gap-1'>
-                <ButtonSwitch className="w-1/4" selected={filters["obj"]["Interno"]}
-                    filter={{ tag: "Interno", obj: { Interno: true } }} handler={handleSwitchToggle} />
-                <span className='w-3/4 '>Pianta da interno</span>
-            </div>
-            <div className='flex flex-row gap-1'>
-                <ButtonSwitch className="w-1/4" selected={filters["obj"]["Esterno"]}
-                    filter={{ tag: "Esterno", obj: { Esterno: true } }} handler={handleSwitchToggle} />
-                <span className='w-3/4 '>Pianta da esterno</span>
             </div>
         </div>)
 }  

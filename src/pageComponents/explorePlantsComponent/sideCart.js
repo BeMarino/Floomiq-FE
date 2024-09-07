@@ -1,8 +1,8 @@
 import React from 'react';
 import SideCartProductCard from './SideCartProductCard';
-import { BiSolidSave } from 'react-icons/bi';
-import { FaRegFilePdf } from "react-icons/fa";
-import { MdDelete } from 'react-icons/md';
+import { BiSave } from 'react-icons/bi';
+import { FaRegFilePdf } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 import CreatePdf from '../../utils/pdf';
 import { API } from '../../APIService/API';
 
@@ -23,15 +23,15 @@ export default function SideCart({ sideCartProductList, removeFromList, setShowC
           <>
             <button className=' rounded-md hover:bg-lime-400'
               onClick={openCreateProjectDialog}>
-              <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
+              <BiSave size="32" className='flex self-center mb-1 cursor-pointer' />
             </button>
             <button className=' rounded-md hover:bg-lime-400'
               onClick={downloadPdf}>
-              <FaRegFilePdf size="32" className='flex self-center mb-1 cursor-pointer' />
+              <FaRegFilePdf size="32" className='flex self-center mb-1 cursor-pointer p-1' />
             </button>
             <button className=' rounded-md hover:bg-red-500'
               onClick={emptyList}>
-              <MdDelete size="32" className='flex self-center mb-1 cursor-pointer' />
+              <MdDeleteOutline size="32" className='flex self-center mb-1 cursor-pointer' />
             </button>
           </>
         }

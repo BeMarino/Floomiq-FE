@@ -17,7 +17,7 @@ export default function SuccessDialog({ projectName, setShowProjectCreated }) {
                         <span className="flex font-light text-left">Il progetto {projectName} è stato creato correttamente!</span>
 
                         <div className="flex flex-row w-full">
-                            <Link to={"/login"} className="font-light text-left w-full">Accedi alla sezione <span className="underline text-green-700">I miei progetti</span>
+                            <Link to={"/my-projects"} className="font-light text-left w-full">Accedi alla sezione <span className="underline text-green-700">I miei progetti</span>
                             &#8202; per visualizzarlo.</Link></div>
 
 

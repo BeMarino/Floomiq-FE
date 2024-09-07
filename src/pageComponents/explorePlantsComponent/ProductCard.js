@@ -97,6 +97,7 @@ export default function ProductCard({ product, addItemToCart, user, setShowError
                                 </svg>
                             </button>
                         </h2>
+                        <span className="flex text-left self-start ml-2 pl-1 px-2 w-4/5 truncate" title={product.nomeItaliano}>{product.nomeItaliano}</span>
                         <div className={accordionOpen ? "" : "hidden"} aria-labelledby={"accordion-flush-heading"}>
                             <div className="py-2 border-b border-gray-200 dark:border-gray-700">
                                 <p className="mx-2 text-xs text-left text-gray-500 dark:text-gray-400">{product.nomeItaliano}<br></br>{product.descrizione}</p>

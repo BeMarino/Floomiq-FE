@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ProductCard from "./ProductCard";
 import SideCart from "./sideCart";
-import CreatePdf from "../../utils/pdf";
 import { API } from '../../APIService/API';
 import Spinner from '../spinner';
 import SuccessDialog from '../SuccessDialog';
@@ -11,27 +10,18 @@ import { PiPaintBrushHousehold } from "react-icons/pi";
 import NewFavouriteDialog from '../newFavouriteDialog';
 import FiltersColumn from './filtersColumn';
 import { LuFilter } from "react-icons/lu";
-import { MdDelete, MdKeyboardDoubleArrowUp } from "react-icons/md";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import Cart from './Cart';
 import SideCartProductCard from './SideCartProductCard';
-import { BiSolidSave } from 'react-icons/bi';
 import { HiFilter, HiOutlineFilter } from 'react-icons/hi';
 import FiltersColumnMobile from './filtersColumnMobile';
 import NewProjectDialog from './newProjectDialog';
 import { FaRegFilePdf } from "react-icons/fa";
 import { IoMdSearch } from 'react-icons/io';
+import { BiSave } from 'react-icons/bi';
+import { MdDeleteOutline } from "react-icons/md";
 
-
-let pdfRef = null;
 export default function DatabaseExplorer({ user, sideCartProductList, setSideCartProductList }) {
-  const ToPrinf = React.forwardRef((props, ref) => {
-    return (
-      <div ref={ref}>
-        {<CreatePdf />}
-      </div>
-    );
-  });
-  pdfRef = useRef();
 
   const [isLoading, setIsLoading] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
@@ -208,6 +198,8 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
     setSideCartProductList([])
   }
 
+
+
   const suggestionsListComponent = showSuggestions && inputSearchValue && (
     <ul className="suggestions text-left">
       {suggestions.length ? (
@@ -292,11 +284,19 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
         <FiltersColumn setFilters={setFilters} filters={filters} applyFilter={applyFilter} />
         <div className="results" ref={scrollDivRef}>
 
-          {productList.map((_, index) => (
+          {productList.length > 0 ? productList.map((_, index) => (
             <ProductCard key={index} product={productList[index]} addItemToCart={addItemToCart}
               setShowLoginRequired={setShowLoginRequired}
               setShowNewFavourite={setShowNewFavourite} setShowErrorDialog={setShowErrorMessage} user={user} setLastFavourite={setLastFavourite} />
-          ))}
+          )) :
+            <div className='w-full justify-center items-center'>
+              <div className='w-1/2 rounded-lg border-solid border-2 border-gray-400 ml-[25%] mt-[20%] self-center justify-between flex flex-row divide-x-2 p-2'>
+                <div className='flex w-2/3'><img src="no_result.svg"/></div>
+                <div className='flex w-1/3 justify-center items-center'>
+                  <span className='flex'>Nessun risultato trovato</span>
+                </div>
+              </div>
+            </div>}
         </div>
         <SideCart sideCartProductList={sideCartProductList} removeFromList={removeFromList} setShowCreateProjectDialog={setShowCreateProjectDialog} setShowLoginRequired={setShowLoginRequired} user={user} emptyList={emptyList} downloadPdf={downloadPdf} />
 
@@ -315,11 +315,11 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       <div className='flex flex-row bg-white justify-center gap-10 rounded-t-xl'>
         <button className=' rounded-md hover:bg-lime-400'
           onClick={openCreateProjectDialog}>
-          <BiSolidSave size="32" className='flex self-center mb-1 cursor-pointer' />
+          <BiSave size="32" className='flex self-center mb-1 cursor-pointer' />
         </button>
         <button className=' rounded-md hover:bg-red-500'
           onClick={emptyList}>
-          <MdDelete size="32" className='flex self-center mb-1 cursor-pointer' />
+          <MdDeleteOutline size="32" className='flex self-center mb-1 cursor-pointer' />
         </button>
       </div>
       <div className="flex flex-col items-center bg-white rounded-t-xl h-full overflow-y-scroll justify-between py-6">
@@ -329,8 +329,10 @@ export default function DatabaseExplorer({ user, sideCartProductList, setSideCar
       </div>
     </div>}
     {openFilter && <FiltersColumnMobile setFilters={setFilters} filters={filters} applyFilter={applyFilter} />}
-    <div class=" absolute cart z-[2] bottom-4 left-2 p-2" onClick={() => setOpenFilter(!openFilter)}>
+    <div class=" absolute cart z-[2] bottom-4 p-2" onClick={() => setOpenFilter(!openFilter)}>
       {!openFilter && <HiOutlineFilter className="self-end ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} />}
+    </div>
+    <div class=" absolute cart z-[2] top-40 p-2" onClick={() => setOpenFilter(!openFilter)}>
       {openFilter && <HiFilter className="self-start ml-[50%] w-9 h-9 p-1 bg-white shadow-gray-400 shadow-lg rounded-md" color='#a3e635' size={"32px"} onClick={applyFilter} />}
     </div>
   </div>)

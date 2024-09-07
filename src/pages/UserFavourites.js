@@ -11,6 +11,7 @@ import FavouriteCard from '../pageComponents/explorePlantsComponent/FavouriteCar
 import Constant from '../utils/constant';
 import { API } from '../APIService/API';
 import TabSwitch from '../pageComponents/explorePlantsComponent/tabSwitch';
+import ErrorDialog from '../pageComponents/ErrorDialog';
 
 
 
@@ -19,6 +20,8 @@ export default function UserFavourites() {
     pdfRef = useRef();
 
     const [productList, setProductList] = useState([])
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         API.userFavourites()
@@ -33,21 +36,24 @@ export default function UserFavourites() {
     }, [])
     const location = useLocation();
     const path = location.pathname;
-    const [sideCartProductList, setSideCartProductList] = useState([]);
     const user = JSON.parse(localStorage.getItem(Constant.localStorageUserKey))
     const navigate = useNavigate();
-    function addItemToCart(product) {
-        setSideCartProductList([...sideCartProductList, product]);
-    }
+
 
     function removeFromList(product) {
-        sideCartProductList.splice(sideCartProductList.indexOf(product), 1);
-        setSideCartProductList([...sideCartProductList]);
+        productList.splice(productList.indexOf(product), 1);
+        setProductList([...productList]);
     }
+
+    const closeErrorDialog = () => {
+        setShowErrorMessage(false)
+      }
 
     return (
         <div className="exploreContainer w-full sm:w-11/12 flex flex-row mt-16">
-            <div className="flex flex-col w-full sm:w-1/5 px-8 sm:gap-5">
+            <div className="flex flex-col w-full mt-16 sm:w-1/5 px-8 sm:gap-5">
+            {showErrorMessage && <ErrorDialog setShowErrorMessage={closeErrorDialog} errorMessage={errorMessage} />}
+
                 <div className=" place-self-center 	relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg className="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                 </div>
@@ -100,7 +106,7 @@ export default function UserFavourites() {
                 </div>
                 <div className='resultsFavourite gap-x-4'>
                     {productList.map((_, index) => (
-                        <FavouriteCard key={index} product={productList[index]} />
+                        <FavouriteCard key={index} product={productList[index]} user={user} setShowErrorMessage={setShowErrorMessage} setErrorMessage={setErrorMessage} removeFromList={removeFromList}/>
                     ))}
                 </div>
             </div>

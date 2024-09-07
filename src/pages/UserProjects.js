@@ -21,6 +21,11 @@ export default function UserProjects({ user }) {
     const [productList, setProductList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [showDialog, setShowDialog] = useState(false)
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [toDeleteProject, setToDeleteProject] = useState(null);
+
     const location = useLocation();
     const path = location.pathname;
     const navigate = useNavigate();
@@ -39,9 +44,26 @@ export default function UserProjects({ user }) {
         setIsLoading(false)
     }, [page])
 
+    function removeFromList(product) {
+        productList.splice(productList.indexOf(product), 1);
+        setProductList([...productList]);
+    }
+
+    const cancellaProgetto = () => {
+        API.cancellaProgetto(toDeleteProject.name)
+            .then((response) => {
+                removeFromList(toDeleteProject)
+                setShowDialog(!showDialog)
+            })
+            .catch((error) => {
+                setErrorMessage(error);
+                setShowErrorMessage(true)
+            });
+    }
     return (
         <div className="exploreContainer w-full sm:w-11/12 flex flex-row mt-16 sm:mt-24">
-            <div className="flex flex-col w-full sm:w-1/5 px-8 sm:gap-5">
+
+            <div className="flex flex-col w-full sm:w-1/5 mt-16 px-8 sm:gap-5">
                 <div className=" place-self-center 	relative w-16 h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg className="absolute w-18 h-18 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                 </div>
@@ -100,10 +122,37 @@ export default function UserProjects({ user }) {
                 </div>
                 <div className='resultsProject w-full sm:gap-4'>
                     {productList.map((_, index) => (
-                        <ProjectCard key={index} project={productList[index]} />
+                        <ProjectCard key={index} project={productList[index]} setToDeleteProject={setToDeleteProject} removeFromList={removeFromList} setShowDialog={setShowDialog} setErrorMessage={setErrorMessage} setShowErrorMessage={setShowErrorMessage} />
                     ))}
                     {isLoading && <Spinner />}
                 </div>
             </div>
+            {showDialog &&
+
+                <div className="absolute w-screen h-full top-0 self-center  backdrop-blur-lg items-center z-30" >
+                    <div className="flex flex-row divide-x-2 divide-solid divide-emerald-500 py-2 w-1/2 mt-[10%] ml-[25%] border-solid border-2 border-slate-300	bg-white  rounded self-center">
+                        <div className="bg-cover bg-no-repeat p-16" >
+                            <img src="registration.svg" className="h-[128px] w-[128px]" ></img>
+                        </div>
+                        <div className="flex alert-white w-full ">
+                            <div className="flex flex-col justify-between p-2">
+                                <span className="flex font-medium text-3xl text-wrap">Sei sicuro?</span>
+                                <span className="flex font-light text-left">Sei sicuro di voler cancellare il progetto?</span>
+                                <div className="flex flex-row w-full justify-between">
+                                    <button className="button border-black border-2 border-solid  button-sign-up
+     text-balance text-red-700 hover:text-white hover:bg-red-700"
+                                        onClick={cancellaProgetto}>
+                                        Elimina
+                                    </button>
+
+                                    <button className='button border-black border-2 border-solid  button-sign-up bg-white hover:bg-green-400 text-black' onClick={() => setShowDialog(false)}>
+                                        Annulla
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>)
 };

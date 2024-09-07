@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { API } from "../../APIService/API";
 import ErrorDialog from "../ErrorDialog";
 import { FaRegFilePdf } from "react-icons/fa6";
+import { MdDeleteForever } from "react-icons/md";
 
 
-export default function ProjectCard({ project }) {
+
+export default function ProjectCard({ project, setShowErrorMessage, setErrorMessage, setShowDialog, setToDeleteProject }) {
 
     const [accordionOpen, setVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
 
     const closeErrorDialog = () => {
         setShowErrorMessage(false)
@@ -54,11 +54,23 @@ export default function ProjectCard({ project }) {
             setIsLoading(false)
         })
     }
+
+    const toggleDialog = () => {
+        setShowDialog(true)
+        setToDeleteProject(project)
+    }
+
+
+
+
     return (
         <>
             <div className="project-card">
                 <div className="main">
                     <div style={{ "backgroundImage": imageUrl }} className="image" >
+                        <button className={"addToFav bg-[#d7d7d7] hover:bg-red-600"} onMouseDown={e => e.stopPropagation()} onClick={(event) => {
+                            toggleDialog(event);
+                        }}><MdDeleteForever size={"26px"} color="#e02424" title="Elimina progetto" /></button>
                     </div>
                 </div>
                 <div className="flex flex-col w-full px-4 gap-2 justify-between bg-gray-100  pb-2 rounded-b-lg">
@@ -91,8 +103,6 @@ export default function ProjectCard({ project }) {
                     </Link>
                 </div>
             </div>
-            {showErrorMessage && <ErrorDialog setShowErrorMessage={closeErrorDialog} projectName={project.name} errorMessage={errorMessage} />}
-
         </>
     )
 

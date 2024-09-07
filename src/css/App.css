@@ -1229,10 +1229,10 @@ input:focus::placeholder {
 
 
 .spinner {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 5px solid rgba(0, 0, 0, 0.1);
   border-left-color: #1f981d; /* Change this to your desired spinner color */
   animation: spin 1s linear infinite; /* Apply the animation */
  

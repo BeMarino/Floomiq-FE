@@ -10,9 +10,11 @@ import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { IoFlowerSharp } from "react-icons/io5";
 import { PiTreeBold } from "react-icons/pi";
+import { FaHeart } from "react-icons/fa";
+import { API } from "../../APIService/API";
 
 
-export default function FavouriteCard({ product, addItemToCart, toggleCart, openSideCart }) {
+export default function FavouriteCard({ product, addItemToCart, toggleCart, openSideCart , user, setShowErrorMessage, setErrorMessage, removeFromList}) {
 
     const [accordionOpen, setVisible] = useState(false);
     console.log(product)
@@ -28,10 +30,36 @@ export default function FavouriteCard({ product, addItemToCart, toggleCart, open
         setVisible(!accordionOpen);
     }
 
+    
+    function removeFromFavourite(event) {
+        
+        event.preventDefault();
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation()
+
+        API.removeFromFavourite(user.username, product.id)
+            .then((response) => {
+                if (response.status === 200) {
+                    // Authentication was successful
+                    product.userFavourite = false;
+                    removeFromList(product)
+                } else {
+                    setErrorMessage(response.body)
+                    setShowErrorMessage(true);
+                }
+            })
+            .catch((err) =>
+                setShowErrorMessage(true)
+            )
+    }
+
     return (
         <div className="fav-card">
             <div className="main">
                 <Link to={"/plant-details?id=" + product.id} style={{ "backgroundImage": product.immagini[0] !== "" ? "url(" + product.immagini[0] + ")" : "url(empty_plant.jpeg)" }} className="image" >
+                <button className={!product.userFavourite ? "addToFav bg-[#d7d7d7] hover:bg-lime-300":"addToFav bg-[#d7d7d7] hover:bg-red-600"} onMouseDown={e => e.stopPropagation()} onClick={(event) => {
+                            removeFromFavourite(event);
+                        }}><FaHeart size={"18px"} color="#7BC043" title="Rimuovi dai preferiti" /></button>
                 </Link>
                 <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
                     <h2 id={"accordion-flush-heading"}>
